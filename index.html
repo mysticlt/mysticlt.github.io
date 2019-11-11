@@ -172,14 +172,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="构造函数和原型"><a href="#构造函数和原型" class="headerlink" title="构造函数和原型"></a>构造函数和原型</h1><h2 id="构造函数和原型-1"><a href="#构造函数和原型-1" class="headerlink" title="构造函数和原型"></a>构造函数和原型</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在典型的OOP 的语言中（如Java），都存在类的概念，类就是对象的模板，对象就是类的实例，但在ES6之前，JS 中并没用引入类的概念。</span><br><span class="line"></span><br><span class="line">ES6，全称ECMAScript6<span class="number">.0</span> ，<span class="number">2015.06</span> 发版。但是目前浏览器的JavaScript 是ES5 版本，大多数高版本的浏览器也支持ES6，不过只实现了ES6 的部分特性和功能。</span><br><span class="line"></span><br><span class="line">在ES6之前，对象不是基于类创建的，而是用一种称为构建函数的特殊函数来定义对象和它们的特征。</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建对象可以通过以下三种方式："><a href="#创建对象可以通过以下三种方式：" class="headerlink" title="创建对象可以通过以下三种方式："></a>创建对象可以通过以下三种方式：</h2><ul>
-<li>对象字面量</li>
-<li>new Object()【构造函数】</li>
-<li>自定义构造函数</li>
-</ul>
-<h1 id="构造函数和原型-2"><a href="#构造函数和原型-2" class="headerlink" title="构造函数和原型"></a>构造函数和原型</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">构造函数是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与<span class="keyword">new</span>一起使用。我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span> (<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">构造函数是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与<span class="keyword">new</span>一起使用。我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span> (<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>在JS 中，使用构造函数时要注意以下两点：</strong></p>
 <p>如果用new，就是构造函数，否则就是普不函数</p>
