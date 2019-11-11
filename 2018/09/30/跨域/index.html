@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="MysticLt的博客">
 <meta property="og:description" content="一、为什么会出现跨域问题 出于浏览器的同源策略限制。同源策略（Sameoriginpolicy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。同源策略会阻止一个域的javascript脚本和另外一个域的内容进行交互。所谓同源（即指在同一个域）就是两个页面具有相同的协议">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-11T15:15:08.960Z">
+<meta property="og:updated_time" content="2019-11-11T15:21:32.936Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跨域">
 <meta name="twitter:description" content="一、为什么会出现跨域问题 出于浏览器的同源策略限制。同源策略（Sameoriginpolicy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。同源策略会阻止一个域的javascript脚本和另外一个域的内容进行交互。所谓同源（即指在同一个域）就是两个页面具有相同的协议">
@@ -182,6 +182,8 @@
         <p>一、为什么会出现跨域问题</p>
 <p>出于浏览器的同源策略限制。同源策略（Sameoriginpolicy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。同源策略会阻止一个域的javascript脚本和另外一个域的内容进行交互。所谓同源（即指在同一个域）就是两个页面具有相同的协议（protocol），主机（host）和端口号（port）</p>
 <p>二、什么是跨域</p>
+<a id="more"></a>
+
 <p>当一个请求url的协议、域名、端口三者之间任意一个与当前页面url不同即为跨域</p>
 <p>当前页面url    被请求页面url    是否跨域    原因<br><a href="http://www.test.com/" target="_blank" rel="noopener">http://www.test.com/</a>    <a href="http://www.test.com/index.html" target="_blank" rel="noopener">http://www.test.com/index.html</a>    否    同源（协议、域名、端口号相同）<br><a href="http://www.test.com/" target="_blank" rel="noopener">http://www.test.com/</a>    <a href="https://www.test.com/index.html" target="_blank" rel="noopener">https://www.test.com/index.html</a>    跨域    协议不同（http/https）<br><a href="http://www.test.com/" target="_blank" rel="noopener">http://www.test.com/</a>    <a href="http://www.baidu.com/" target="_blank" rel="noopener">http://www.baidu.com/</a>    跨域    主域名不同（test/baidu）<br><a href="http://www.test.com/" target="_blank" rel="noopener">http://www.test.com/</a>    <a href="http://blog.test.com/" target="_blank" rel="noopener">http://blog.test.com/</a>    跨域    子域名不同（www/blog）<br><a href="http://www.test.com:8080/" target="_blank" rel="noopener">http://www.test.com:8080/</a>    <a href="http://www.test.com:7001/" target="_blank" rel="noopener">http://www.test.com:7001/</a>    跨域    端口号不同（8080/7001）<br>三、非同源限制</p>
 <p>【1】无法读取非同源网页的 Cookie、LocalStorage 和 IndexedDB</p>
