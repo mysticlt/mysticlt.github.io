@@ -6,15 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | Hexo</title>
+  <title>构造函数和原型 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="构造函数和原型构造函数和原型12345在典型的OOP 的语言中（如Java），都存在类的概念，类就是对象的模板，对象就是类的实例，但在ES6之前，JS 中并没用引入类的概念。ES6，全称ECMAScript6.0 ，2015.06 发版。但是目前浏览器的JavaScript 是ES5 版本，大多数高版本的浏览器也支持ES6，不过只实现了ES6 的部分特性和功能。在ES6之前，对象不是基于类创建的，">
+<meta name="keywords" content="构造函数和原型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="构造函数和原型">
+<meta property="og:url" content="http://yoursite.com/2019/11/11/构造函数和原型/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="构造函数和原型构造函数和原型12345在典型的OOP 的语言中（如Java），都存在类的概念，类就是对象的模板，对象就是类的实例，但在ES6之前，JS 中并没用引入类的概念。ES6，全称ECMAScript6.0 ，2015.06 发版。但是目前浏览器的JavaScript 是ES5 版本，大多数高版本的浏览器也支持ES6，不过只实现了ES6 的部分特性和功能。在ES6之前，对象不是基于类创建的，">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="c:/blog/themes/内存.jpg">
+<meta property="og:image" content="c:/blog/themes/%E5%85%B3%E7%B3%BB%E5%9B%BE.jpg">
+<meta property="og:image" content="c:/blog/themes/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%EF%BC%8C%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%85%B3%E7%B3%BB.jpg">
+<meta property="og:image" content="c:/blog/themes/原型链.jpg">
+<meta property="og:updated_time" content="2019-11-11T07:46:04.719Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="构造函数和原型">
+<meta name="twitter:description" content="构造函数和原型构造函数和原型12345在典型的OOP 的语言中（如Java），都存在类的概念，类就是对象的模板，对象就是类的实例，但在ES6之前，JS 中并没用引入类的概念。ES6，全称ECMAScript6.0 ，2015.06 发版。但是目前浏览器的JavaScript 是ES5 版本，大多数高版本的浏览器也支持ES6，不过只实现了ES6 的部分特性和功能。在ES6之前，对象不是基于类创建的，">
+<meta name="twitter:image" content="c:/blog/themes/内存.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,36 +160,162 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-构造函数和原型" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/11/构造函数和原型/" class="archive-article-date">
-  	<time datetime="2019-11-11T07:45:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/11/构造函数和原型/">构造函数和原型</a>
+    <h1 class="article-title" itemprop="name">
+      构造函数和原型
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/11/11/构造函数和原型/" class="archive-article-date">
+  	<time datetime="2019-11-11T07:45:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="构造函数和原型"><a href="#构造函数和原型" class="headerlink" title="构造函数和原型"></a>构造函数和原型</h1><h2 id="构造函数和原型-1"><a href="#构造函数和原型-1" class="headerlink" title="构造函数和原型"></a>构造函数和原型</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在典型的OOP 的语言中（如Java），都存在类的概念，类就是对象的模板，对象就是类的实例，但在ES6之前，JS 中并没用引入类的概念。</span><br><span class="line"></span><br><span class="line">ES6，全称ECMAScript6<span class="number">.0</span> ，<span class="number">2015.06</span> 发版。但是目前浏览器的JavaScript 是ES5 版本，大多数高版本的浏览器也支持ES6，不过只实现了ES6 的部分特性和功能。</span><br><span class="line"></span><br><span class="line">在ES6之前，对象不是基于类创建的，而是用一种称为构建函数的特殊函数来定义对象和它们的特征。</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建对象可以通过以下三种方式："><a href="#创建对象可以通过以下三种方式：" class="headerlink" title="创建对象可以通过以下三种方式："></a>创建对象可以通过以下三种方式：</h2><ul>
+<li>对象字面量</li>
+<li>new Object()【构造函数】</li>
+<li>自定义构造函数</li>
+</ul>
+<h1 id="构造函数和原型-2"><a href="#构造函数和原型-2" class="headerlink" title="构造函数和原型"></a>构造函数和原型</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">构造函数是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与<span class="keyword">new</span>一起使用。我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span> (<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>在JS 中，使用构造函数时要注意以下两点：</strong></p>
+<p>如果用new，就是构造函数，否则就是普不函数</p>
+<p>1.构造函数用于创建某一类对象，其首字母要大写</p>
+<p>2.构造函数要和new 一起使用才有意义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">练习判断构造函数还是普通函数</span><br></pre></td></tr></table></figure>
+
+<p><strong>new在执行时会做四件事情</strong></p>
+<ol>
+<li>在内存中创建一个新的空对象。</li>
+<li>让this指向这个新的对象。</li>
+<li>执行构造函数里面的代码，给这个新对象添加属性和方法。</li>
+<li>返回这个新对象（所以构造函数里面不需要return）。</li>
+</ol>
+<h2 id="静态成员和实例成员"><a href="#静态成员和实例成员" class="headerlink" title="静态成员和实例成员"></a>静态成员和实例成员</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JavaScript 的构造函数中可以添加一些成员，可以在构造函数本身上添加，也可以在构造函数内部的this 上添加。通过这两种方式添加的成员，就分别称为静态成员和实例成员。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>静态成员：在构造函数本上添加的成员称为静态成员，只能由构造函数本身来访问</li>
+<li>实例成员：在构造函数内部创建的对象成员称为实例成员，只能由实例化的对象来访问</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params">uname, age</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.uname = uname;</span><br><span class="line">			<span class="keyword">this</span>.age = age;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">this</span>.say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="number">123</span>);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> obj = <span class="keyword">new</span> Person(<span class="string">'张三丰'</span>,<span class="number">22</span>);	</span><br><span class="line">	<span class="built_in">console</span>.log(obj.uname);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// console.log( Person.uname );</span></span><br><span class="line">	Person.leibie = <span class="string">'人'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(Person.leibie);</span><br><span class="line">	<span class="built_in">console</span>.log(obj.leibie);</span><br></pre></td></tr></table></figure>
+
+<p><strong>构造函数小问题：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">当实例化对象的时候，属性好理解，属性名属性值，那么方法是函数，函数是复杂数据类型</span><br><span class="line"></span><br><span class="line">那么保存的时候是保存地址，又指向函数，而每创建一个对象，都会有一个函数，每个函数都得开辟一个内</span><br><span class="line"></span><br><span class="line">存空间，此时浪费内存了，那么如何节省内存呢，我们需要用到原型</span><br><span class="line"></span><br><span class="line">方法放到构造函数里面，如果多次实例化，会浪费内存</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Star (uname, age) &#123;</span><br><span class="line">	this.uname = uname;</span><br><span class="line">	this.age = age;</span><br><span class="line">	this.sing = function () &#123;</span><br><span class="line">		console.log(this.name + &apos;在唱歌&apos;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var ldh = new Star(&apos;周星驰&apos;, 22);</span><br><span class="line">var ldh = new Star(&apos;刘德华&apos;, 22);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<img src="C:/blog/themes/内存.jpg">
+</blockquote>
+<h2 id="构造函数原型prototype"><a href="#构造函数原型prototype" class="headerlink" title="构造函数原型prototype"></a>构造函数原型prototype</h2><p>什么是原型对象：就是一个属性，是构造函数的属性，这个属性是一个对象，我们也称呼，prototype 为原型对象。</p>
+<p>每一个构造函数都有一个属性，prototype</p>
+<p>作用：是为了共享方法，从而达到节省内存</p>
+<p><strong>注意：每一个构造函数都有prototype属性</strong></p>
+<p>例如：大家来学校上学，有的开车，有的汽车，有的开飞机，等等，此时浪费，那么准备一个大巴车，方便有节省</p>
+<blockquote>
+<p>构造函数通过原型分配的函数是所有对象所共享的。</p>
+<p>JavaScript 规定，每一个构造函数都有一个prototype 属性，指向另一个对象。注意这个prototype 就是一个对象，这个对象的所有属性和方法，都会被构造函数所拥有。我们可以把那些不变的方法，直接定义在prototype 对</p>
+<p>象上，这样所有对象的实例就可以共享这些方法。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Star</span> (<span class="params">uname, age</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">​		<span class="keyword">this</span>.uname = uname;</span><br><span class="line">​		<span class="keyword">this</span>.age = age;</span><br><span class="line">​		<span class="comment">// this.sing = function () &#123;</span></span><br><span class="line">​		<span class="comment">// 	console.log(this.name + '在唱歌');</span></span><br><span class="line">​		<span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line">​	&#125;</span><br><span class="line">​	Star.prototype.sing = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">​		<span class="built_in">console</span>.log(<span class="keyword">this</span>.uname + <span class="string">'在唱歌'</span>);</span><br><span class="line">​	&#125;</span><br><span class="line"></span><br><span class="line">​	<span class="keyword">var</span> zxc = <span class="keyword">new</span> Star(<span class="string">'周星驰'</span>, <span class="number">22</span>);</span><br><span class="line">​	<span class="keyword">var</span> ldh = <span class="keyword">new</span> Star(<span class="string">'刘德华'</span>, <span class="number">22</span>);</span><br><span class="line">​	<span class="comment">// console.log( Star.prototype );</span></span><br><span class="line">​	ldh.sing();</span><br><span class="line">​	zxc.sing();</span><br></pre></td></tr></table></figure>
+
+<p><strong>总结：所有的公共属性写到构造函数里面，所有的公共方法写到原型对象里面</strong></p>
+<p> 疑问：为何创建一个对象，都可以自动的跑到原型对象上找方法</p>
+<p>因为每一个对象都有一个属性，对象原型，执行原型对象</p>
+<h2 id="对象原型：proto"><a href="#对象原型：proto" class="headerlink" title="对象原型：proto"></a>对象原型：<strong><strong>proto</strong></strong></h2><p>主要作用：指向prototype</p>
+<p>构造函数和原型对象都会有一个属性<strong>proto</strong> 指向构造函数的prototype 原型对象，之所以我们对象可以使用构造函数prototype 原型对象的属性和方法，就是因为对象有<strong>proto</strong> 原型的存在。</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 注意：____proto____是一个非标准属性，不可以拿来赋值或者设置【只读属性】</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.____proto____对象原型和原型对象prototype 是等价的</span><br><span class="line"></span><br><span class="line">2.____proto____对象原型的意义就在于为对象的查找机制提供一个方向，或者说一条路线，但是它是一个非标准属性，因此实际开发中，不可以使用这个属性，它只是内部指向原型对象prototype</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ul>
+<p><img src="C:/blog/themes/%E5%85%B3%E7%B3%BB%E5%9B%BE.jpg" alt></p>
+<p><strong>总结：每一个对象都有一个原型，作用是指向原型对象prototype</strong></p>
+<p><strong>统一称呼：<strong><strong>proto</strong></strong>原型，prototype成为原型对象</strong></p>
+<p>【每一个构造函数都有：原型对象】</p>
+<p>【每一个实例对象都有：对象原型】</p>
+<h2 id="constructor-构造函数"><a href="#constructor-构造函数" class="headerlink" title="constructor  构造函数"></a>constructor  构造函数</h2><blockquote>
+<p><u><strong>记录是哪个构造函数创建出来的</strong></u></p>
+<p>指回构造函数本身</p>
+</blockquote>
+<p>原型（<strong>proto</strong>）和构造函数（prototype）原型对象里面都有一个属性constructor属性，constructor 我们称为构造函数，因为它指回构造函数本身。constructor 主要用于记录该对象引用于哪个构造函数，它可以让原型对象重新指向原来的构造函数。一般情况下，对象的方法都在构造函数的原型对象中设置。如果有多个对象的方法，我们可以给原型对象采取对象形式赋值，但是这样就会覆盖构造函数原型对象原来的内容，这样修改后的原型对象constructor  就不再指向当前构造函数了。此时，我们可以在修改后的原型对象中，添加一个constructor 指向原来的构造函数。</p>
+<p><strong>总结：constructor  主要作用可以指回原来的构造函数</strong></p>
+<h2 id="构造函数、实例、原型对象三者之间的关系"><a href="#构造函数、实例、原型对象三者之间的关系" class="headerlink" title="构造函数、实例、原型对象三者之间的关系"></a>构造函数、实例、原型对象三者之间的关系</h2><p><img src="C:/blog/themes/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%EF%BC%8C%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%85%B3%E7%B3%BB.jpg" alt></p>
+<p><strong>思考：如果传入一个对象给原型对象添加方法呢</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Star.prototype = &#123;</span><br><span class="line">    sing : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    dance: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">此时会覆盖原先prototype中的内容，传入一个新的对象，那么此时就不知道构造函数是哪个了</span><br><span class="line">所以我们要指回构造函数：<span class="keyword">constructor</span>：构造函数</span><br></pre></td></tr></table></figure>
+
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">作用：提供一个成员的查找机制，或者查找规则</span><br></pre></td></tr></table></figure>
+
+<img src="C:/blog/themes/原型链.jpg">
+
+
+
+<h2 id="JavaScript-的成员查找机制-规则"><a href="#JavaScript-的成员查找机制-规则" class="headerlink" title="JavaScript 的成员查找机制(规则)"></a>JavaScript 的成员查找机制(规则)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">当访问一个对象的属性（包括方法）时，首先查找这个对象自身有没有该属性。</span><br><span class="line"></span><br><span class="line">如果没有就查找它的原型（也就是__proto__指向的prototype 原型对象）。</span><br><span class="line"></span><br><span class="line">如果还没有就查找原型对象的原型（Object的原型对象）。</span><br><span class="line"></span><br><span class="line">依此类推一直找到Object 为止（null）。</span><br><span class="line"></span><br><span class="line">__proto__对象原型的意义就在于为对象成员查找机制提供一个方向，或者说一条路线。</span><br><span class="line"></span><br><span class="line">// console.log(Star.prototype.__proto__.__proto__);</span><br><span class="line">// console.log(Object.prototype);</span><br></pre></td></tr></table></figure>
+
+<h2 id="扩展内置对象"><a href="#扩展内置对象" class="headerlink" title="扩展内置对象"></a>扩展内置对象</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">可以通过原型对象，对原来的内置对象进行扩展自定义的方法。比如给数组增加自定义求偶数和的功能。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">console.log( Array.prototype );</span><br><span class="line">	// 添加求和方法</span><br><span class="line">	Array.prototype.sum = function () &#123;</span><br><span class="line">		var sum = 0;</span><br><span class="line">		for (var i = 0; i &lt; this.length; i++) &#123;</span><br><span class="line">			sum += this[i];</span><br><span class="line">		&#125;</span><br><span class="line">		return sum;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	var arr = [1,2,3];</span><br><span class="line">	console.log( arr.sum() );</span><br><span class="line"></span><br><span class="line">	var newArr = [6,7,8,9];</span><br><span class="line">	console.log( newArr.sum() );</span><br></pre></td></tr></table></figure>
+
+<p>构造函数：function Fn () {}</p>
+<p><strong>属性写到构造函数里面，方法写到构造函数的原型对象里面</strong></p>
+<p>原型对象：每一个构造函数都有原型对象【prototype】【作用是用来保存方法】</p>
+<p>对象原型：每一个对象都有一个对象原型（原型）【<strong><strong>proto</strong></strong>】【作用是指向原型对象】</p>
+<p>constructor：指向构造函数</p>
+<p>原型链：作用是查找属性或者方法方向，机制</p>
+<p>构造函数：function Fn () {}</p>
+<p>静态成员实例成员：函数内部，在构造函数上</p>
+<p>原型对象： 构造函数属性prototype【把方法都放到原型对象】</p>
+<p>对象原型：指向原型对象【<strong><strong>proto</strong></strong>】</p>
+<p>constructor：构造函数</p>
+<p>原型链：原型，查找属性或者方法提供的机制</p>
+<p>构造函数，实例对象，原型对象</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -191,46 +327,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/11/11/构造函数和原型/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/20/hello-world/" class="archive-article-date">
-  	<time datetime="2019-09-20T10:42:10.940Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/20/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/20/hello-world/">Hello World</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -253,8 +449,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
