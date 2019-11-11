@@ -156,6 +156,198 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-跨域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/30/跨域/">跨域</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/30/跨域/" class="archive-article-date">
+  	<time datetime="2018-09-30T14:20:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、为什么会出现跨域问题</p>
+<p>出于浏览器的同源策略限制。同源策略（Sameoriginpolicy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。同源策略会阻止一个域的javascript脚本和另外一个域的内容进行交互。所谓同源（即指在同一个域）就是两个页面具有相同的协议（protocol），主机（host）和端口号（port）</p>
+<p>二、什么是跨域</p>
+<p>当一个请求url的协议、域名、端口三者之间任意一个与当前页面url不同即为跨域</p>
+<p>当前页面url    被请求页面url    是否跨域    原因<br><a href="http://www.test.com/" target="_blank" rel="noopener">http://www.test.com/</a>    <a href="http://www.test.com/index.html" target="_blank" rel="noopener">http://www.test.com/index.html</a>    否    同源（协议、域名、端口号相同）<br><a href="http://www.test.com/" target="_blank" rel="noopener">http://www.test.com/</a>    <a href="https://www.test.com/index.html" target="_blank" rel="noopener">https://www.test.com/index.html</a>    跨域    协议不同（http/https）<br><a href="http://www.test.com/" target="_blank" rel="noopener">http://www.test.com/</a>    <a href="http://www.baidu.com/" target="_blank" rel="noopener">http://www.baidu.com/</a>    跨域    主域名不同（test/baidu）<br><a href="http://www.test.com/" target="_blank" rel="noopener">http://www.test.com/</a>    <a href="http://blog.test.com/" target="_blank" rel="noopener">http://blog.test.com/</a>    跨域    子域名不同（www/blog）<br><a href="http://www.test.com:8080/" target="_blank" rel="noopener">http://www.test.com:8080/</a>    <a href="http://www.test.com:7001/" target="_blank" rel="noopener">http://www.test.com:7001/</a>    跨域    端口号不同（8080/7001）<br>三、非同源限制</p>
+<p>【1】无法读取非同源网页的 Cookie、LocalStorage 和 IndexedDB</p>
+<p>【2】无法接触非同源网页的 DOM</p>
+<p>【3】无法向非同源地址发送 AJAX 请求</p>
+<p>四、跨域解决方法</p>
+<p>【1】设置document.domain解决无法读取非同源网页的 Cookie问题</p>
+<p>因为浏览器是通过document.domain属性来检查两个页面是否同源，因此只要通过设置相同的document.domain，两个页面就可以共享Cookie（此方案仅限主域相同，子域不同的跨域应用场景。）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 两个页面都设置</span></span><br><span class="line"><span class="built_in">document</span>.domain = <span class="string">'test.com'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>【2】跨文档通信 API：window.postMessage()</p>
+<p>调用postMessage方法实现父窗口<a href="http://test1.com向子窗口http://test2.com发消息（子窗口同样可以通过该方法发送消息给父窗口）" target="_blank" rel="noopener">http://test1.com向子窗口http://test2.com发消息（子窗口同样可以通过该方法发送消息给父窗口）</a></p>
+<p>它可用于解决以下方面的问题：</p>
+<p>页面和其打开的新窗口的数据传递<br>多窗口之间消息传递<br>页面与嵌套的iframe消息传递<br>上面三个场景的跨域数据传递</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父窗口打开一个子窗口</span></span><br><span class="line"><span class="keyword">var</span> openWindow = <span class="built_in">window</span>.open(<span class="string">'http://test2.com'</span>, <span class="string">'title'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 父窗口向子窗口发消息(第一个参数代表发送的内容，第二个参数代表接收消息窗口的url)</span></span><br><span class="line">openWindow.postMessage(<span class="string">'Nice to meet you!'</span>, <span class="string">'http://test2.com'</span>);</span><br></pre></td></tr></table></figure>
+
+<p>调用message事件，监听对方发送的消息</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 监听 message 消息</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(e.source); <span class="comment">// e.source 发送消息的窗口</span></span><br><span class="line">  <span class="built_in">console</span>.log(e.origin); <span class="comment">// e.origin 消息发向的网址</span></span><br><span class="line">  <span class="built_in">console</span>.log(e.data);   <span class="comment">// e.data   发送的消息</span></span><br><span class="line">&#125;,<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<p>【3】JSONP</p>
+<p>JSONP 是服务器与客户端跨源通信的常用方法。最大特点就是简单适用，兼容性好（兼容低版本IE），缺点是只支持get请求，不支持post请求。</p>
+<p>核心思想：网页通过添加一个<script>元素，向服务器请求 JSON 数据，服务器收到请求后，将数据放在一个指定名字的回调函数的参数位置传回来。</p>
+<p>①原生实现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;script src=<span class="string">"http://test.com/data.php?callback=dosomething"</span>&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 向服务器test.com发出请求，该请求的查询字符串有一个callback参数，用来指定回调函数的名字</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 处理服务器返回回调函数的数据</span></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">dosomething</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">        <span class="comment">// 处理获得的数据</span></span><br><span class="line">        <span class="built_in">console</span>.log(res.data)</span><br><span class="line">    &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>② jQuery ajax：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    url: <span class="string">'http://www.test.com:8080/login'</span>,</span><br><span class="line">    type: <span class="string">'get'</span>,</span><br><span class="line">    dataType: <span class="string">'jsonp'</span>,  <span class="comment">// 请求方式为jsonp</span></span><br><span class="line">    jsonpCallback: <span class="string">"handleCallback"</span>,    <span class="comment">// 自定义回调函数名</span></span><br><span class="line">    data: &#123;&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>③ Vue.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$http.jsonp(<span class="string">'http://www.domain2.com:8080/login'</span>, &#123;</span><br><span class="line">    params: &#123;&#125;,</span><br><span class="line">    jsonp: <span class="string">'handleCallback'</span></span><br><span class="line">&#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res); </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>【4】CORS</p>
+<p>CORS 是跨域资源分享（Cross-Origin Resource Sharing）的缩写。它是 W3C 标准，属于跨源 AJAX 请求的根本解决方法。</p>
+<p>1、普通跨域请求：只需服务器端设置Access-Control-Allow-Origin</p>
+<p>2、带cookie跨域请求：前后端都需要进行设置</p>
+<p>【前端设置】根据xhr.withCredentials字段判断是否带有cookie</p>
+<p>①原生ajax</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest(); <span class="comment">// IE8/9需用window.XDomainRequest兼容</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 前端设置是否带cookie</span></span><br><span class="line">xhr.withCredentials = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">xhr.open(<span class="string">'post'</span>, <span class="string">'http://www.domain2.com:8080/login'</span>, <span class="literal">true</span>);</span><br><span class="line">xhr.setRequestHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/x-www-form-urlencoded'</span>);</span><br><span class="line">xhr.send(<span class="string">'user=admin'</span>);</span><br><span class="line"></span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span> &amp;&amp; xhr.status == <span class="number">200</span>) &#123;</span><br><span class="line">        alert(xhr.responseText);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>② jQuery ajax </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">   url: <span class="string">'http://www.test.com:8080/login'</span>,</span><br><span class="line">   type: <span class="string">'get'</span>,</span><br><span class="line">   data: &#123;&#125;,</span><br><span class="line">   xhrFields: &#123;</span><br><span class="line">       withCredentials: <span class="literal">true</span>    <span class="comment">// 前端设置是否带cookie</span></span><br><span class="line">   &#125;,</span><br><span class="line">   crossDomain: <span class="literal">true</span>,   <span class="comment">// 会让请求头中包含跨域的额外信息，但不会含cookie</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>③vue-resource</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.http.options.credentials = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>④ axios </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">axios.defaults.withCredentials = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>【服务端设置】</p>
+<p>服务器端对于CORS的支持，主要是通过设置Access-Control-Allow-Origin来进行的。如果浏览器检测到相应的设置，就可以允许Ajax进行跨域的访问。</p>
+<p>① Java后台</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">- 导入包：import javax.servlet.http.HttpServletResponse;</span></span><br><span class="line"><span class="comment">- 接口参数中定义：HttpServletResponse response</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 允许跨域访问的域名：若有端口需写全（协议+域名+端口），若没有端口末尾不用加'/'</span></span><br><span class="line">response.setHeader(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"http://www.domain1.com"</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 允许前端带认证cookie：启用此项后，上面的域名不能为'*'，必须指定具体的域名，否则浏览器会提示</span></span><br><span class="line">response.setHeader(<span class="string">"Access-Control-Allow-Credentials"</span>, <span class="string">"true"</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 提示OPTIONS预检时，后端需要设置的两个常用自定义头</span></span><br><span class="line">response.setHeader(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"Content-Type,X-Requested-With"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>② Nodejs后台</p>
+<pre><code>var http = require(&apos;http&apos;);
+var server = http.createServer();
+var qs = require(&apos;querystring&apos;);
+
+server.on(&apos;request&apos;, function(req, res) {
+    var postData = &apos;&apos;;
+
+// 数据块接收中
+req.addListener(&apos;data&apos;, function(chunk) {
+    postData += chunk;
+});
+
+// 数据接收完毕
+req.addListener(&apos;end&apos;, function() {
+    postData = qs.parse(postData);
+
+    // 跨域后台设置
+    res.writeHead(200, {
+        &apos;Access-Control-Allow-Credentials&apos;: &apos;true&apos;,     // 后端允许发送Cookie
+        &apos;Access-Control-Allow-Origin&apos;: &apos;http://www.domain1.com&apos;,    // 允许访问的域（协议+域名+端口）
+        /* 
+         * 此处设置的cookie还是domain2的而非domain1，因为后端也不能跨域写cookie(nginx反向代理可以实现)，
+         * 但只要domain2中写入一次cookie认证，后面的跨域接口都能从domain2中获取cookie，从而实现所有的接口都能跨域访问
+         */
+        &apos;Set-Cookie&apos;: &apos;l=a123456;Path=/;Domain=www.domain2.com;HttpOnly&apos;  // HttpOnly的作用是让js无法读取cookie
+        });
+
+        res.write(JSON.stringify(postData));
+        res.end();
+    });
+});
+
+server.listen(&apos;8080&apos;);
+console.log(&apos;Server is running at port 8080...&apos;);</code></pre><p>前端解决跨域总结:</p>
+<ol>
+<li><p>jsonp：正常只能处理get请求，而且需要后台配合；</p>
+</li>
+<li><p>cors:  主要依赖后台完成，前端需要设置请求配置withcreadential：true；</p>
+</li>
+<li><p>webpack：支持在开发阶段实现跨域的解决，但上线后无效，步骤如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用http-proxy-middleware 代理解决（项目使用vue-cli脚手架搭建）</span></span><br><span class="line"><span class="comment">// 例如请求的url:“http://f.apiplus.cn/bj11x5.json”</span></span><br><span class="line"><span class="comment">// 1、打开config/index.js,在proxyTable中添写如下代码：</span></span><br><span class="line">proxyTable: &#123; </span><br><span class="line">  <span class="string">'/api'</span>: &#123;  <span class="comment">//使用"/api"来代替"http://f.apiplus.c" </span></span><br><span class="line">    target: <span class="string">'http://f.apiplus.cn'</span>, <span class="comment">//源地址 </span></span><br><span class="line">    changeOrigin: <span class="literal">true</span>, <span class="comment">//改变源 </span></span><br><span class="line">    pathRewrite: &#123; </span><br><span class="line">      <span class="string">'^/api'</span>: <span class="string">'http://f.apiplus.cn'</span> <span class="comment">//路径重写 </span></span><br><span class="line">      &#125; </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2、使用axios请求数据时直接使用“/api”：</span></span><br><span class="line">getData () &#123; </span><br><span class="line"> axios.get(<span class="string">'/api/bj11x5.json'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123; </span><br><span class="line">   <span class="built_in">console</span>.log(res) </span><br><span class="line"> &#125;)</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 通过这中方法去解决跨域，打包部署时还按这种方法会出问题。解决方法如下：</span></span><br><span class="line"><span class="keyword">let</span> serverUrl = <span class="string">'/api/'</span>  <span class="comment">//本地调试时 </span></span><br><span class="line"><span class="comment">// let serverUrl = 'http://f.apiplus.cn/'  //打包部署上线时 </span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123; </span><br><span class="line">  dataUrl: serverUrl + <span class="string">'bj11x5.json'</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+</script></p>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javaScript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ajax</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">node.js</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jquery</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/30/跨域/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-构造函数和原型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -396,6 +588,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">node.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jquery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
             
             <div class="clearfix"></div>
