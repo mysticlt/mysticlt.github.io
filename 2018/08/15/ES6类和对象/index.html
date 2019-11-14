@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | MysticLt的博客</title>
+  <title>ES6中的类和对象 | MysticLt的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="MysticLt的博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="类是在ES6中新加进入的，学会区分类和对象的概念， 类：抽象 ​    类模拟抽象的，泛指的，对象是具体的 ​    面向对象模拟现实世界，更贴近实际生活，生活照分为抽象事物和具体事物 ​    比如：手机【两层含义：具体某个手机，和笼统的概念手机】 ​    1、抽取，把对象的属性和行为封装成一个类">
+<meta name="keywords" content="javaScript,ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6中的类和对象">
+<meta property="og:url" content="http://yoursite.com/2018/08/15/ES6类和对象/index.html">
 <meta property="og:site_name" content="MysticLt的博客">
+<meta property="og:description" content="类是在ES6中新加进入的，学会区分类和对象的概念， 类：抽象 ​    类模拟抽象的，泛指的，对象是具体的 ​    面向对象模拟现实世界，更贴近实际生活，生活照分为抽象事物和具体事物 ​    比如：手机【两层含义：具体某个手机，和笼统的概念手机】 ​    1、抽取，把对象的属性和行为封装成一个类">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-12T07:34:02.245Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MysticLt的博客">
+<meta name="twitter:title" content="ES6中的类和对象">
+<meta name="twitter:description" content="类是在ES6中新加进入的，学会区分类和对象的概念， 类：抽象 ​    类模拟抽象的，泛指的，对象是具体的 ​    面向对象模拟现实世界，更贴近实际生活，生活照分为抽象事物和具体事物 ​    比如：手机【两层含义：具体某个手机，和笼统的概念手机】 ​    1、抽取，把对象的属性和行为封装成一个类">
   
     <link rel="alternative" href="/atom.xml" title="MysticLt的博客" type="application/atom+xml">
   
@@ -154,128 +159,108 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-ES6类和对象" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/30/跨域/" class="archive-article-date">
-  	<time datetime="2018-09-30T14:20:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/30/跨域/">跨域</a>
+    <h1 class="article-title" itemprop="name">
+      ES6中的类和对象
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ajax</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">node.js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jquery</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/27/构造函数和原型/" class="archive-article-date">
-  	<time datetime="2018-09-27T07:45:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/27/构造函数和原型/">构造函数和原型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/15/ES6类和对象/" class="archive-article-date">
+        
+        <a href="/2018/08/15/ES6类和对象/" class="archive-article-date">
   	<time datetime="2018-08-15T08:18:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/15/ES6类和对象/">ES6中的类和对象</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>类是在ES6中新加进入的，学会区分类和对象的概念，</p>
+<p><strong>类：抽象</strong></p>
+<p>​    类模拟抽象的，泛指的，对象是具体的</p>
+<p>​    面向对象模拟现实世界，更贴近实际生活，生活照分为抽象事物和具体事物</p>
+<p>​    比如：手机【两层含义：具体某个手机，和笼统的概念手机】</p>
+<p>​    1、抽取，把对象的属性和行为封装成一个类</p>
+<a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
+<p>​    2、对类进行实例化, 获取类的对象</p>
+<p><strong>对象：具体</strong></p>
+<p>​    现实生活中：万物皆对象，对象是一个具体的事物，看得见摸得着的实物。例如，一本书、一辆汽车、一个人可以是“对象”</p>
+<p>​    在JavaScript 中，对象是一组无序的相关属性和方法的集合，所有的事物都是对象，例如字符串、数值、数组、函数等。</p>
+<p><strong>对象是由属性和方法组成的：</strong></p>
+<p>​    属性：事物的特征，在对象中用属性来表示（常用名词）</p>
+<p>​    方法：事物的行为，在对象中用方法来表示（常用动词）</p>
+<p><strong>面向对象的思维特点:</strong></p>
+<p>​     1.抽取（抽象）对象共用的属性和行为组织(封装)成一个类(模板)</p>
+<p>​     2.对类进行实例化, 获取类的对象【new】</p>
+<h2 id="类class"><a href="#类class" class="headerlink" title="类class"></a>类class</h2><blockquote>
+<p>在ES6中新增加了类的概念，可以使用class关键字声明一个类，之后以这个类来实例化对象。【构造函数实例化对象】</p>
+</blockquote>
+<ul>
+<li>类抽象了对象的公共部分，它泛指某一大类（class）</li>
+<li>对象特指某一个，通过类实例化一个具体的对象</li>
+</ul>
+<p>例如：人有身高，体重等，但是具体的某个人也有这个属性</p>
+<p><strong>练习了解类和对象</strong></p>
+<p>​    人==&gt;姚明</p>
+<p>​    电影明星==》周星驰</p>
+<h2 id="创建类"><a href="#创建类" class="headerlink" title="创建类"></a>创建类</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">语法：<span class="class"><span class="keyword">class</span> 类名 </span>&#123;&#125;【构造函数语法糖】</span><br><span class="line"></span><br><span class="line">注意类名首字母大写</span><br><span class="line"></span><br><span class="line">类要抽取公共属性方法，定义一个类</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Star</span> </span>&#123;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ldh = <span class="keyword">new</span> Star();</span><br><span class="line">类就是构造函数的语法糖</span><br></pre></td></tr></table></figure>
+
+<h2 id="类constructor构造函数"><a href="#类constructor构造函数" class="headerlink" title="类constructor构造函数"></a>类constructor构造函数</h2><p>语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Star</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span> (uname,age)&#123;</span><br><span class="line">		<span class="keyword">this</span>.uname = uname;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">注意：类里面的方法不带function，直接写既可</span><br><span class="line"></span><br><span class="line">类里面要有属性方法，属性方法要是想放到类里面，我们用constructor构造器</span><br><span class="line"></span><br><span class="line">构造函数作用：接收参数，返回实例对象，new的时候主动执行，主要放一些公共的属性</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>constructor() 方法是类的构造函数(默认方法)，用于传递参数,返回实例对象，通过new命令生成对象实例时，自动调用该方法。</p>
+<p>注意：每个类里面一定有构造函数，如果没有显示定义, 类内部会自动给我们创建一个constructor() ，</p>
+<p>注意：this代表当前实力化对象，谁new就代表谁</p>
+</blockquote>
+<hr>
+<h2 id="类添加方法"><a href="#类添加方法" class="headerlink" title="类添加方法"></a>类添加方法</h2><p>语法：注意方法和方法之间不能加逗号</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Star</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">constructor</span> () &#123;&#125;</span><br><span class="line"></span><br><span class="line">	sing () &#123;&#125;</span><br><span class="line"></span><br><span class="line">	tiao () &#123;&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 类名 </span>&#123; <span class="keyword">constructor</span>()&#123;&#125;   方法名()&#123;&#125; &#125;</span><br><span class="line"></span><br><span class="line">注意：类中定义属性，调用方法都得用<span class="keyword">this</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：方法之间不能加逗号分隔，同时方法不需要添加function 关键字</p>
+</blockquote>
+<p><strong>总结：类有对象的公共属性和方法，用class创建，class里面包含constructor和方法，我们把公共属性放到constructor里面，把公共方法直接往后写既可，但是注意不要加逗号</strong></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -291,98 +276,115 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/15/ES6类和对象/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/13/ES6介绍/" class="archive-article-date">
-  	<time datetime="2018-08-13T02:12:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-13</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2018/09/27/构造函数和原型/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          构造函数和原型
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/13/ES6介绍/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ES6介绍</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/13/ES6介绍/">ES6介绍</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/10/hello-world/" class="archive-article-date">
-  	<time datetime="2017-09-10T08:24:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/10/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -405,8 +407,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
