@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>数组方法小结 | MysticLt的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1 简介总结js中数组的方法，并做了一些分类。 2 主要内容•数组的方法从哪里来 •数组的方法分类 •几个数组的使用技巧 3 数组的方法从哪里来当我们定义一个数组之后，我们就可以直接使用它的方法。例如：">
+  <meta name="description" content="1 简介总结js中数组的方法，并做了一些分类。 2 主要内容•数组的方法从哪里来 •数组的方法分类">
 <meta name="keywords" content="javaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数组方法小结">
 <meta property="og:url" content="http://yoursite.com/2019/01/25/数组方法小结/index.html">
 <meta property="og:site_name" content="MysticLt的博客">
-<meta property="og:description" content="1 简介总结js中数组的方法，并做了一些分类。 2 主要内容•数组的方法从哪里来 •数组的方法分类 •几个数组的使用技巧 3 数组的方法从哪里来当我们定义一个数组之后，我们就可以直接使用它的方法。例如：">
+<meta property="og:description" content="1 简介总结js中数组的方法，并做了一些分类。 2 主要内容•数组的方法从哪里来 •数组的方法分类">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK2oqXS8CbvHibvMYc7O1exqBXrNnnUMs4Sn8PbEb0aQ6icic4tumU46DggCRpMBEFDIEFf57D7RyicZSQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
-<meta property="og:updated_time" content="2020-02-10T09:36:52.891Z">
+<meta property="og:image" content="c:%5Cblog%5Csource%5Cassets%5CblogImg%5C%E6%95%B0%E7%BB%84pic1">
+<meta property="og:updated_time" content="2020-02-10T10:19:03.942Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数组方法小结">
-<meta name="twitter:description" content="1 简介总结js中数组的方法，并做了一些分类。 2 主要内容•数组的方法从哪里来 •数组的方法分类 •几个数组的使用技巧 3 数组的方法从哪里来当我们定义一个数组之后，我们就可以直接使用它的方法。例如：">
-<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK2oqXS8CbvHibvMYc7O1exqBXrNnnUMs4Sn8PbEb0aQ6icic4tumU46DggCRpMBEFDIEFf57D7RyicZSQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta name="twitter:description" content="1 简介总结js中数组的方法，并做了一些分类。 2 主要内容•数组的方法从哪里来 •数组的方法分类">
+<meta name="twitter:image" content="c:%5Cblog%5Csource%5Cassets%5CblogImg%5C%E6%95%B0%E7%BB%84pic1">
   
     <link rel="alternative" href="/atom.xml" title="MysticLt的博客" type="application/atom+xml">
   
@@ -184,10 +184,10 @@
         <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h3><p>总结js中数组的方法，并做了一些分类。</p>
 <h3 id="2-主要内容"><a href="#2-主要内容" class="headerlink" title="2 主要内容"></a>2 主要内容</h3><p>•数组的方法从哪里来</p>
 <p>•数组的方法分类</p>
-<p>•几个数组的使用技巧</p>
-<h3 id="3-数组的方法从哪里来"><a href="#3-数组的方法从哪里来" class="headerlink" title="3 数组的方法从哪里来"></a>3 数组的方法从哪里来</h3><p>当我们定义一个数组之后，我们就可以直接使用它的方法。例如：</p>
 <a id="more"></a>
 
+<p>•几个数组的使用技巧</p>
+<h3 id="3-数组的方法从哪里来"><a href="#3-数组的方法从哪里来" class="headerlink" title="3 数组的方法从哪里来"></a>3 数组的方法从哪里来</h3><p>当我们定义一个数组之后，我们就可以直接使用它的方法。例如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [];</span><br><span class="line">arr.push(<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
 
 <p>为什么我们可以使用push方法呢？因为arr是通过Array构造器产生的，它相当于是:</p>
@@ -195,7 +195,7 @@
 
 <p>而按照原型链的规则，app是可以使用Array.prototype上的属性和方法的。也就是说数组对象具有的方法是从Array.prototype上继承而来的。</p>
 <p>我们可以在浏览器开发者工具中去检查一下：</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK2oqXS8CbvHibvMYc7O1exqBXrNnnUMs4Sn8PbEb0aQ6icic4tumU46DggCRpMBEFDIEFf57D7RyicZSQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<p><img src="C:%5Cblog%5Csource%5Cassets%5CblogImg%5C%E6%95%B0%E7%BB%84pic1" alt="img"></p>
 <h3 id="4-数组方法的分类"><a href="#4-数组方法的分类" class="headerlink" title="4 数组方法的分类"></a>4 数组方法的分类</h3><p>按是否会修改原数组分成两大类。</p>
 <h4 id="4-1-改变原数组的方法"><a href="#4-1-改变原数组的方法" class="headerlink" title="4.1 改变原数组的方法"></a>4.1 改变原数组的方法</h4><h4 id="4-1-1-push-pop方法"><a href="#4-1-1-push-pop方法" class="headerlink" title="4.1.1 push/pop方法"></a>4.1.1 push/pop方法</h4><p>push:在数组尾部添加元素，会增加数组的长度<br>pop:在数组尾部取出元素，会减少数组的长度</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">arr.push(<span class="number">6</span>);</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//  [1, 2, 3, 4, 5, 6]</span></span><br><span class="line"><span class="keyword">let</span> b = arr.pop();</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//  [1, 2, 3, 4, 5]</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>

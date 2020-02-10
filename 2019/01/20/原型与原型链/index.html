@@ -8,28 +8,28 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>原型与原型链 | MysticLt的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1 介绍思考原型链的作用及工作原理。 2 内容一切皆是对象；对象是由函数创造的；原型与原型链。 3 一切皆是对象这句话是说我们在js中接触的数据大多都是对象，具有对象的特征。下面我们来展开说明一下，如何理解“一切皆对象”。">
+  <meta name="description" content="1 介绍思考原型链的作用及工作原理。 2 内容一切皆是对象；对象是由函数创造的；原型与原型链。">
 <meta name="keywords" content="javaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="原型与原型链">
 <meta property="og:url" content="http://yoursite.com/2019/01/20/原型与原型链/index.html">
 <meta property="og:site_name" content="MysticLt的博客">
-<meta property="og:description" content="1 介绍思考原型链的作用及工作原理。 2 内容一切皆是对象；对象是由函数创造的；原型与原型链。 3 一切皆是对象这句话是说我们在js中接触的数据大多都是对象，具有对象的特征。下面我们来展开说明一下，如何理解“一切皆对象”。">
+<meta property="og:description" content="1 介绍思考原型链的作用及工作原理。 2 内容一切皆是对象；对象是由函数创造的；原型与原型链。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581318253239.png">
-<meta property="og:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581318779484.png">
-<meta property="og:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581318955252.png">
-<meta property="og:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327613741.png">
-<meta property="og:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327637902.png">
-<meta property="og:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327653003.png">
-<meta property="og:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327665089.png">
-<meta property="og:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327694315.png">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK1XFR7MRPgHdUqsgGPY3OA0hndu1SSVpleEE8Q0UsZHaf1BHssicmdTjtED08SwTrqwRtknCcueicgg/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
-<meta property="og:updated_time" content="2020-02-10T09:41:36.085Z">
+<meta property="og:image" content="c:%5Cblog%5Csource%5Cassets%5CblogImg%5C20200210145921.png">
+<meta property="og:image" content="c:%5Cblog%5Csource%5Cassets%5CblogImg%5C202000210161.png">
+<meta property="og:image" content="c:%5Cblog%5Csource%5Cassets%5CblogImg%5C1581318955252.png">
+<meta property="og:image" content="c:%5Cblog%5Csource%5Cassets%5CblogImg%5C1581327613741.png">
+<meta property="og:image" content="c:%5Cblog%5Csource%5Cassets%5CblogImg%5C1581327637902.png">
+<meta property="og:image" content="c:%5Cblog%5Csource%5Cassets%5CblogImg%5C1581327653003.png">
+<meta property="og:image" content="c:%5Cblog%5Csource%5Cassets%5CblogImg%5C1581327665089.png">
+<meta property="og:image" content="c:%5Cblog%5Csource%5Cassets%5CblogImg%5C1581327694315.png">
+<meta property="og:image" content="c:%5Cblog%5Csource%5Cassets%5CblogImg%5Csearch-success.gif">
+<meta property="og:updated_time" content="2020-02-10T10:16:50.510Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="原型与原型链">
-<meta name="twitter:description" content="1 介绍思考原型链的作用及工作原理。 2 内容一切皆是对象；对象是由函数创造的；原型与原型链。 3 一切皆是对象这句话是说我们在js中接触的数据大多都是对象，具有对象的特征。下面我们来展开说明一下，如何理解“一切皆对象”。">
-<meta name="twitter:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581318253239.png">
+<meta name="twitter:description" content="1 介绍思考原型链的作用及工作原理。 2 内容一切皆是对象；对象是由函数创造的；原型与原型链。">
+<meta name="twitter:image" content="c:%5Cblog%5Csource%5Cassets%5CblogImg%5C20200210145921.png">
   
     <link rel="alternative" href="/atom.xml" title="MysticLt的博客" type="application/atom+xml">
   
@@ -191,14 +191,14 @@
       
         <h3 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1 介绍"></a>1 介绍</h3><p>思考原型链的作用及工作原理。</p>
 <h3 id="2-内容"><a href="#2-内容" class="headerlink" title="2 内容"></a>2 内容</h3><p>一切皆是对象；对象是由函数创造的；原型与原型链。</p>
-<h3 id="3-一切皆是对象"><a href="#3-一切皆是对象" class="headerlink" title="3 一切皆是对象"></a>3 一切皆是对象</h3><p>这句话是说我们在js中接触的数据大多都是对象，具有对象的特征。下面我们来展开说明一下，如何理解“一切皆对象”。</p>
 <a id="more"></a>
 
+<h3 id="3-一切皆是对象"><a href="#3-一切皆是对象" class="headerlink" title="3 一切皆是对象"></a>3 一切皆是对象</h3><p>这句话是说我们在js中接触的数据大多都是对象，具有对象的特征。下面我们来展开说明一下，如何理解“一切皆对象”。</p>
 <h4 id="3-1-函数是对象"><a href="#3-1-函数是对象" class="headerlink" title="3.1 函数是对象"></a>3.1 函数是对象</h4><p>我们来审视一下我们日常定义的函数：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="comment">// 调用函数</span></span><br><span class="line">f(); </span><br><span class="line"><span class="comment">// 给函数添加属性</span></span><br><span class="line">f.abc = <span class="number">100</span>; </span><br><span class="line"><span class="comment">// 给函数添加属性</span></span><br><span class="line">f.f1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;; <span class="built_in">console</span>.dir(f)</span><br></pre></td></tr></table></figure>
 
 <p>上面的代码中，我故意把给f添加了两个属性abc,f1 ，代码在语法并没有任何错误。输出内容如下（使用chrome浏览器）</p>
-<p><img src="C:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581318253239.png" alt="1581318253239"></p>
+<p><img src="C:%5Cblog%5Csource%5Cassets%5CblogImg%5C20200210145921.png" alt="20200210145921"></p>
 <p>从上图你可以看出，f这个函数也有很多的属性：</p>
 <p>•abc, f1 是我们自行添加的属性。•arguments, caller,length,name,prototype,<strong>proto</strong>是它自己就有的属性。</p>
 <p>你看，对于我们定义的函数也可以理解成对象，是吧。</p>
@@ -206,7 +206,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义数组：构造器方式</span></span><br><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"><span class="comment">// 定义数组，字面量方式</span></span><br><span class="line"><span class="keyword">var</span> arr = []</span><br><span class="line"><span class="comment">// 输出构造器 </span></span><br><span class="line"><span class="built_in">console</span>.dir(<span class="built_in">Array</span>)</span><br></pre></td></tr></table></figure>
 
 <p>结果如下图</p>
-<p><img src="C:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581318779484.png" alt="1581318779484"></p>
+<p><img src="C:%5Cblog%5Csource%5Cassets%5CblogImg%5C202000210161.png" alt="202000210161"></p>
 <p>可以理解isArray就Array这个对象的属性（更准确的说是一种特殊的属性：方法），所以你可以通过 Array.isArray()来访问。</p>
 <p>其它的数据类型：数组，dom对象等等，大家可以自己去console.dir()看一下。</p>
 <h3 id="4-对象是由函数创建的"><a href="#4-对象是由函数创建的" class="headerlink" title="4 对象是由函数创建的"></a>4 对象是由函数创建的</h3><p>在js中，当我们谈及一个函数时，其实我们并不是特别确定在说什么，因为<code>函数的角色有两种</code>。</p>
@@ -245,21 +245,21 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;<span class="built_in">console</span>.dir(f)</span><br></pre></td></tr></table></figure>
 
 <p>如下：</p>
-<p><img src="C:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581318955252.png" alt="1581318955252"></p>
+<p><img src="C:%5Cblog%5Csource%5Cassets%5CblogImg%5C1581318955252.png" alt="1581318955252"></p>
 <p>(2)Array构造器</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.dir(<span class="built_in">Array</span>)</span><br></pre></td></tr></table></figure>
 
 <p>如下：</p>
-<p><img src="C:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327613741.png" alt="1581327613741"></p>
+<p><img src="C:%5Cblog%5Csource%5Cassets%5CblogImg%5C1581327613741.png" alt="1581327613741"></p>
 <p>由于prototype的值也是一个对象，所以我们也称prototype是原型对象。</p>
 <h4 id="5-2-隐式原型-proto"><a href="#5-2-隐式原型-proto" class="headerlink" title="5.2 隐式原型 proto"></a>5.2 隐式原型 <strong>proto</strong></h4><p>对象是属性的集合，每个对象可能都有数量不等的属性，但每个对象都有一个名为<strong>proto</strong>的属性，这个属性值也是一个对象。这个属性<strong>proto</strong>称为隐式原型。（注意写法：前后两个下划线）</p>
 <p>下面去看看<code>对象的隐式原型</code>长什么样。</p>
 <p>（1）数组对象的隐式原型</p>
-<p><img src="C:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327637902.png" alt="1581327637902"></p>
+<p><img src="C:%5Cblog%5Csource%5Cassets%5CblogImg%5C1581327637902.png" alt="1581327637902"></p>
 <p>（2）普通对象的隐式原型 </p>
-<p><img src="C:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327653003.png" alt="1581327653003"></p>
+<p><img src="C:%5Cblog%5Csource%5Cassets%5CblogImg%5C1581327653003.png" alt="1581327653003"></p>
 <p>（3）构造器的隐式原型</p>
-<p><img src="C:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327665089.png" alt="1581327665089"></p>
+<p><img src="C:%5Cblog%5Csource%5Cassets%5CblogImg%5C1581327665089.png" alt="1581327665089"></p>
 <p>注意：由于函数既是函数也是对象，所以对于函数来说，它既有prototype属性又有<strong><strong>proto</strong></strong>属性。</p>
 <h4 id="5-3-原型与隐式原型的关系"><a href="#5-3-原型与隐式原型的关系" class="headerlink" title="5.3 原型与隐式原型的关系"></a>5.3 原型与隐式原型的关系</h4><p>先直接给出结论：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对象.__proto__ === 构造器.prototype</span><br></pre></td></tr></table></figure>
@@ -287,12 +287,12 @@
 <p>寻找属性p的步骤如下：</p>
 <p>（1）先在自有属性中找，如果找到，则返回；如果找不到，则进入到它的隐式原型中去找。</p>
 <p>（2）由于对象的隐式原型也是一个对象（对象又是属性的集合），所以继续在<code>obj.__proto__</code>的自有属性中去找。找到则返回，找不到，则继续。（3）在<code>obj.__proto__</code>这个对象的隐式原型中继续找。找到返回，找不到，则继续到<code>obj.__proto__.__proto__</code>中去找。（4)直到<code>__proto__</code>为null 停止。</p>
-<p><img src="C:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327694315.png" alt="1581327694315"></p>
+<p><img src="C:%5Cblog%5Csource%5Cassets%5CblogImg%5C1581327694315.png" alt="1581327694315"></p>
 <p>上图中，红色的箭头标识的路径就是原型链。</p>
 <h4 id="6-1-例子：查找成功"><a href="#6-1-例子：查找成功" class="headerlink" title="6.1  例子：查找成功"></a>6.1  例子：查找成功</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>]; <span class="comment">//这是一个对象。</span></span><br><span class="line">arr.toString()</span><br></pre></td></tr></table></figure>
 
 <p>把arr看成一个对象，arr.toString就是要去找toString属性。(1)第一步，在自有属性中找，没有找到 (2)第二步，进入arr.<strong>proto</strong>这个对象中去找。找到了，返回使用。</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK1XFR7MRPgHdUqsgGPY3OA0hndu1SSVpleEE8Q0UsZHaf1BHssicmdTjtED08SwTrqwRtknCcueicgg/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<p><img src="C:%5Cblog%5Csource%5Cassets%5CblogImg%5Csearch-success.gif" alt="search-success"></p>
 <p>也就是说，</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.toString === arr.__proto__.toString</span><br></pre></td></tr></table></figure>
 
