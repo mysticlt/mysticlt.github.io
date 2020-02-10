@@ -6,25 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>构造函数和原型 | MysticLt的博客</title>
+  <title>防抖与节流 | MysticLt的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="12构造函数是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与new一起使用。我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。function Fn () &amp;#123;&amp;#125;  在JS 中，使用构造函数时要注意以下两点： 如果用new，就是构造函数，否则就是普不函数 1.构造函数用于创建某一类对象，其首字母要大写 2.构造函数要和new 一起使用才有">
+  <meta name="description" content="1 简介防抖和节流是高阶函数的又一个经典应用，本文思考其基本原理，实现方式。 2 内容•基本场景•防抖的实现原理及代码实践•节流的实现原理及代码实践•对比记忆 3 一道小面试题假设html页面上有一个input框，我们通过js监听它的input事件。代码如下：">
 <meta name="keywords" content="javaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="构造函数和原型">
-<meta property="og:url" content="http://yoursite.com/2018/09/27/构造函数和原型/index.html">
+<meta property="og:title" content="防抖与节流">
+<meta property="og:url" content="http://yoursite.com/2019/02/13/防抖与节流/index.html">
 <meta property="og:site_name" content="MysticLt的博客">
-<meta property="og:description" content="12构造函数是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与new一起使用。我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。function Fn () &amp;#123;&amp;#125;  在JS 中，使用构造函数时要注意以下两点： 如果用new，就是构造函数，否则就是普不函数 1.构造函数用于创建某一类对象，其首字母要大写 2.构造函数要和new 一起使用才有">
+<meta property="og:description" content="1 简介防抖和节流是高阶函数的又一个经典应用，本文思考其基本原理，实现方式。 2 内容•基本场景•防抖的实现原理及代码实践•节流的实现原理及代码实践•对比记忆 3 一道小面试题假设html页面上有一个input框，我们通过js监听它的input事件。代码如下：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="c:/blog/source/assets/blogImg/内存.jpg">
-<meta property="og:image" content="c:/blog/source/assets/blogImg/%E5%85%B3%E7%B3%BB%E5%9B%BE.jpg">
-<meta property="og:image" content="c:/blog/source/assets/blogImg/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%EF%BC%8C%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%85%B3%E7%B3%BB.jpg">
-<meta property="og:image" content="c:/blog/source/assets/blogImg/原型链.jpg">
-<meta property="og:updated_time" content="2019-11-11T11:00:22.952Z">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZDNIbgJDiaI9OlHER3jTEcAOOweS1tg84y54oQUeHlD2t4qqlxxlfHA1A/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZDs4edodhEy7dUxxNibeBLLhGQib5jZ0XD1gmtrwccYUIviaI2wrx9afnTw/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZDpkbQSsZ4rVUuxnlnwiaksju3a8wYQRL7YZ2W1znYpJibqCTEyCvLdiaYA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZD5jiazWd8og9hm67q6JaA7PMPHZJKeKtpFibGPKIC8aAHM8ic3wSWegjhg/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZD68wRdibFsjqhQmUsJY7lffqYEiaQeWC9IN6PicpYag89XFHUHmlDvPD5g/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZDKjMYNy5OBQIKvia3d8pibALWJKS0BmTt0aPN5xIDJFl8N3U17YiaiaX2Uw/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZDzcCXcc4GGia34yXxfrR5s2VkCCsR1DmJ36L8icfssriap2rQTXp4KuQ6A/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZDfoiczxtfGy3hhUGtNDRCrnvh7cdI0QLIkEVuiceUnJHAqTwYqk1iaUuFw/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZDCUVU9zs8iaeobaNEmphwsicmftXXq5tc6K4OggVNcrHZZbKvAiaUTWLHA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:updated_time" content="2020-02-10T07:36:15.428Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="构造函数和原型">
-<meta name="twitter:description" content="12构造函数是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与new一起使用。我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。function Fn () &amp;#123;&amp;#125;  在JS 中，使用构造函数时要注意以下两点： 如果用new，就是构造函数，否则就是普不函数 1.构造函数用于创建某一类对象，其首字母要大写 2.构造函数要和new 一起使用才有">
-<meta name="twitter:image" content="c:/blog/source/assets/blogImg/内存.jpg">
+<meta name="twitter:title" content="防抖与节流">
+<meta name="twitter:description" content="1 简介防抖和节流是高阶函数的又一个经典应用，本文思考其基本原理，实现方式。 2 内容•基本场景•防抖的实现原理及代码实践•节流的实现原理及代码实践•对比记忆 3 一道小面试题假设html页面上有一个input框，我们通过js监听它的input事件。代码如下：">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZDNIbgJDiaI9OlHER3jTEcAOOweS1tg84y54oQUeHlD2t4qqlxxlfHA1A/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
   
     <link rel="alternative" href="/atom.xml" title="MysticLt的博客" type="application/atom+xml">
   
@@ -164,126 +169,171 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-构造函数和原型" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-防抖与节流" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      构造函数和原型
+      防抖与节流
     </h1>
   
 
         
-        <a href="/2018/09/27/构造函数和原型/" class="archive-article-date">
-  	<time datetime="2018-09-27T07:45:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-27</time>
+        <a href="/2019/02/13/防抖与节流/" class="archive-article-date">
+  	<time datetime="2019-02-13T01:25:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">构造函数是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与<span class="keyword">new</span>一起使用。我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span> (<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>在JS 中，使用构造函数时要注意以下两点：</strong></p>
-<p>如果用new，就是构造函数，否则就是普不函数</p>
-<p>1.构造函数用于创建某一类对象，其首字母要大写</p>
-<p>2.构造函数要和new 一起使用才有意义</p>
+        <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h3><p>防抖和节流是<a href="https://mp.weixin.qq.com/s?__biz=MzI3ODA0NzMzNw==&mid=2247483712&idx=1&sn=82abdcdfb505c116ed3e707efa1ca324&chksm=eb5dbe46dc2a3750f46974550c4d34045f26d3101d1f42f95b498f4d79a53f2f9b237e309f61&token=1143531758&lang=zh_CN&scene=21#wechat_redirect" target="_blank" rel="noopener">高阶函数</a>的又一个经典应用，本文思考其基本原理，实现方式。</p>
+<h3 id="2-内容"><a href="#2-内容" class="headerlink" title="2 内容"></a>2 内容</h3><p>•基本场景•防抖的实现原理及代码实践•节流的实现原理及代码实践•对比记忆</p>
+<h3 id="3-一道小面试题"><a href="#3-一道小面试题" class="headerlink" title="3 一道小面试题"></a>3 一道小面试题</h3><p>假设html页面上有一个input框，我们通过js监听它的input事件。代码如下：</p>
 <a id="more"></a>
 
-<p><strong>new在执行时会做四件事情</strong></p>
-<ol>
-<li>在内存中创建一个新的空对象。</li>
-<li>让this指向这个新的对象。</li>
-<li>执行构造函数里面的代码，给这个新对象添加属性和方法。</li>
-<li>返回这个新对象（所以构造函数里面不需要return）。</li>
-</ol>
-<h2 id="静态成员和实例成员"><a href="#静态成员和实例成员" class="headerlink" title="静态成员和实例成员"></a>静态成员和实例成员</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JavaScript 的构造函数中可以添加一些成员，可以在构造函数本身上添加，也可以在构造函数内部的this 上添加。通过这两种方式添加的成员，就分别称为静态成员和实例成员。</span><br></pre></td></tr></table></figure>
+<p>html</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input  type=<span class="string">"text"</span> id=<span class="string">"input"</span>&gt;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>静态成员：在构造函数本上添加的成员称为静态成员，只能由构造函数本身来访问</li>
-<li>实例成员：在构造函数内部创建的对象成员称为实例成员，只能由实例化的对象来访问</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params">uname, age</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.uname = uname;</span><br><span class="line">			<span class="keyword">this</span>.age = age;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">this</span>.say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="number">123</span>);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> obj = <span class="keyword">new</span> Person(<span class="string">'张三丰'</span>,<span class="number">22</span>);	</span><br><span class="line">	<span class="built_in">console</span>.log(obj.uname);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// console.log( Person.uname );</span></span><br><span class="line">	Person.leibie = <span class="string">'人'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(Person.leibie);</span><br><span class="line">	<span class="built_in">console</span>.log(obj.leibie);</span><br></pre></td></tr></table></figure>
+<p>js代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">e</span>)</span>&#123;    </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Date</span>.now(),e.target.value)     </span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"input"</span>).addEventListener(<span class="string">"input"</span>,functioin(e)&#123;  f(e)</span><br><span class="line">&#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>构造函数小问题：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">当实例化对象的时候，属性好理解，属性名属性值，那么方法是函数，函数是复杂数据类型</span><br><span class="line"></span><br><span class="line">那么保存的时候是保存地址，又指向函数，而每创建一个对象，都会有一个函数，每个函数都得开辟一个内</span><br><span class="line"></span><br><span class="line">存空间，此时浪费内存了，那么如何节省内存呢，我们需要用到原型</span><br><span class="line"></span><br><span class="line">方法放到构造函数里面，如果多次实例化，会浪费内存</span><br></pre></td></tr></table></figure>
+<p>如果你在input框中按下字母’a’不放，你看到的效果应该是这样:约间隔30ms左右，这个事件会被触发一次，从而调用一次函数f。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZDNIbgJDiaI9OlHER3jTEcAOOweS1tg84y54oQUeHlD2t4qqlxxlfHA1A/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<p>就从这个实际的情况出发，希望你在不直接修改f的情况下，实现一个效果：当用户在input框中按下字母’a’不放时，f这个函数不要调用的这么频繁，改成约每200ms调用一次。改造之后的代码下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">e</span>)</span>&#123;    </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Date</span>.now(),e.target.value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">youFunc</span>(<span class="params">func,t</span>)</span>&#123;    </span><br><span class="line"><span class="comment">// 请写出你的代码</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f1 = youFunc(f,<span class="number">200</span>)</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"input"</span>).addEventListener(<span class="string">"input"</span>,functioin(e)&#123;  f1(e)</span><br><span class="line">&#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Star (uname, age) &#123;</span><br><span class="line">	this.uname = uname;</span><br><span class="line">	this.age = age;</span><br><span class="line">	this.sing = function () &#123;</span><br><span class="line">		console.log(this.name + &apos;在唱歌&apos;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var ldh = new Star(&apos;周星驰&apos;, 22);</span><br><span class="line">var ldh = new Star(&apos;刘德华&apos;, 22);</span><br></pre></td></tr></table></figure>
+<p>请你完成yourFunc中的代码内容。如果你可以很轻易的就完成，那就不必往下读啦。如果你认真地看完了，你就可以完成这个题了。</p>
+<h3 id="4-防抖和节流的通用场景"><a href="#4-防抖和节流的通用场景" class="headerlink" title="4 防抖和节流的通用场景"></a>4 防抖和节流的通用场景</h3><p>这两个功能都是用来对函数的调用做<code>降频</code>(降低单位时间内被调用的次数)处理的。</p>
+<p>当一个函数被以较高的频率调用时（在极短的时间内被调用了多次），从于某些原因的考虑，我们希望对它实际被执行的频率做一些限制。</p>
+<p>结合代码来说更具体一些。如下，我们先定义一个简单的函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTime</span> (<span class="params"></span>)</span>&#123;    </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Date</span>.now())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>那么有哪些情况下它会被高频调用呢？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 手动调用多次：被连续调用100次</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt; <span class="number">100</span>; i++)&#123;    </span><br><span class="line">    getTime()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 高频事件响应函数：当作mousemove事件的回调函数。</span></span><br><span class="line"><span class="built_in">document</span>.onmousemove = getTime()</span><br><span class="line"><span class="comment">// 高频事件响应函数：当作keyup事件的回调函数。</span></span><br><span class="line">input.onkeyup = getTime()</span><br></pre></td></tr></table></figure>
+
+<p>为什么要限制它真实被执行的频率(这里是要降低)呢？这就要结合具体的业务场景来说了。</p>
+<p>1.一个功能本身就是要限制被调用的次数。例如用户请求登陆的次数不能太频繁。2.一个功能没有必须被频繁调用。例如，在输入框中输入信息之后，输入内容的每一次变化都需要去后端取回后台建议的数据。举个例子：用户在极短的时间内连续输入”javascript”，这10个字符，如果不做降频处理的话就会发出10次请求，每次请求的关键字依次是”j”,”ja”,”jav”，…”javascript”。而其实对用户真正有用的可能只是搜索”javascript”的结果，那这样的话，前几次的请求大概率都是无用的。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZDs4edodhEy7dUxxNibeBLLhGQib5jZ0XD1gmtrwccYUIviaI2wrx9afnTw/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<h3 id="5-防抖"><a href="#5-防抖" class="headerlink" title="5 防抖"></a>5 防抖</h3><p>它的英文是：debounce。</p>
+<p>在某个场景下，函数f被高频调用 ，我们希望降低被调用频率，可以对函数f进行n秒防抖处理，得到新函数f1，那么这个f1函数具备的特性是：</p>
+<p>1.函数f1调用后，从此时开始：2.  随后的n秒内没有再次调用f1，则在第n秒执行真正的f代码。3.  随后n秒后，再次调用f1，则回到第一步，再开始计时。</p>
 <blockquote>
-<img src="C:/blog/source/assets/blogImg/内存.jpg">
+<p>函数防抖就是法师发大招时候要读进度条，技能读条没完再按技能就会重新读条。（要重新来等进度条）</p>
 </blockquote>
-<h2 id="构造函数原型prototype"><a href="#构造函数原型prototype" class="headerlink" title="构造函数原型prototype"></a>构造函数原型prototype</h2><p>什么是原型对象：就是一个属性，是构造函数的属性，这个属性是一个对象，我们也称呼，prototype 为原型对象。</p>
-<p>每一个构造函数都有一个属性，prototype</p>
-<p>作用：是为了共享方法，从而达到节省内存</p>
-<p><strong>注意：每一个构造函数都有prototype属性</strong></p>
-<p>例如：大家来学校上学，有的开车，有的汽车，有的开飞机，等等，此时浪费，那么准备一个大巴车，方便有节省</p>
+<p>为了方便演示效果，我们设计如下案例。在页面上有一个按钮，我们每次点击它，它就会调用f，打印出当前时间。如果你的手机点击的足够快，就可以模拟一个高频调用函数f的例子了。</p>
+<p>html代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=<span class="string">"btn"</span>&gt;普通，点一次调用一次&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>js代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Date</span>.now())</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>).onclick = f</span><br></pre></td></tr></table></figure>
+
+<p>上面的这个f函数后面会反复使用哈。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZDpkbQSsZ4rVUuxnlnwiaksju3a8wYQRL7YZ2W1znYpJibqCTEyCvLdiaYA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<p>下面，我们在此具体上来实现防抖效果。</p>
+<p>在代码实现上，有如下三个策略。</p>
+<h4 id="5-1-防抖-立即执行版"><a href="#5-1-防抖-立即执行版" class="headerlink" title="5.1 防抖-立即执行版"></a>5.1 防抖-立即执行版</h4><p>立即执行版的意思是：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f1 = 防抖_立即执行(f,n)</span><br></pre></td></tr></table></figure>
+
+<p>这样得到的新函数f1，具有如下特点：</p>
+<p>1.函数f1调用后，<code>立即执行</code>f(),并从此时开始：2.随后的n秒内，并没有再次调用f1，则在第n秒后，可以再次成功调用f1,相当于是回到第一步3.随后的n秒内再次调用f1，不会执行f函数，再次以此时间为起点，回到第2步。</p>
+<p>举一个极端的例子：对f函数进行立即执行的n秒防抖处理之后得到f1函数而言，假设你从早上8:00开始，以每秒100次的速度去调用f1，持续到中午12:00。最终的结果是，f函数只是在8:00时执行了一次。</p>
+<p>看例子啦。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=<span class="string">"btn_debounce_now"</span>&gt;防抖<span class="number">3</span>s，立即执行&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>快速连接点击这个按钮，查看效果。</p>
+<p>js代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce_callnow</span>(<span class="params">f,t=<span class="number">3000</span></span>)</span>&#123;   </span><br><span class="line">    <span class="keyword">var</span> time = <span class="literal">null</span>     </span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;         </span><br><span class="line">        <span class="keyword">if</span>(!time)&#123;             </span><br><span class="line">            f();         </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;               </span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"不要着急，等3s后再点才有效"</span>)         </span><br><span class="line">        &#125;         </span><br><span class="line">        clearTimeout(time)        </span><br><span class="line">        time = setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;  </span><br><span class="line">            time = <span class="literal">null</span>;         </span><br><span class="line">        &#125;,t) </span><br><span class="line">    &#125;          </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span> (<span class="params"></span>) </span>&#123;     </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Date</span>.now()) </span><br><span class="line">&#125;      </span><br><span class="line"><span class="keyword">var</span>  f1 = debounce_callnow(f) <span class="built_in">document</span>.getElementById(<span class="string">"btn_debounce_now"</span>).onclick = f1;</span><br></pre></td></tr></table></figure>
+
+<p>这是一个典型的<a href="https://mp.weixin.qq.com/s?__biz=MzI3ODA0NzMzNw==&mid=2247483712&idx=1&sn=82abdcdfb505c116ed3e707efa1ca324&chksm=eb5dbe46dc2a3750f46974550c4d34045f26d3101d1f42f95b498f4d79a53f2f9b237e309f61&token=1143531758&lang=zh_CN&scene=21#wechat_redirect" target="_blank" rel="noopener">高阶函数</a>：它接收一个函数为实参，并且还返回了一个函数。它的执行效果是：第一次点击时，能执行f，在接下的3秒内的点击都是无效的，而每一次无效的点击都会重新开始计时三秒。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZD5jiazWd8og9hm67q6JaA7PMPHZJKeKtpFibGPKIC8aAHM8ic3wSWegjhg/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<h4 id="5-2-防抖-非立即执行版"><a href="#5-2-防抖-非立即执行版" class="headerlink" title="5.2 防抖-非立即执行版"></a>5.2 防抖-非立即执行版</h4><p>非立即执行版的意思是：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f1 = 防抖_非立即执行(f,n)</span><br></pre></td></tr></table></figure>
+
+<p>这样得到的新函数f1，具有如下特点：</p>
+<p>1.函数f1调用后，不执行f(),从此时开始：2.随后的n秒内，并没有再次调用f1，则在第n秒时，调用f()3.随后的n秒内再次调用f1，不会执行f函数，再次以此时间为起点，回到第2步。</p>
+<p>举一个极端的例子：对f函数进行非立即执行的n秒防抖处理之后得到f1函数而言，假设你从早上8:00开始，以每秒100次的速度去调用f1，持续到中午12:00。最终的结果是，f函数在12:00过n秒时，执行了一次。</p>
+<p>html:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button type=<span class="string">"primary"</span> id=<span class="string">"btn_debounce_end"</span>&gt;防抖<span class="number">3</span>s，延迟执行&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>快速点击这个按钮，观察效果。</p>
+<p>js代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce_callend</span>(<span class="params">f,t=<span class="number">3000</span></span>)</span>&#123;  </span><br><span class="line">    <span class="keyword">let</span> time = <span class="literal">null</span>  </span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">()</span>=&gt;</span>&#123;    </span><br><span class="line">        <span class="keyword">if</span>(time) &#123;      </span><br><span class="line">            clearTimeout(time);      </span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'不是立即执行的，点一次等3s后看结果'</span>);   </span><br><span class="line">        &#125;    </span><br><span class="line">        time = setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;      </span><br><span class="line">            f();    </span><br><span class="line">        &#125;,t)  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Date</span>.now())</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span>  f1 = debounce_callend(f)</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"btn_debounce_end"</span>).onclick = f1;</span><br></pre></td></tr></table></figure>
+
+<p>非立即执行版的意思是触发事件后函数f不会立即执行，而是在3秒后执行，如果在 n 秒内又触发了事件，去调用f1，则会重新计算函数执行时间。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZD68wRdibFsjqhQmUsJY7lffqYEiaQeWC9IN6PicpYag89XFHUHmlDvPD5g/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<h4 id="5-3-混合版本"><a href="#5-3-混合版本" class="headerlink" title="5.3 混合版本"></a>5.3 混合版本</h4><p>也可以把非立即执行版和立即执行版的防抖函数结合起来。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f1 = 防抖(f,n)</span><br></pre></td></tr></table></figure>
+
+<p>这样得到的新函数f1，具有如下特点：</p>
+<p>1.函数f1调用后，执行一次f(),从此时开始：2.随后的n秒内，并没有再次调用f1，则在第n秒时，调用f()3.随后的n秒内再次调用f1，不会执行f函数，再次以此时间为起点，回到第2步。</p>
+<p>举一个极端的例子：对f函数进行的n秒防抖处理之后得到f1函数而言，假设你从早上8:00开始，以每秒100次的速度去调用f1，持续到中午12:00。最终的结果是，f函数分别在8：00和12:00过n秒时，各执行了一次，共执行了两次。</p>
+<p>html</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button type=<span class="string">"primary"</span> id=<span class="string">"btn_debounce_both"</span>&gt;防抖<span class="number">3</span>s，立即执行+延迟执行&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>快速点击这个按钮，观察效果。js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce_callboth</span>(<span class="params">f,t=<span class="number">3000</span></span>)</span>&#123; </span><br><span class="line">    <span class="keyword">let</span> time = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">()</span>=&gt;</span>&#123;   </span><br><span class="line">        <span class="keyword">if</span>(!time)&#123;     </span><br><span class="line">            f();    </span><br><span class="line">        &#125;   </span><br><span class="line">        clearTimeout(time)    </span><br><span class="line">        time = setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;      </span><br><span class="line">            time = <span class="literal">null</span>;     </span><br><span class="line">            f();    </span><br><span class="line">        &#125;,t)  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Date</span>.now())</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span>  f1 = debounce_callboth(f)</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"btn_debounce_both"</span>).onclick = f1</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZDKjMYNy5OBQIKvia3d8pibALWJKS0BmTt0aPN5xIDJFl8N3U17YiaiaX2Uw/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<p>效果如上。</p>
+<h3 id="6-节流"><a href="#6-节流" class="headerlink" title="6 节流"></a><strong>6 节流</strong></h3><p>它的英文是：throttle。在某个场景下，函数f被高频调用 ，我们希望降低被调用频率，可以对函数f进行n秒节流处理，得到新函数f1，那么这个f1函数具备的特性是：</p>
+<p>函数f1调用后，随后的[0,n]秒内将不能再次被调用，也不就是说下一次被成功调用的必须是在n秒之后了。</p>
 <blockquote>
-<p>构造函数通过原型分配的函数是所有对象所共享的。</p>
-<p>JavaScript 规定，每一个构造函数都有一个prototype 属性，指向另一个对象。注意这个prototype 就是一个对象，这个对象的所有属性和方法，都会被构造函数所拥有。我们可以把那些不变的方法，直接定义在prototype 对</p>
-<p>象上，这样所有对象的实例就可以共享这些方法。</p>
+<p>函数节流就是fps游戏的射速:就算一直按着鼠标射击，也只会按规定射速射出子弹（不会无限速度发子弹的）。</p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Star</span> (<span class="params">uname, age</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">​		<span class="keyword">this</span>.uname = uname;</span><br><span class="line">​		<span class="keyword">this</span>.age = age;</span><br><span class="line">​		<span class="comment">// this.sing = function () &#123;</span></span><br><span class="line">​		<span class="comment">// 	console.log(this.name + '在唱歌');</span></span><br><span class="line">​		<span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line">​	&#125;</span><br><span class="line">​	Star.prototype.sing = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">​		<span class="built_in">console</span>.log(<span class="keyword">this</span>.uname + <span class="string">'在唱歌'</span>);</span><br><span class="line">​	&#125;</span><br><span class="line"></span><br><span class="line">​	<span class="keyword">var</span> zxc = <span class="keyword">new</span> Star(<span class="string">'周星驰'</span>, <span class="number">22</span>);</span><br><span class="line">​	<span class="keyword">var</span> ldh = <span class="keyword">new</span> Star(<span class="string">'刘德华'</span>, <span class="number">22</span>);</span><br><span class="line">​	<span class="comment">// console.log( Star.prototype );</span></span><br><span class="line">​	ldh.sing();</span><br><span class="line">​	zxc.sing();</span><br></pre></td></tr></table></figure>
+<p>节流会稀释函数的执行频率。</p>
+<h4 id="6-1-节流-立即执行版"><a href="#6-1-节流-立即执行版" class="headerlink" title="6.1 节流-立即执行版"></a>6.1 节流-立即执行版</h4><p>立即执行版的意思是：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f1 = 节流_立即执行(f,n)</span><br></pre></td></tr></table></figure>
 
-<p><strong>总结：所有的公共属性写到构造函数里面，所有的公共方法写到原型对象里面</strong></p>
-<p> 疑问：为何创建一个对象，都可以自动的跑到原型对象上找方法</p>
-<p>因为每一个对象都有一个属性，对象原型，执行原型对象</p>
-<h2 id="对象原型：proto"><a href="#对象原型：proto" class="headerlink" title="对象原型：proto"></a>对象原型：<strong><strong>proto</strong></strong></h2><p>主要作用：指向prototype</p>
-<p>构造函数和原型对象都会有一个属性<strong>proto</strong> 指向构造函数的prototype 原型对象，之所以我们对象可以使用构造函数prototype 原型对象的属性和方法，就是因为对象有<strong>proto</strong> 原型的存在。</p>
-<blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 注意：____proto____是一个非标准属性，不可以拿来赋值或者设置【只读属性】</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<ul>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.____proto____对象原型和原型对象prototype 是等价的</span><br><span class="line"></span><br><span class="line">2.____proto____对象原型的意义就在于为对象的查找机制提供一个方向，或者说一条路线，但是它是一个非标准属性，因此实际开发中，不可以使用这个属性，它只是内部指向原型对象prototype</span><br></pre></td></tr></table></figure>
+<p>这样得到的新函数f1，具有如下特点：</p>
+<p>1.函数f1调用后，<code>立即执行</code>f(),并从此时开始：2.随后的n秒内，再次调用f1，不会执行f函数3.随后的n秒后，再次调用f1，回到第一步。</p>
+<p>举一个具体的例子：对f函数进行立即执行的10秒节流处理之后得到f1函数而言，假设你从早上8:00开始，以每秒1次的速度去调用f1，持续到中午12:00。最终的结果是，f函数在如下时间节点被调用：</p>
+<p>•8:00:00执行一次•8:00:10执行一次•8:00:20执行一次•…•11:59:50执行一次•12:00:00执行一次</p>
+<p>还是看之前的按钮代码</p>
+<p>html</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=<span class="string">"btn_throttle_now"</span>&gt;节流<span class="number">3</span>s，立即执行&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
 
+<p>快速点击这个按钮，观察效果。js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 默认3000毫秒</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle_callnow</span>(<span class="params">f,t=<span class="number">3000</span></span>)</span>&#123;  </span><br><span class="line">    <span class="keyword">let</span> preTime = <span class="number">0</span>;  </span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;   </span><br><span class="line">        <span class="keyword">var</span> now = <span class="built_in">Date</span>.now();    </span><br><span class="line">        <span class="keyword">if</span>(now - preTime &gt;= t)&#123;      </span><br><span class="line">            f();      </span><br><span class="line">            preTime = now;    </span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;     </span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"两次执行时间必须要超过"</span>+t/<span class="number">1000</span>+<span class="string">"s"</span>)    </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Date</span>.now())</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span>  f1 = throttle_callnow(f)</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"btn_throttle_now"</span>).onclick = f1;</span><br></pre></td></tr></table></figure>
 
+<p>第一次点击就会执行。之后，无论你点击速度有多快，反正是隔3秒才执行一次。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZDzcCXcc4GGia34yXxfrR5s2VkCCsR1DmJ36L8icfssriap2rQTXp4KuQ6A/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<h4 id="6-2-节流-非立即执行版"><a href="#6-2-节流-非立即执行版" class="headerlink" title="6.2 节流-非立即执行版"></a>6.2 节流-非立即执行版</h4><p>非立即执行版的意思是：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f1 = 节流_非立即执行(f,n)</span><br></pre></td></tr></table></figure>
 
+<p>这样得到的新函数f1，具有如下特点：</p>
+<p>1.函数f1调用后，设置定时器，等n秒再执行f(),并从此时开始：2.随后的n秒内，再次调用f1，不执行f3.第n秒，执行f.4.n秒后，再次调用f1，回到第一步。</p>
+<p>举一个具体的例子：对f函数进行非立即执行的10秒节流处理之后得到f1函数而言，假设你从早上8:00开始，以每秒1次的速度去调用f1，持续到中午12:00。最终的结果是，f函数在如下时间节点被调用：</p>
+<p>•8:00:10执行一次•8:00:20执行一次•…•11:59:50执行一次•12:00:00执行一次•12:00:10执行一次</p>
+<p>html</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=<span class="string">"btn_throttle_end"</span>&gt;节流<span class="number">3</span>s，延迟执行&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
 
+<p>快速点击这个按钮，观察效果。</p>
+<p>js代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle_callend</span>(<span class="params">f,t=<span class="number">3000</span></span>)</span>&#123;  </span><br><span class="line">    <span class="keyword">let</span> timer= <span class="literal">null</span>;  </span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;    </span><br><span class="line">        <span class="keyword">if</span>(!timer) &#123;     </span><br><span class="line">            timer = setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;     </span><br><span class="line">                f();       </span><br><span class="line">                <span class="comment">// t毫秒后才能重设定时器       </span></span><br><span class="line">                timer = <span class="literal">null</span>      </span><br><span class="line">            &#125;,t)   </span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;      </span><br><span class="line">            <span class="built_in">console</span>.log(t/<span class="number">1000</span>+<span class="string">"s之间的重复点击是无效的"</span>)    </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span> (<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Date</span>.now())</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span>  f1 = throttle_callend(f)</span><br><span class="line"><span class="comment">// 添加事件响应</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"throttle_callend"</span>).onclick = f1;</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<p><img src="C:/blog/source/assets/blogImg/%E5%85%B3%E7%B3%BB%E5%9B%BE.jpg" alt></p>
-<p><strong>总结：每一个对象都有一个原型，作用是指向原型对象prototype</strong></p>
-<p><strong>统一称呼：<strong><strong>proto</strong></strong>原型，prototype成为原型对象</strong></p>
-<p>【每一个构造函数都有：原型对象】</p>
-<p>【每一个实例对象都有：对象原型】</p>
-<h2 id="constructor-构造函数"><a href="#constructor-构造函数" class="headerlink" title="constructor  构造函数"></a>constructor  构造函数</h2><blockquote>
-<p><u><strong>记录是哪个构造函数创建出来的</strong></u></p>
-<p>指回构造函数本身</p>
-</blockquote>
-<p>原型（<strong>proto</strong>）和构造函数（prototype）原型对象里面都有一个属性constructor属性，constructor 我们称为构造函数，因为它指回构造函数本身。constructor 主要用于记录该对象引用于哪个构造函数，它可以让原型对象重新指向原来的构造函数。一般情况下，对象的方法都在构造函数的原型对象中设置。如果有多个对象的方法，我们可以给原型对象采取对象形式赋值，但是这样就会覆盖构造函数原型对象原来的内容，这样修改后的原型对象constructor  就不再指向当前构造函数了。此时，我们可以在修改后的原型对象中，添加一个constructor 指向原来的构造函数。</p>
-<p><strong>总结：constructor  主要作用可以指回原来的构造函数</strong></p>
-<h2 id="构造函数、实例、原型对象三者之间的关系"><a href="#构造函数、实例、原型对象三者之间的关系" class="headerlink" title="构造函数、实例、原型对象三者之间的关系"></a>构造函数、实例、原型对象三者之间的关系</h2><p><img src="C:/blog/source/assets/blogImg/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%EF%BC%8C%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%85%B3%E7%B3%BB.jpg" alt></p>
-<p><strong>思考：如果传入一个对象给原型对象添加方法呢</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Star.prototype = &#123;</span><br><span class="line">    sing : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    dance: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">此时会覆盖原先prototype中的内容，传入一个新的对象，那么此时就不知道构造函数是哪个了</span><br><span class="line">所以我们要指回构造函数：<span class="keyword">constructor</span>：构造函数</span><br></pre></td></tr></table></figure>
+<p>第一次点击，等3秒后，f就会执行。无论你点击速度有多快，反正是隔3秒才执行一次f。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZDfoiczxtfGy3hhUGtNDRCrnvh7cdI0QLIkEVuiceUnJHAqTwYqk1iaUuFw/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<h4 id="6-3-节流-混合版"><a href="#6-3-节流-混合版" class="headerlink" title="6.3 节流-混合版"></a>6.3 节流-混合版</h4><p>混合版的意思是：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f1 = 节流(f,n)</span><br></pre></td></tr></table></figure>
 
-<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">作用：提供一个成员的查找机制，或者查找规则</span><br></pre></td></tr></table></figure>
+<p>这样得到的新函数f1，具有如下特点：</p>
+<p>1.函数f1调用时，删除定时器，检查离上次调用时间是否间隔了n秒（及以上），2.如果是：则<code>执行</code>f()3.如果不是：则开启一个n秒后执行f的定时器。</p>
+<p>举一个具体的例子：对f函数进行10秒节流处理之后得到f1函数而言，假设你从早上8:00开始，以每秒1次的速度去调用f1，持续到中午12:01。最终的结果是，f函数在如下时间节点被调用：</p>
+<p>•8:00:00执行一次•8:00:10执行一次•…•11:59:50执行一次•12:00:00执行一次•12:00:11执行一次</p>
+<p>html</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=<span class="string">"btn_throttle_both"</span>&gt;节流<span class="number">3</span>s，立即执行+延迟执行&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
 
-<img src="C:/blog/source/assets/blogImg/原型链.jpg">
+<p>快速点击这个按钮，观察效果。js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle_callboth</span>(<span class="params">f,t=<span class="number">3000</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span></span><br><span class="line">  <span class="keyword">let</span> preTime = <span class="number">0</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> now = <span class="built_in">Date</span>.now()</span><br><span class="line">    clearTimeout(timer)</span><br><span class="line">    <span class="keyword">if</span> (now - preTime &gt;= t) &#123;</span><br><span class="line">      f()；</span><br><span class="line">      preTime = now；</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'间隔不足,开始定时器'</span>)</span><br><span class="line">      timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        f()；</span><br><span class="line">      &#125;, t)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Date</span>.now())</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 节流处理，默认3秒</span></span><br><span class="line"><span class="keyword">var</span> f1 = throttle_callboth(f)</span><br><span class="line"><span class="comment">// 给按钮添加点击事件</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"throttle_callend"</span>).onclick = f1;</span><br></pre></td></tr></table></figure>
 
-
-
-<h2 id="JavaScript-的成员查找机制-规则"><a href="#JavaScript-的成员查找机制-规则" class="headerlink" title="JavaScript 的成员查找机制(规则)"></a>JavaScript 的成员查找机制(规则)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">当访问一个对象的属性（包括方法）时，首先查找这个对象自身有没有该属性。</span><br><span class="line"></span><br><span class="line">如果没有就查找它的原型（也就是__proto__指向的prototype 原型对象）。</span><br><span class="line"></span><br><span class="line">如果还没有就查找原型对象的原型（Object的原型对象）。</span><br><span class="line"></span><br><span class="line">依此类推一直找到Object 为止（null）。</span><br><span class="line"></span><br><span class="line">__proto__对象原型的意义就在于为对象成员查找机制提供一个方向，或者说一条路线。</span><br><span class="line"></span><br><span class="line">// console.log(Star.prototype.__proto__.__proto__);</span><br><span class="line">// console.log(Object.prototype);</span><br></pre></td></tr></table></figure>
-
-<h2 id="扩展内置对象"><a href="#扩展内置对象" class="headerlink" title="扩展内置对象"></a>扩展内置对象</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">可以通过原型对象，对原来的内置对象进行扩展自定义的方法。比如给数组增加自定义求偶数和的功能。</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">console.log( Array.prototype );</span><br><span class="line">	// 添加求和方法</span><br><span class="line">	Array.prototype.sum = function () &#123;</span><br><span class="line">		var sum = 0;</span><br><span class="line">		for (var i = 0; i &lt; this.length; i++) &#123;</span><br><span class="line">			sum += this[i];</span><br><span class="line">		&#125;</span><br><span class="line">		return sum;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	var arr = [1,2,3];</span><br><span class="line">	console.log( arr.sum() );</span><br><span class="line"></span><br><span class="line">	var newArr = [6,7,8,9];</span><br><span class="line">	console.log( newArr.sum() );</span><br></pre></td></tr></table></figure>
-
-<p>构造函数：function Fn () {}</p>
-<p><strong>属性写到构造函数里面，方法写到构造函数的原型对象里面</strong></p>
-<p>原型对象：每一个构造函数都有原型对象【prototype】【作用是用来保存方法】</p>
-<p>对象原型：每一个对象都有一个对象原型（原型）【<strong><strong>proto</strong></strong>】【作用是指向原型对象】</p>
-<p>constructor：指向构造函数</p>
-<p>原型链：作用是查找属性或者方法方向，机制</p>
-<p>构造函数：function Fn () {}</p>
-<p>静态成员实例成员：函数内部，在构造函数上</p>
-<p>原型对象： 构造函数属性prototype【把方法都放到原型对象】</p>
-<p>对象原型：指向原型对象【<strong><strong>proto</strong></strong>】</p>
-<p>constructor：构造函数</p>
-<p>原型链：原型，查找属性或者方法提供的机制</p>
-<p>构造函数，实例对象，原型对象</p>
+<p>效果如下：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK3GI2KqSrz0eFd0s3Hz75ZDCUVU9zs8iaeobaNEmphwsicmftXXq5tc6K4OggVNcrHZZbKvAiaUTWLHA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<h3 id="7-总结"><a href="#7-总结" class="headerlink" title="7 总结"></a>7 总结</h3><p>•相同点：函数防抖和函数节流都是防止某一时间高频调用某函数f，而使用高阶函数的技巧对函数f进行<strong>包装</strong>以得到新函数f1,f1的功能与f相同，只是在有效调用上做了限制;•不同点：函数防抖是某一段时间内只有效执行一次（或者两次吧），而函数节流是间隔一段时间有效执行一次。•  本文只是基本实现其原理，对参数和上下文并没有处理。建议使用underscore库中的工具方法：节流[1] ，防抖[2]</p>
+<p>推荐记忆方案：记住一个好理解的，另一个对比。</p>
+<p>•节流是节约用水：把一直连续放水的水龙头关小，直到让水是一点一点向下滴（函数还是可以被调用多次，只不过是频率变慢了）。其实只要记住这一个，就能区别于防抖啦。</p>
 
       
 
@@ -374,7 +424,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/09/27/构造函数和原型/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/02/13/防抖与节流/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -388,18 +438,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/09/30/跨域/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          跨域
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/08/15/ES6类和对象/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ES6中的类和对象</div>
+    <a href="/2019/01/25/数组方法小结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数组方法小结</div>
       <i class="icon-circle-right"></i>
     </a>
   

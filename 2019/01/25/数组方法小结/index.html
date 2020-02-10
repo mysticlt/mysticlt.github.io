@@ -6,25 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>构造函数和原型 | MysticLt的博客</title>
+  <title>数组方法小结 | MysticLt的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="12构造函数是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与new一起使用。我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。function Fn () &amp;#123;&amp;#125;  在JS 中，使用构造函数时要注意以下两点： 如果用new，就是构造函数，否则就是普不函数 1.构造函数用于创建某一类对象，其首字母要大写 2.构造函数要和new 一起使用才有">
+  <meta name="description" content="1 简介总结js中数组的方法，并做了一些分类。 2 主要内容•数组的方法从哪里来 •数组的方法分类 •几个数组的使用技巧 3 数组的方法从哪里来当我们定义一个数组之后，我们就可以直接使用它的方法。例如：">
 <meta name="keywords" content="javaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="构造函数和原型">
-<meta property="og:url" content="http://yoursite.com/2018/09/27/构造函数和原型/index.html">
+<meta property="og:title" content="数组方法小结">
+<meta property="og:url" content="http://yoursite.com/2019/01/25/数组方法小结/index.html">
 <meta property="og:site_name" content="MysticLt的博客">
-<meta property="og:description" content="12构造函数是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与new一起使用。我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。function Fn () &amp;#123;&amp;#125;  在JS 中，使用构造函数时要注意以下两点： 如果用new，就是构造函数，否则就是普不函数 1.构造函数用于创建某一类对象，其首字母要大写 2.构造函数要和new 一起使用才有">
+<meta property="og:description" content="1 简介总结js中数组的方法，并做了一些分类。 2 主要内容•数组的方法从哪里来 •数组的方法分类 •几个数组的使用技巧 3 数组的方法从哪里来当我们定义一个数组之后，我们就可以直接使用它的方法。例如：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="c:/blog/source/assets/blogImg/内存.jpg">
-<meta property="og:image" content="c:/blog/source/assets/blogImg/%E5%85%B3%E7%B3%BB%E5%9B%BE.jpg">
-<meta property="og:image" content="c:/blog/source/assets/blogImg/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%EF%BC%8C%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%85%B3%E7%B3%BB.jpg">
-<meta property="og:image" content="c:/blog/source/assets/blogImg/原型链.jpg">
-<meta property="og:updated_time" content="2019-11-11T11:00:22.952Z">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK2oqXS8CbvHibvMYc7O1exqBXrNnnUMs4Sn8PbEb0aQ6icic4tumU46DggCRpMBEFDIEFf57D7RyicZSQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:updated_time" content="2020-02-10T09:36:52.891Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="构造函数和原型">
-<meta name="twitter:description" content="12构造函数是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与new一起使用。我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。function Fn () &amp;#123;&amp;#125;  在JS 中，使用构造函数时要注意以下两点： 如果用new，就是构造函数，否则就是普不函数 1.构造函数用于创建某一类对象，其首字母要大写 2.构造函数要和new 一起使用才有">
-<meta name="twitter:image" content="c:/blog/source/assets/blogImg/内存.jpg">
+<meta name="twitter:title" content="数组方法小结">
+<meta name="twitter:description" content="1 简介总结js中数组的方法，并做了一些分类。 2 主要内容•数组的方法从哪里来 •数组的方法分类 •几个数组的使用技巧 3 数组的方法从哪里来当我们定义一个数组之后，我们就可以直接使用它的方法。例如：">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK2oqXS8CbvHibvMYc7O1exqBXrNnnUMs4Sn8PbEb0aQ6icic4tumU46DggCRpMBEFDIEFf57D7RyicZSQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
   
     <link rel="alternative" href="/atom.xml" title="MysticLt的博客" type="application/atom+xml">
   
@@ -164,126 +161,131 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-构造函数和原型" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-数组方法小结" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      构造函数和原型
+      数组方法小结
     </h1>
   
 
         
-        <a href="/2018/09/27/构造函数和原型/" class="archive-article-date">
-  	<time datetime="2018-09-27T07:45:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-27</time>
+        <a href="/2019/01/25/数组方法小结/" class="archive-article-date">
+  	<time datetime="2019-01-25T02:52:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">构造函数是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与<span class="keyword">new</span>一起使用。我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span> (<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>在JS 中，使用构造函数时要注意以下两点：</strong></p>
-<p>如果用new，就是构造函数，否则就是普不函数</p>
-<p>1.构造函数用于创建某一类对象，其首字母要大写</p>
-<p>2.构造函数要和new 一起使用才有意义</p>
+        <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h3><p>总结js中数组的方法，并做了一些分类。</p>
+<h3 id="2-主要内容"><a href="#2-主要内容" class="headerlink" title="2 主要内容"></a>2 主要内容</h3><p>•数组的方法从哪里来</p>
+<p>•数组的方法分类</p>
+<p>•几个数组的使用技巧</p>
+<h3 id="3-数组的方法从哪里来"><a href="#3-数组的方法从哪里来" class="headerlink" title="3 数组的方法从哪里来"></a>3 数组的方法从哪里来</h3><p>当我们定义一个数组之后，我们就可以直接使用它的方法。例如：</p>
 <a id="more"></a>
 
-<p><strong>new在执行时会做四件事情</strong></p>
-<ol>
-<li>在内存中创建一个新的空对象。</li>
-<li>让this指向这个新的对象。</li>
-<li>执行构造函数里面的代码，给这个新对象添加属性和方法。</li>
-<li>返回这个新对象（所以构造函数里面不需要return）。</li>
-</ol>
-<h2 id="静态成员和实例成员"><a href="#静态成员和实例成员" class="headerlink" title="静态成员和实例成员"></a>静态成员和实例成员</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JavaScript 的构造函数中可以添加一些成员，可以在构造函数本身上添加，也可以在构造函数内部的this 上添加。通过这两种方式添加的成员，就分别称为静态成员和实例成员。</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [];</span><br><span class="line">arr.push(<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>静态成员：在构造函数本上添加的成员称为静态成员，只能由构造函数本身来访问</li>
-<li>实例成员：在构造函数内部创建的对象成员称为实例成员，只能由实例化的对象来访问</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params">uname, age</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.uname = uname;</span><br><span class="line">			<span class="keyword">this</span>.age = age;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">this</span>.say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="number">123</span>);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> obj = <span class="keyword">new</span> Person(<span class="string">'张三丰'</span>,<span class="number">22</span>);	</span><br><span class="line">	<span class="built_in">console</span>.log(obj.uname);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// console.log( Person.uname );</span></span><br><span class="line">	Person.leibie = <span class="string">'人'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(Person.leibie);</span><br><span class="line">	<span class="built_in">console</span>.log(obj.leibie);</span><br></pre></td></tr></table></figure>
+<p>为什么我们可以使用push方法呢？因为arr是通过Array构造器产生的，它相当于是:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">app.push(<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
 
-<p><strong>构造函数小问题：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">当实例化对象的时候，属性好理解，属性名属性值，那么方法是函数，函数是复杂数据类型</span><br><span class="line"></span><br><span class="line">那么保存的时候是保存地址，又指向函数，而每创建一个对象，都会有一个函数，每个函数都得开辟一个内</span><br><span class="line"></span><br><span class="line">存空间，此时浪费内存了，那么如何节省内存呢，我们需要用到原型</span><br><span class="line"></span><br><span class="line">方法放到构造函数里面，如果多次实例化，会浪费内存</span><br></pre></td></tr></table></figure>
+<p>而按照原型链的规则，app是可以使用Array.prototype上的属性和方法的。也就是说数组对象具有的方法是从Array.prototype上继承而来的。</p>
+<p>我们可以在浏览器开发者工具中去检查一下：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK2oqXS8CbvHibvMYc7O1exqBXrNnnUMs4Sn8PbEb0aQ6icic4tumU46DggCRpMBEFDIEFf57D7RyicZSQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<h3 id="4-数组方法的分类"><a href="#4-数组方法的分类" class="headerlink" title="4 数组方法的分类"></a>4 数组方法的分类</h3><p>按是否会修改原数组分成两大类。</p>
+<h4 id="4-1-改变原数组的方法"><a href="#4-1-改变原数组的方法" class="headerlink" title="4.1 改变原数组的方法"></a>4.1 改变原数组的方法</h4><h4 id="4-1-1-push-pop方法"><a href="#4-1-1-push-pop方法" class="headerlink" title="4.1.1 push/pop方法"></a>4.1.1 push/pop方法</h4><p>push:在数组尾部添加元素，会增加数组的长度<br>pop:在数组尾部取出元素，会减少数组的长度</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">arr.push(<span class="number">6</span>);</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//  [1, 2, 3, 4, 5, 6]</span></span><br><span class="line"><span class="keyword">let</span> b = arr.pop();</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//  [1, 2, 3, 4, 5]</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Star (uname, age) &#123;</span><br><span class="line">	this.uname = uname;</span><br><span class="line">	this.age = age;</span><br><span class="line">	this.sing = function () &#123;</span><br><span class="line">		console.log(this.name + &apos;在唱歌&apos;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var ldh = new Star(&apos;周星驰&apos;, 22);</span><br><span class="line">var ldh = new Star(&apos;刘德华&apos;, 22);</span><br></pre></td></tr></table></figure>
+<p>值得注意的是push()是可以一次添多个元素的，例如arr.push(1,2,3)。</p>
+<h4 id="4-1-2-shift-unshift方法"><a href="#4-1-2-shift-unshift方法" class="headerlink" title="4.1.2 shift/unshift方法"></a>4.1.2 shift/unshift方法</h4><p>unshift: 在头部添加元素，会增加数组的长度<br>shift:在头部删除元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line">arr.shift();</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//  [2, 3, 4, 5]</span></span><br><span class="line">arr.unshift(<span class="number">6</span>);</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// [6, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<img src="C:/blog/source/assets/blogImg/内存.jpg">
-</blockquote>
-<h2 id="构造函数原型prototype"><a href="#构造函数原型prototype" class="headerlink" title="构造函数原型prototype"></a>构造函数原型prototype</h2><p>什么是原型对象：就是一个属性，是构造函数的属性，这个属性是一个对象，我们也称呼，prototype 为原型对象。</p>
-<p>每一个构造函数都有一个属性，prototype</p>
-<p>作用：是为了共享方法，从而达到节省内存</p>
-<p><strong>注意：每一个构造函数都有prototype属性</strong></p>
-<p>例如：大家来学校上学，有的开车，有的汽车，有的开飞机，等等，此时浪费，那么准备一个大巴车，方便有节省</p>
-<blockquote>
-<p>构造函数通过原型分配的函数是所有对象所共享的。</p>
-<p>JavaScript 规定，每一个构造函数都有一个prototype 属性，指向另一个对象。注意这个prototype 就是一个对象，这个对象的所有属性和方法，都会被构造函数所拥有。我们可以把那些不变的方法，直接定义在prototype 对</p>
-<p>象上，这样所有对象的实例就可以共享这些方法。</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Star</span> (<span class="params">uname, age</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">​		<span class="keyword">this</span>.uname = uname;</span><br><span class="line">​		<span class="keyword">this</span>.age = age;</span><br><span class="line">​		<span class="comment">// this.sing = function () &#123;</span></span><br><span class="line">​		<span class="comment">// 	console.log(this.name + '在唱歌');</span></span><br><span class="line">​		<span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line">​	&#125;</span><br><span class="line">​	Star.prototype.sing = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">​		<span class="built_in">console</span>.log(<span class="keyword">this</span>.uname + <span class="string">'在唱歌'</span>);</span><br><span class="line">​	&#125;</span><br><span class="line"></span><br><span class="line">​	<span class="keyword">var</span> zxc = <span class="keyword">new</span> Star(<span class="string">'周星驰'</span>, <span class="number">22</span>);</span><br><span class="line">​	<span class="keyword">var</span> ldh = <span class="keyword">new</span> Star(<span class="string">'刘德华'</span>, <span class="number">22</span>);</span><br><span class="line">​	<span class="comment">// console.log( Star.prototype );</span></span><br><span class="line">​	ldh.sing();</span><br><span class="line">​	zxc.sing();</span><br></pre></td></tr></table></figure>
+<h4 id="4-1-3-sort：排序"><a href="#4-1-3-sort：排序" class="headerlink" title="4.1.3 sort：排序"></a>4.1.3 sort：排序</h4><p>对数组进行排序，会影响数组元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">21</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">45</span>, <span class="number">2</span>];</span><br><span class="line">arr.sort();</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// (5) [1, 2, 21, 3, 45]</span></span><br><span class="line">arr.sort(<span class="function">(<span class="params">a, b</span>)=&gt;</span>a-b); </span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// (5) [1, 2, 3, 21, 45]</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>总结：所有的公共属性写到构造函数里面，所有的公共方法写到原型对象里面</strong></p>
-<p> 疑问：为何创建一个对象，都可以自动的跑到原型对象上找方法</p>
-<p>因为每一个对象都有一个属性，对象原型，执行原型对象</p>
-<h2 id="对象原型：proto"><a href="#对象原型：proto" class="headerlink" title="对象原型：proto"></a>对象原型：<strong><strong>proto</strong></strong></h2><p>主要作用：指向prototype</p>
-<p>构造函数和原型对象都会有一个属性<strong>proto</strong> 指向构造函数的prototype 原型对象，之所以我们对象可以使用构造函数prototype 原型对象的属性和方法，就是因为对象有<strong>proto</strong> 原型的存在。</p>
-<blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 注意：____proto____是一个非标准属性，不可以拿来赋值或者设置【只读属性】</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<ul>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.____proto____对象原型和原型对象prototype 是等价的</span><br><span class="line"></span><br><span class="line">2.____proto____对象原型的意义就在于为对象的查找机制提供一个方向，或者说一条路线，但是它是一个非标准属性，因此实际开发中，不可以使用这个属性，它只是内部指向原型对象prototype</span><br></pre></td></tr></table></figure>
+<h4 id="4-1-4-reverse：数组翻转"><a href="#4-1-4-reverse：数组翻转" class="headerlink" title="4.1.4 reverse：数组翻转"></a>4.1.4 reverse：数组翻转</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>，<span class="number">2</span>，<span class="number">3</span>];</span><br><span class="line">arr.reverse();</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// [3，2，1]</span></span><br></pre></td></tr></table></figure>
 
+<h4 id="4-1-5-fill：元素填充"><a href="#4-1-5-fill：元素填充" class="headerlink" title="4.1.5 fill：元素填充"></a>4.1.5 fill：元素填充</h4><p>fill() 方法用一个固定值填充一个数组中从起始索引到终止索引内的全部元素。不包括终止索引。<br>格式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.fill(value[, start[, end]])</span><br></pre></td></tr></table></figure>
 
+<p>参数:</p>
+<p>•value用来填充数组元素的值。•start 可选 . 起始索引，默认值为0。•end 可选. 终止索引，默认值为 this.length。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>];</span><br><span class="line">arr.fill(<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>); <span class="comment">// 用1填充数组中从起始索引到终止索引内的全部元素</span></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// (5) [1, 2, 1, 1, 5]</span></span><br></pre></td></tr></table></figure>
 
+<h4 id="4-1-6-splice方法：会改变数组"><a href="#4-1-6-splice方法：会改变数组" class="headerlink" title="4.1.6 splice方法：会改变数组"></a>4.1.6 splice方法：会改变数组</h4><p>它通过删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。它是功能最强大的一个方法。</p>
+<p>格式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.splice(start[, deleteCount[, item1[, item2[, ...]]]])</span><br></pre></td></tr></table></figure>
 
+<p>•start<br>指定修改的开始位置（从0计数）。如果超出了数组的长度，则从数组末尾开始添加内容；如果是负值，则表示从数组末位开始的第几位（从-1计数，这意味着-n是倒数第n个元素并且等价于array.length-n）；如果负数的绝对值大于数组的长度，则表示开始位置为第0位。•deleteCount 可选<br>整数，表示要移除的数组元素的个数。<br>如果 deleteCount 大于 start 之后的元素的总数，则从 start 后面的元素都将被删除（含第 start 位）。<br>如果 deleteCount 被省略了，或者它的值大于等于array.length - start(也就是说，如果它大于或者等于start之后的所有元素的数量)，那么start之后数组的所有元素都会被删除。<br>如果 deleteCount 是 0 或者负数，则不移除元素。这种情况下，至少应添加一个新元素。•item1, item2, … 可选<br>要添加进数组的元素,从start 位置开始。如果不指定，则 splice() 将只删除数组元素。</p>
+<p>所以它可以实现：</p>
+<p>•添加功能</p>
+<p>•删除功能</p>
+<p>•修改功能</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.splice(<span class="number">0</span>,<span class="number">0</span>,<span class="string">'a'</span>,<span class="string">'b'</span>); <span class="comment">// 向数据的头部添加元素'a', 'b'</span></span><br><span class="line">arr.splice(<span class="number">0</span>,<span class="number">3</span>); <span class="comment">// 从下标为0的元素开始，删除3个元素。以数组的格式返回删除的元素</span></span><br><span class="line">arr.splice(<span class="number">2</span>,<span class="number">1</span>,<span class="string">"a"</span>);<span class="comment">// 从下标为2的元素开始，删除1个，并插入a。相当于arr[2] = "a"。以数组的格式返回删除的元素</span></span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<p><img src="C:/blog/source/assets/blogImg/%E5%85%B3%E7%B3%BB%E5%9B%BE.jpg" alt></p>
-<p><strong>总结：每一个对象都有一个原型，作用是指向原型对象prototype</strong></p>
-<p><strong>统一称呼：<strong><strong>proto</strong></strong>原型，prototype成为原型对象</strong></p>
-<p>【每一个构造函数都有：原型对象】</p>
-<p>【每一个实例对象都有：对象原型】</p>
-<h2 id="constructor-构造函数"><a href="#constructor-构造函数" class="headerlink" title="constructor  构造函数"></a>constructor  构造函数</h2><blockquote>
-<p><u><strong>记录是哪个构造函数创建出来的</strong></u></p>
-<p>指回构造函数本身</p>
-</blockquote>
-<p>原型（<strong>proto</strong>）和构造函数（prototype）原型对象里面都有一个属性constructor属性，constructor 我们称为构造函数，因为它指回构造函数本身。constructor 主要用于记录该对象引用于哪个构造函数，它可以让原型对象重新指向原来的构造函数。一般情况下，对象的方法都在构造函数的原型对象中设置。如果有多个对象的方法，我们可以给原型对象采取对象形式赋值，但是这样就会覆盖构造函数原型对象原来的内容，这样修改后的原型对象constructor  就不再指向当前构造函数了。此时，我们可以在修改后的原型对象中，添加一个constructor 指向原来的构造函数。</p>
-<p><strong>总结：constructor  主要作用可以指回原来的构造函数</strong></p>
-<h2 id="构造函数、实例、原型对象三者之间的关系"><a href="#构造函数、实例、原型对象三者之间的关系" class="headerlink" title="构造函数、实例、原型对象三者之间的关系"></a>构造函数、实例、原型对象三者之间的关系</h2><p><img src="C:/blog/source/assets/blogImg/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%EF%BC%8C%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%85%B3%E7%B3%BB.jpg" alt></p>
-<p><strong>思考：如果传入一个对象给原型对象添加方法呢</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Star.prototype = &#123;</span><br><span class="line">    sing : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    dance: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">此时会覆盖原先prototype中的内容，传入一个新的对象，那么此时就不知道构造函数是哪个了</span><br><span class="line">所以我们要指回构造函数：<span class="keyword">constructor</span>：构造函数</span><br></pre></td></tr></table></figure>
+<h4 id="4-2-不改原数组的方法"><a href="#4-2-不改原数组的方法" class="headerlink" title="4.2 不改原数组的方法"></a>4.2 不改原数组的方法</h4><p>•concat</p>
+<p>•slice</p>
+<p>•join</p>
+<h4 id="4-2-1-concat"><a href="#4-2-1-concat" class="headerlink" title="4.2.1 concat"></a>4.2.1 concat</h4><p>作用：实现拼接数组。它不会改变原数组，会返回一个拼接后的新数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = [<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line">arr1.concat(arr2);</span><br><span class="line"><span class="built_in">console</span>.log(arr1.length); <span class="comment">// 3。arr1不会变化。</span></span><br><span class="line"><span class="built_in">console</span>.log(arr1.concat(arr2)) <span class="comment">// [1, 2, 3, 3, 4]</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">作用：提供一个成员的查找机制，或者查找规则</span><br></pre></td></tr></table></figure>
+<h4 id="4-2-2-slice方法"><a href="#4-2-2-slice方法" class="headerlink" title="4.2.2 slice方法"></a>4.2.2 slice方法</h4><p>作用：从数组中截取出一部分，并以数组的格式返回，不会改变原数组<br>格式：<code>slice(下标起点，下标终点）</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// (6) [1, 2, 3, 4, 5, 6]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.length); <span class="comment">// 6</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.slice(<span class="number">1</span>,<span class="number">4</span>)); <span class="comment">// (3) [2, 3, 4]</span></span><br></pre></td></tr></table></figure>
 
-<img src="C:/blog/source/assets/blogImg/原型链.jpg">
+<h4 id="4-2-3-join方法"><a href="#4-2-3-join方法" class="headerlink" title="4.2.3 join方法"></a>4.2.3 join方法</h4><p>作用：返回一个字符串。不会改变原数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line">arr.join(<span class="string">'-'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// [1, 2, 3, 4, 5]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.join(<span class="string">'-'</span>)); <span class="comment">// '1-2-3-4-5'</span></span><br></pre></td></tr></table></figure>
 
+<h4 id="4-2-4-indexOf-lastIndexOf方法"><a href="#4-2-4-indexOf-lastIndexOf方法" class="headerlink" title="4.2.4 indexOf/lastIndexOf方法"></a>4.2.4 indexOf/lastIndexOf方法</h4><p>在数组中查找元素所在的下标。不会改变数组，返回指定数值的数组下标</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.indexOf(<span class="number">2</span>)); <span class="comment">// 1 返回值为2的数组的下标</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.indexOf(<span class="number">2</span>,<span class="number">2</span>)); <span class="comment">// 3 第一个参数表示要查找的数，第二个参数表示查找起点位置的索引</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.indexOf(<span class="number">6</span>)); <span class="comment">// -1</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.lastIndexOf(<span class="number">2</span>)); <span class="comment">// 3 从数组的末尾开始向前查找，返回正序下标</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.lastIndexOf(<span class="number">2</span>,<span class="number">2</span>)); <span class="comment">// 1 从数组的末尾开始向前查找，返回正序下标</span></span><br></pre></td></tr></table></figure>
 
+<h4 id="4-2-5-forEach方法"><a href="#4-2-5-forEach方法" class="headerlink" title="4.2.5 forEach方法"></a>4.2.5 forEach方法</h4><p>最常见的遍历操作，它不会改变数组且方法没有返回值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>];</span><br><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">a, index, array</span>) </span>&#123; </span><br><span class="line">  <span class="comment">// 循环遍历,对每一项运行给定函数,这个方法没有返回值</span></span><br><span class="line">  <span class="comment">// 参数分别为：遍历的数组内容,内容对应的数组索引,数组本身</span></span><br><span class="line"><span class="built_in">console</span>.log(a, index, array === arr);</span><br><span class="line">  <span class="comment">// 1 0 true</span></span><br><span class="line">  <span class="comment">// 2 1 true</span></span><br><span class="line">  <span class="comment">// 3 2 true</span></span><br><span class="line">  <span class="comment">// 2 3 true</span></span><br><span class="line">  <span class="comment">// 5 4 true</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// [1, 2, 3, 2, 5]</span></span><br><span class="line"><span class="keyword">var</span> arr1 = arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123; <span class="comment">// forEach方法没有返回值</span></span><br><span class="line">  <span class="keyword">return</span> a * <span class="number">2</span>;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="JavaScript-的成员查找机制-规则"><a href="#JavaScript-的成员查找机制-规则" class="headerlink" title="JavaScript 的成员查找机制(规则)"></a>JavaScript 的成员查找机制(规则)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">当访问一个对象的属性（包括方法）时，首先查找这个对象自身有没有该属性。</span><br><span class="line"></span><br><span class="line">如果没有就查找它的原型（也就是__proto__指向的prototype 原型对象）。</span><br><span class="line"></span><br><span class="line">如果还没有就查找原型对象的原型（Object的原型对象）。</span><br><span class="line"></span><br><span class="line">依此类推一直找到Object 为止（null）。</span><br><span class="line"></span><br><span class="line">__proto__对象原型的意义就在于为对象成员查找机制提供一个方向，或者说一条路线。</span><br><span class="line"></span><br><span class="line">// console.log(Star.prototype.__proto__.__proto__);</span><br><span class="line">// console.log(Object.prototype);</span><br></pre></td></tr></table></figure>
+<h4 id="4-2-6-map方法"><a href="#4-2-6-map方法" class="headerlink" title="4.2.6 map方法"></a>4.2.6 map方法</h4><p>返回一个新数组，这个新数组中的每一项是对原数组中每一项调用某个函数而得到的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> arr1 = arr.map(<span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123; </span><br><span class="line">   <span class="comment">// 对每一项运行给定函数，返回每次函数调用的结果组成的数组</span></span><br><span class="line">   <span class="keyword">return</span> a * <span class="number">2</span>;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// (5) [1, 2, 3, 2, 5]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">// (5) [2, 4, 6, 4, 10]</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="扩展内置对象"><a href="#扩展内置对象" class="headerlink" title="扩展内置对象"></a>扩展内置对象</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">可以通过原型对象，对原来的内置对象进行扩展自定义的方法。比如给数组增加自定义求偶数和的功能。</span><br></pre></td></tr></table></figure>
+<h4 id="4-2-7-filter方法"><a href="#4-2-7-filter方法" class="headerlink" title="4.2.7 filter方法"></a>4.2.7 filter方法</h4><p>不会改变原数组，且返回一个新数组，新数组中的项是从原数组中选出来的某些项组成。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> arr1 = arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123; </span><br><span class="line">    <span class="comment">// 返回满足过滤条件组成的数组</span></span><br><span class="line">  <span class="keyword">return</span> a &gt; <span class="number">2</span>;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// (5) [1, 2, 3, 2, 5]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">// (2) [3, 5]</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">console.log( Array.prototype );</span><br><span class="line">	// 添加求和方法</span><br><span class="line">	Array.prototype.sum = function () &#123;</span><br><span class="line">		var sum = 0;</span><br><span class="line">		for (var i = 0; i &lt; this.length; i++) &#123;</span><br><span class="line">			sum += this[i];</span><br><span class="line">		&#125;</span><br><span class="line">		return sum;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	var arr = [1,2,3];</span><br><span class="line">	console.log( arr.sum() );</span><br><span class="line"></span><br><span class="line">	var newArr = [6,7,8,9];</span><br><span class="line">	console.log( newArr.sum() );</span><br></pre></td></tr></table></figure>
+<h4 id="4-2-8-every方法"><a href="#4-2-8-every方法" class="headerlink" title="4.2.8 every方法"></a>4.2.8 every方法</h4><p>不会改变原数组，且返回一个布尔值 。<br>判断数组中每一项都是否满足条件，所有项都满足条件才会返回true</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> arr1 = arr.every(<span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123; </span><br><span class="line">  <span class="comment">// 判断数组中每一项都是否满足条件，所有项都满足条件才会返回true</span></span><br><span class="line">  <span class="keyword">return</span> a &gt; <span class="number">2</span>;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// (5) [1, 2, 3, 2, 5]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
 
-<p>构造函数：function Fn () {}</p>
-<p><strong>属性写到构造函数里面，方法写到构造函数的原型对象里面</strong></p>
-<p>原型对象：每一个构造函数都有原型对象【prototype】【作用是用来保存方法】</p>
-<p>对象原型：每一个对象都有一个对象原型（原型）【<strong><strong>proto</strong></strong>】【作用是指向原型对象】</p>
-<p>constructor：指向构造函数</p>
-<p>原型链：作用是查找属性或者方法方向，机制</p>
-<p>构造函数：function Fn () {}</p>
-<p>静态成员实例成员：函数内部，在构造函数上</p>
-<p>原型对象： 构造函数属性prototype【把方法都放到原型对象】</p>
-<p>对象原型：指向原型对象【<strong><strong>proto</strong></strong>】</p>
-<p>constructor：构造函数</p>
-<p>原型链：原型，查找属性或者方法提供的机制</p>
-<p>构造函数，实例对象，原型对象</p>
+<h4 id="4-2-9-some方法"><a href="#4-2-9-some方法" class="headerlink" title="4.2.9 some方法"></a>4.2.9 some方法</h4><p>不会改变原数组，且返回一个布尔值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> arr1 = arr.some(<span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123; </span><br><span class="line">    <span class="comment">// 判断数组中每一项都是否满足条件，只要有一项满足条件就会返回true</span></span><br><span class="line">  <span class="keyword">return</span> a &gt; <span class="number">2</span>;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// (5) [1, 2, 3, 2, 5]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-10-reduce方法"><a href="#4-2-10-reduce方法" class="headerlink" title="4.2.10 reduce方法"></a>4.2.10 reduce方法</h4><p>不会改变原数组，迭代数组的所有项，然后构建一个最终返回的值，从数组的第一项开始，逐个遍历到最后。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>];</span><br><span class="line"><span class="comment">// reduce方法有两个参数：在每一项上调用的函数和（可选的）作为归并基础的初始值</span></span><br><span class="line"><span class="comment">// reduce方法的函数接收 4 个参数：前一个值、当前值、项的索引和数组对象</span></span><br><span class="line"><span class="comment">// 这个函数返回的任何值都会作为第一个参数自动传给下一项</span></span><br><span class="line"><span class="comment">// 第一次迭代发生在数组的第二项上，因此第一个参数是数组的第一项，第二个参数是数组的第二项</span></span><br><span class="line"><span class="keyword">var</span> sum = arr.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">pre, cur, index, array</span>) </span>&#123; </span><br><span class="line">  <span class="keyword">return</span> pre + cur;</span><br><span class="line">&#125;, <span class="number">10</span>)</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// (5) [1, 2, 3, 2, 5]</span></span><br><span class="line"><span class="built_in">console</span>.log(sum); <span class="comment">// 23</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-11-reduceRight"><a href="#4-2-11-reduceRight" class="headerlink" title="4.2.11 reduceRight"></a>4.2.11 reduceRight</h4><p>不会改变原数组，迭代数组的所有项，从数组的最后一项开始，向前遍历到第一项</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> sum = arr.reduceRight(<span class="function"><span class="keyword">function</span>(<span class="params">pre, cur, index, array</span>) </span>&#123; </span><br><span class="line">  <span class="keyword">return</span> pre + cur;</span><br><span class="line">&#125;, <span class="number">10</span>)</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// (5) [1, 2, 3, 2, 5]</span></span><br><span class="line"><span class="built_in">console</span>.log(sum); <span class="comment">// 23</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-12-find-findIndex："><a href="#4-2-12-find-findIndex：" class="headerlink" title="4.2.12 find/findIndex："></a>4.2.12 find/findIndex：</h4><p>不会改变原数组，返回数组中满足提供的测试函数的第一个元素的值/下标</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> arr1 = arr.find(<span class="function"><span class="params">ele</span>=&gt;</span>ele&gt;=<span class="number">2</span>); <span class="comment">// 返回数组中满足提供的测试函数的第一个元素的值</span></span><br><span class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">// 2 </span></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// (5) [1, 2, 3, 2, 5]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-13-includes方法"><a href="#4-2-13-includes方法" class="headerlink" title="4.2.13 includes方法"></a>4.2.13 includes方法</h4><p>用来判断一个数组是否包含一个指定的值，返回 true或 false</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.includes(<span class="number">2</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.includes(<span class="number">6</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-14-toLocaleString"><a href="#4-2-14-toLocaleString" class="headerlink" title="4.2.14 toLocaleString"></a>4.2.14 toLocaleString</h4><p>不会改变原数组，返回一个字符串表示数组中的元素，数组中的元素将使用各自的 toLocaleString 方法转成字符串，这些字符串将使用一个特定语言环境的字符串（例如一个逗号 “,”）隔开</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">11111111</span>, <span class="number">2222222</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.toLocaleString()); <span class="comment">// 11,111,111,2,222,222</span></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// (2) [11111111, 2222222]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-15-toString"><a href="#4-2-15-toString" class="headerlink" title="4.2.15 toString"></a>4.2.15 toString</h4><p>不会改变原数组，返回一个字符串，表示指定的数组及其元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">arr.toString();</span><br><span class="line"><span class="built_in">console</span>.log(arr.toString()); <span class="comment">// '1,2,3'</span></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// (3) [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-静态方法"><a href="#4-3-静态方法" class="headerlink" title="4.3 静态方法"></a>4.3 静态方法</h3><h4 id="4-3-1-Array-from"><a href="#4-3-1-Array-from" class="headerlink" title="4.3.1 Array.from()"></a>4.3.1 Array.from()</h4><p>将伪数组或可迭代对象(包括arguments Array,Map,Set,String…)转换成数组对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// arrayLike：想要转换成数组的伪数组对象或可迭代对象</span></span><br><span class="line"><span class="comment">// mapFn (可选参数)：如果指定了该参数，新数组中的每个元素会执行该回调函数</span></span><br><span class="line"><span class="comment">// thisArg (可选参数)：可选参数，执行回调函数 mapFn 时 this 对象</span></span><br><span class="line"><span class="comment">// 返回值：一个新的数组实例</span></span><br><span class="line"><span class="built_in">Array</span>.from(arrayLike, mapFn, thisArg)</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-2-Array-isArray"><a href="#4-3-2-Array-isArray" class="headerlink" title="4.3.2 Array.isArray"></a>4.3.2 Array.isArray</h4><p>判断是否是数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(obj) ） <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-小结"><a href="#5-小结" class="headerlink" title="5 小结"></a>5 小结</h3><p>javascript的数组方法中</p>
+<p>•会改变原数组的方法有：unshift,shift,pop,push,sort,reverse,splice, fill</p>
+<p>•返回值是布尔值的方法有：Array.isArray , includes, some, every</p>
+<p>•参数可以是函数的是方法有：sort,map,forEach,filter,some,every,reduce,find,findIndex</p>
+<p>•功能最强大的是splice</p>
 
       
 
@@ -374,7 +376,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/09/27/构造函数和原型/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/01/25/数组方法小结/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -388,18 +390,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/09/30/跨域/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/02/13/防抖与节流/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          跨域
+          防抖与节流
         
       </div>
     </a>
   
   
-    <a href="/2018/08/15/ES6类和对象/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ES6中的类和对象</div>
+    <a href="/2019/01/20/原型与原型链/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">原型与原型链</div>
       <i class="icon-circle-right"></i>
     </a>
   

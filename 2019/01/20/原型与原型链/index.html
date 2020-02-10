@@ -6,25 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>构造函数和原型 | MysticLt的博客</title>
+  <title>原型与原型链 | MysticLt的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="12构造函数是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与new一起使用。我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。function Fn () &amp;#123;&amp;#125;  在JS 中，使用构造函数时要注意以下两点： 如果用new，就是构造函数，否则就是普不函数 1.构造函数用于创建某一类对象，其首字母要大写 2.构造函数要和new 一起使用才有">
+  <meta name="description" content="1 介绍思考原型链的作用及工作原理。 2 内容一切皆是对象；对象是由函数创造的；原型与原型链。 3 一切皆是对象这句话是说我们在js中接触的数据大多都是对象，具有对象的特征。下面我们来展开说明一下，如何理解“一切皆对象”。">
 <meta name="keywords" content="javaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="构造函数和原型">
-<meta property="og:url" content="http://yoursite.com/2018/09/27/构造函数和原型/index.html">
+<meta property="og:title" content="原型与原型链">
+<meta property="og:url" content="http://yoursite.com/2019/01/20/原型与原型链/index.html">
 <meta property="og:site_name" content="MysticLt的博客">
-<meta property="og:description" content="12构造函数是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与new一起使用。我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。function Fn () &amp;#123;&amp;#125;  在JS 中，使用构造函数时要注意以下两点： 如果用new，就是构造函数，否则就是普不函数 1.构造函数用于创建某一类对象，其首字母要大写 2.构造函数要和new 一起使用才有">
+<meta property="og:description" content="1 介绍思考原型链的作用及工作原理。 2 内容一切皆是对象；对象是由函数创造的；原型与原型链。 3 一切皆是对象这句话是说我们在js中接触的数据大多都是对象，具有对象的特征。下面我们来展开说明一下，如何理解“一切皆对象”。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="c:/blog/source/assets/blogImg/内存.jpg">
-<meta property="og:image" content="c:/blog/source/assets/blogImg/%E5%85%B3%E7%B3%BB%E5%9B%BE.jpg">
-<meta property="og:image" content="c:/blog/source/assets/blogImg/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%EF%BC%8C%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%85%B3%E7%B3%BB.jpg">
-<meta property="og:image" content="c:/blog/source/assets/blogImg/原型链.jpg">
-<meta property="og:updated_time" content="2019-11-11T11:00:22.952Z">
+<meta property="og:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581318253239.png">
+<meta property="og:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581318779484.png">
+<meta property="og:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581318955252.png">
+<meta property="og:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327613741.png">
+<meta property="og:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327637902.png">
+<meta property="og:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327653003.png">
+<meta property="og:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327665089.png">
+<meta property="og:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327694315.png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK1XFR7MRPgHdUqsgGPY3OA0hndu1SSVpleEE8Q0UsZHaf1BHssicmdTjtED08SwTrqwRtknCcueicgg/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:updated_time" content="2020-02-10T09:41:36.085Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="构造函数和原型">
-<meta name="twitter:description" content="12构造函数是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与new一起使用。我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。function Fn () &amp;#123;&amp;#125;  在JS 中，使用构造函数时要注意以下两点： 如果用new，就是构造函数，否则就是普不函数 1.构造函数用于创建某一类对象，其首字母要大写 2.构造函数要和new 一起使用才有">
-<meta name="twitter:image" content="c:/blog/source/assets/blogImg/内存.jpg">
+<meta name="twitter:title" content="原型与原型链">
+<meta name="twitter:description" content="1 介绍思考原型链的作用及工作原理。 2 内容一切皆是对象；对象是由函数创造的；原型与原型链。 3 一切皆是对象这句话是说我们在js中接触的数据大多都是对象，具有对象的特征。下面我们来展开说明一下，如何理解“一切皆对象”。">
+<meta name="twitter:image" content="c:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581318253239.png">
   
     <link rel="alternative" href="/atom.xml" title="MysticLt的博客" type="application/atom+xml">
   
@@ -164,126 +169,158 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-构造函数和原型" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-原型与原型链" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      构造函数和原型
+      原型与原型链
     </h1>
   
 
         
-        <a href="/2018/09/27/构造函数和原型/" class="archive-article-date">
-  	<time datetime="2018-09-27T07:45:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-27</time>
+        <a href="/2019/01/20/原型与原型链/" class="archive-article-date">
+  	<time datetime="2019-01-20T08:30:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">构造函数是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与<span class="keyword">new</span>一起使用。我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span> (<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>在JS 中，使用构造函数时要注意以下两点：</strong></p>
-<p>如果用new，就是构造函数，否则就是普不函数</p>
-<p>1.构造函数用于创建某一类对象，其首字母要大写</p>
-<p>2.构造函数要和new 一起使用才有意义</p>
+        <h3 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1 介绍"></a>1 介绍</h3><p>思考原型链的作用及工作原理。</p>
+<h3 id="2-内容"><a href="#2-内容" class="headerlink" title="2 内容"></a>2 内容</h3><p>一切皆是对象；对象是由函数创造的；原型与原型链。</p>
+<h3 id="3-一切皆是对象"><a href="#3-一切皆是对象" class="headerlink" title="3 一切皆是对象"></a>3 一切皆是对象</h3><p>这句话是说我们在js中接触的数据大多都是对象，具有对象的特征。下面我们来展开说明一下，如何理解“一切皆对象”。</p>
 <a id="more"></a>
 
-<p><strong>new在执行时会做四件事情</strong></p>
-<ol>
-<li>在内存中创建一个新的空对象。</li>
-<li>让this指向这个新的对象。</li>
-<li>执行构造函数里面的代码，给这个新对象添加属性和方法。</li>
-<li>返回这个新对象（所以构造函数里面不需要return）。</li>
-</ol>
-<h2 id="静态成员和实例成员"><a href="#静态成员和实例成员" class="headerlink" title="静态成员和实例成员"></a>静态成员和实例成员</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JavaScript 的构造函数中可以添加一些成员，可以在构造函数本身上添加，也可以在构造函数内部的this 上添加。通过这两种方式添加的成员，就分别称为静态成员和实例成员。</span><br></pre></td></tr></table></figure>
+<h4 id="3-1-函数是对象"><a href="#3-1-函数是对象" class="headerlink" title="3.1 函数是对象"></a>3.1 函数是对象</h4><p>我们来审视一下我们日常定义的函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="comment">// 调用函数</span></span><br><span class="line">f(); </span><br><span class="line"><span class="comment">// 给函数添加属性</span></span><br><span class="line">f.abc = <span class="number">100</span>; </span><br><span class="line"><span class="comment">// 给函数添加属性</span></span><br><span class="line">f.f1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;; <span class="built_in">console</span>.dir(f)</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>静态成员：在构造函数本上添加的成员称为静态成员，只能由构造函数本身来访问</li>
-<li>实例成员：在构造函数内部创建的对象成员称为实例成员，只能由实例化的对象来访问</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params">uname, age</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.uname = uname;</span><br><span class="line">			<span class="keyword">this</span>.age = age;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">this</span>.say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="number">123</span>);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> obj = <span class="keyword">new</span> Person(<span class="string">'张三丰'</span>,<span class="number">22</span>);	</span><br><span class="line">	<span class="built_in">console</span>.log(obj.uname);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// console.log( Person.uname );</span></span><br><span class="line">	Person.leibie = <span class="string">'人'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(Person.leibie);</span><br><span class="line">	<span class="built_in">console</span>.log(obj.leibie);</span><br></pre></td></tr></table></figure>
+<p>上面的代码中，我故意把给f添加了两个属性abc,f1 ，代码在语法并没有任何错误。输出内容如下（使用chrome浏览器）</p>
+<p><img src="C:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581318253239.png" alt="1581318253239"></p>
+<p>从上图你可以看出，f这个函数也有很多的属性：</p>
+<p>•abc, f1 是我们自行添加的属性。•arguments, caller,length,name,prototype,<strong>proto</strong>是它自己就有的属性。</p>
+<p>你看，对于我们定义的函数也可以理解成对象，是吧。</p>
+<h4 id="3-2-构造器是对象"><a href="#3-2-构造器是对象" class="headerlink" title="3.2 构造器是对象"></a>3.2 构造器是对象</h4><p>来看看平时使用的内置构造器</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义数组：构造器方式</span></span><br><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"><span class="comment">// 定义数组，字面量方式</span></span><br><span class="line"><span class="keyword">var</span> arr = []</span><br><span class="line"><span class="comment">// 输出构造器 </span></span><br><span class="line"><span class="built_in">console</span>.dir(<span class="built_in">Array</span>)</span><br></pre></td></tr></table></figure>
 
-<p><strong>构造函数小问题：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">当实例化对象的时候，属性好理解，属性名属性值，那么方法是函数，函数是复杂数据类型</span><br><span class="line"></span><br><span class="line">那么保存的时候是保存地址，又指向函数，而每创建一个对象，都会有一个函数，每个函数都得开辟一个内</span><br><span class="line"></span><br><span class="line">存空间，此时浪费内存了，那么如何节省内存呢，我们需要用到原型</span><br><span class="line"></span><br><span class="line">方法放到构造函数里面，如果多次实例化，会浪费内存</span><br></pre></td></tr></table></figure>
+<p>结果如下图</p>
+<p><img src="C:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581318779484.png" alt="1581318779484"></p>
+<p>可以理解isArray就Array这个对象的属性（更准确的说是一种特殊的属性：方法），所以你可以通过 Array.isArray()来访问。</p>
+<p>其它的数据类型：数组，dom对象等等，大家可以自己去console.dir()看一下。</p>
+<h3 id="4-对象是由函数创建的"><a href="#4-对象是由函数创建的" class="headerlink" title="4 对象是由函数创建的"></a>4 对象是由函数创建的</h3><p>在js中，当我们谈及一个函数时，其实我们并不是特别确定在说什么，因为<code>函数的角色有两种</code>。</p>
+<p>•基础功能。作为一个封装功能，提炼代码的工具。•类的功能。一个函数可以在前面加上 <code>new</code> 以当作构造器来使用。</p>
+<p>下面来看一些常见的创建对象的代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"><span class="keyword">var</span> fn  = <span class="keyword">new</span> <span class="built_in">Function</span>();</span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Star (uname, age) &#123;</span><br><span class="line">	this.uname = uname;</span><br><span class="line">	this.age = age;</span><br><span class="line">	this.sing = function () &#123;</span><br><span class="line">		console.log(this.name + &apos;在唱歌&apos;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var ldh = new Star(&apos;周星驰&apos;, 22);</span><br><span class="line">var ldh = new Star(&apos;刘德华&apos;, 22);</span><br></pre></td></tr></table></figure>
+<p>上面的三行代码中，我们均采用<code>new 构造器()</code>的方式来创建对象，而构造器（Array,Function,Object等）本来就是函数。注意，在实际开发中我们更常用的会使用字面量的方式去创建它，这里只是做演示。</p>
+<p>更一般的情况，我们看自定义的函数当构造器来使用的情况：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F</span> (<span class="params"></span>) </span>&#123;&#125;<span class="comment">// 当作普通函数来使用</span></span><br><span class="line"><span class="keyword">var</span> rs =  F();<span class="comment">// 当作构造器来使用</span></span><br><span class="line"><span class="keyword">var</span> f1 = <span class="keyword">new</span> F();</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<img src="C:/blog/source/assets/blogImg/内存.jpg">
-</blockquote>
-<h2 id="构造函数原型prototype"><a href="#构造函数原型prototype" class="headerlink" title="构造函数原型prototype"></a>构造函数原型prototype</h2><p>什么是原型对象：就是一个属性，是构造函数的属性，这个属性是一个对象，我们也称呼，prototype 为原型对象。</p>
-<p>每一个构造函数都有一个属性，prototype</p>
-<p>作用：是为了共享方法，从而达到节省内存</p>
-<p><strong>注意：每一个构造函数都有prototype属性</strong></p>
-<p>例如：大家来学校上学，有的开车，有的汽车，有的开飞机，等等，此时浪费，那么准备一个大巴车，方便有节省</p>
-<blockquote>
-<p>构造函数通过原型分配的函数是所有对象所共享的。</p>
-<p>JavaScript 规定，每一个构造函数都有一个prototype 属性，指向另一个对象。注意这个prototype 就是一个对象，这个对象的所有属性和方法，都会被构造函数所拥有。我们可以把那些不变的方法，直接定义在prototype 对</p>
-<p>象上，这样所有对象的实例就可以共享这些方法。</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Star</span> (<span class="params">uname, age</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">​		<span class="keyword">this</span>.uname = uname;</span><br><span class="line">​		<span class="keyword">this</span>.age = age;</span><br><span class="line">​		<span class="comment">// this.sing = function () &#123;</span></span><br><span class="line">​		<span class="comment">// 	console.log(this.name + '在唱歌');</span></span><br><span class="line">​		<span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line">​	&#125;</span><br><span class="line">​	Star.prototype.sing = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">​		<span class="built_in">console</span>.log(<span class="keyword">this</span>.uname + <span class="string">'在唱歌'</span>);</span><br><span class="line">​	&#125;</span><br><span class="line"></span><br><span class="line">​	<span class="keyword">var</span> zxc = <span class="keyword">new</span> Star(<span class="string">'周星驰'</span>, <span class="number">22</span>);</span><br><span class="line">​	<span class="keyword">var</span> ldh = <span class="keyword">new</span> Star(<span class="string">'刘德华'</span>, <span class="number">22</span>);</span><br><span class="line">​	<span class="comment">// console.log( Star.prototype );</span></span><br><span class="line">​	ldh.sing();</span><br><span class="line">​	zxc.sing();</span><br></pre></td></tr></table></figure>
+<p>好的，如果你认可了: 一切皆是对象，对象是函数创建的 这两个命题，那么接下来，我们就要去开始一段漫长的寻找之旅：寻找创建这个对象的构造器。</p>
+<h4 id="4-1-寻找构造器"><a href="#4-1-寻找构造器" class="headerlink" title="4.1 寻找构造器"></a>4.1 寻找构造器</h4><p>对于某一个对象obj来说，如何才能找到创建出它的那个构造器呢？公式如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对象.__proto__.constructor</span><br></pre></td></tr></table></figure>
 
-<p><strong>总结：所有的公共属性写到构造函数里面，所有的公共方法写到原型对象里面</strong></p>
-<p> 疑问：为何创建一个对象，都可以自动的跑到原型对象上找方法</p>
-<p>因为每一个对象都有一个属性，对象原型，执行原型对象</p>
-<h2 id="对象原型：proto"><a href="#对象原型：proto" class="headerlink" title="对象原型：proto"></a>对象原型：<strong><strong>proto</strong></strong></h2><p>主要作用：指向prototype</p>
-<p>构造函数和原型对象都会有一个属性<strong>proto</strong> 指向构造函数的prototype 原型对象，之所以我们对象可以使用构造函数prototype 原型对象的属性和方法，就是因为对象有<strong>proto</strong> 原型的存在。</p>
-<blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 注意：____proto____是一个非标准属性，不可以拿来赋值或者设置【只读属性】</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<ul>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.____proto____对象原型和原型对象prototype 是等价的</span><br><span class="line"></span><br><span class="line">2.____proto____对象原型的意义就在于为对象的查找机制提供一个方向，或者说一条路线，但是它是一个非标准属性，因此实际开发中，不可以使用这个属性，它只是内部指向原型对象prototype</span><br></pre></td></tr></table></figure>
+<p>理解如下：对象.<strong><strong>proto</strong></strong> 是取出对象的<strong><strong>proto</strong></strong>属性。我们知道对象是集合的无序集合，那么这些个众多的属性之中就有一个名为<code>__proto__</code>的属性。那我们再把<code>对象.__proto__</code>的值再看成是一个对象，再去找它的constructor属性。</p>
+<p>以数组为例。（其实，我们已经知道了数组是由Array构造器创建的，这里先假装不知道） </p>
+<p>来用这个公式找下它的构造器：（以下代码在chrome浏览器中执行）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log([].__proto__.constructor)</span><br><span class="line"><span class="comment">// ƒ Array() &#123; [native code] &#125;</span></span><br></pre></td></tr></table></figure>
 
+<p>结果可以看到到，<code>[].__proto__.constructor === Array</code></p>
+<p>同样的道理，我们可以继续去找字符串，对象，函数，a标签的构造器。结果如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str =<span class="string">""</span><span class="built_in">console</span>.log(str.__proto__.constructor === <span class="built_in">String</span>);<span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;<span class="built_in">console</span>.log(obj.__proto__.constructor === <span class="built_in">Object</span>);<span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;<span class="built_in">console</span>.log(f.__proto__.constructor === <span class="built_in">Object</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
+<p>假设你的页面上有一个a标签，其id就是a</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="built_in">document</span>.getElementById(<span class="string">'a'</span>)a.__proto__.constructor === HTMLAnchorElement</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<p><img src="C:/blog/source/assets/blogImg/%E5%85%B3%E7%B3%BB%E5%9B%BE.jpg" alt></p>
-<p><strong>总结：每一个对象都有一个原型，作用是指向原型对象prototype</strong></p>
-<p><strong>统一称呼：<strong><strong>proto</strong></strong>原型，prototype成为原型对象</strong></p>
-<p>【每一个构造函数都有：原型对象】</p>
-<p>【每一个实例对象都有：对象原型】</p>
-<h2 id="constructor-构造函数"><a href="#constructor-构造函数" class="headerlink" title="constructor  构造函数"></a>constructor  构造函数</h2><blockquote>
-<p><u><strong>记录是哪个构造函数创建出来的</strong></u></p>
-<p>指回构造函数本身</p>
-</blockquote>
-<p>原型（<strong>proto</strong>）和构造函数（prototype）原型对象里面都有一个属性constructor属性，constructor 我们称为构造函数，因为它指回构造函数本身。constructor 主要用于记录该对象引用于哪个构造函数，它可以让原型对象重新指向原来的构造函数。一般情况下，对象的方法都在构造函数的原型对象中设置。如果有多个对象的方法，我们可以给原型对象采取对象形式赋值，但是这样就会覆盖构造函数原型对象原来的内容，这样修改后的原型对象constructor  就不再指向当前构造函数了。此时，我们可以在修改后的原型对象中，添加一个constructor 指向原来的构造函数。</p>
-<p><strong>总结：constructor  主要作用可以指回原来的构造函数</strong></p>
-<h2 id="构造函数、实例、原型对象三者之间的关系"><a href="#构造函数、实例、原型对象三者之间的关系" class="headerlink" title="构造函数、实例、原型对象三者之间的关系"></a>构造函数、实例、原型对象三者之间的关系</h2><p><img src="C:/blog/source/assets/blogImg/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%EF%BC%8C%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%85%B3%E7%B3%BB.jpg" alt></p>
-<p><strong>思考：如果传入一个对象给原型对象添加方法呢</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Star.prototype = &#123;</span><br><span class="line">    sing : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    dance: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">此时会覆盖原先prototype中的内容，传入一个新的对象，那么此时就不知道构造函数是哪个了</span><br><span class="line">所以我们要指回构造函数：<span class="keyword">constructor</span>：构造函数</span><br></pre></td></tr></table></figure>
+<h3 id="5-原型与原型链"><a href="#5-原型与原型链" class="headerlink" title="5 原型与原型链"></a>5 原型与原型链</h3><p>好了，我们终于要切入主题啦。</p>
+<h4 id="5-1-原型-prototype"><a href="#5-1-原型-prototype" class="headerlink" title="5.1 原型 prototype"></a>5.1 原型 prototype</h4><p>前面我们说了，对象是属性的集合，而函数也是一个对象。所以，每个函数都有很多的属性，但其中就有一个名为<code>prototype</code>属性，这个属性值也是一个对象，它是一个非常重要的属性，我们称为原型。</p>
+<p>下面去看看<code>函数的原型</code>长什么样：</p>
+<p>(1) 自定义的函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;<span class="built_in">console</span>.dir(f)</span><br></pre></td></tr></table></figure>
 
-<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">作用：提供一个成员的查找机制，或者查找规则</span><br></pre></td></tr></table></figure>
+<p>如下：</p>
+<p><img src="C:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581318955252.png" alt="1581318955252"></p>
+<p>(2)Array构造器</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.dir(<span class="built_in">Array</span>)</span><br></pre></td></tr></table></figure>
 
-<img src="C:/blog/source/assets/blogImg/原型链.jpg">
+<p>如下：</p>
+<p><img src="C:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327613741.png" alt="1581327613741"></p>
+<p>由于prototype的值也是一个对象，所以我们也称prototype是原型对象。</p>
+<h4 id="5-2-隐式原型-proto"><a href="#5-2-隐式原型-proto" class="headerlink" title="5.2 隐式原型 proto"></a>5.2 隐式原型 <strong>proto</strong></h4><p>对象是属性的集合，每个对象可能都有数量不等的属性，但每个对象都有一个名为<strong>proto</strong>的属性，这个属性值也是一个对象。这个属性<strong>proto</strong>称为隐式原型。（注意写法：前后两个下划线）</p>
+<p>下面去看看<code>对象的隐式原型</code>长什么样。</p>
+<p>（1）数组对象的隐式原型</p>
+<p><img src="C:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327637902.png" alt="1581327637902"></p>
+<p>（2）普通对象的隐式原型 </p>
+<p><img src="C:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327653003.png" alt="1581327653003"></p>
+<p>（3）构造器的隐式原型</p>
+<p><img src="C:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327665089.png" alt="1581327665089"></p>
+<p>注意：由于函数既是函数也是对象，所以对于函数来说，它既有prototype属性又有<strong><strong>proto</strong></strong>属性。</p>
+<h4 id="5-3-原型与隐式原型的关系"><a href="#5-3-原型与隐式原型的关系" class="headerlink" title="5.3 原型与隐式原型的关系"></a>5.3 原型与隐式原型的关系</h4><p>先直接给出结论：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对象.__proto__ === 构造器.prototype</span><br></pre></td></tr></table></figure>
 
+<p>用语言来表述是：<code>对象的隐式原型等于 创建这个对象的构造器的原型</code> （把这句话读出来，念3遍）</p>
+<p>用公式表达就是:</p>
+<p>如果： <code>对象</code> = <code>new 构造器()</code></p>
+<p>那么： <code>对象.__proto__</code> === <code>构造器.prototype</code></p>
+<h4 id="5-4-验证这个关系"><a href="#5-4-验证这个关系" class="headerlink" title="5.4 验证这个关系"></a>5.4 验证这个关系</h4><p>数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log([].__proto__ === <span class="built_in">Array</span>.prototype); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
+<p>函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)<span class="title">console</span>.<span class="title">log</span>(<span class="params">f.__proto__ === Function.prototype</span>); //<span class="title">true</span></span></span><br></pre></td></tr></table></figure>
 
-<h2 id="JavaScript-的成员查找机制-规则"><a href="#JavaScript-的成员查找机制-规则" class="headerlink" title="JavaScript 的成员查找机制(规则)"></a>JavaScript 的成员查找机制(规则)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">当访问一个对象的属性（包括方法）时，首先查找这个对象自身有没有该属性。</span><br><span class="line"></span><br><span class="line">如果没有就查找它的原型（也就是__proto__指向的prototype 原型对象）。</span><br><span class="line"></span><br><span class="line">如果还没有就查找原型对象的原型（Object的原型对象）。</span><br><span class="line"></span><br><span class="line">依此类推一直找到Object 为止（null）。</span><br><span class="line"></span><br><span class="line">__proto__对象原型的意义就在于为对象成员查找机制提供一个方向，或者说一条路线。</span><br><span class="line"></span><br><span class="line">// console.log(Star.prototype.__proto__.__proto__);</span><br><span class="line">// console.log(Object.prototype);</span><br></pre></td></tr></table></figure>
+<p>普通对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(&#123;&#125;.__proto__ === <span class="built_in">Object</span>.prototype); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="扩展内置对象"><a href="#扩展内置对象" class="headerlink" title="扩展内置对象"></a>扩展内置对象</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">可以通过原型对象，对原来的内置对象进行扩展自定义的方法。比如给数组增加自定义求偶数和的功能。</span><br></pre></td></tr></table></figure>
+<p>由自定义构造器创建的对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;&#125;<span class="keyword">var</span> f1 = <span class="keyword">new</span> f()<span class="built_in">console</span>.log( f1.__proto__ === f.prototype )</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">console.log( Array.prototype );</span><br><span class="line">	// 添加求和方法</span><br><span class="line">	Array.prototype.sum = function () &#123;</span><br><span class="line">		var sum = 0;</span><br><span class="line">		for (var i = 0; i &lt; this.length; i++) &#123;</span><br><span class="line">			sum += this[i];</span><br><span class="line">		&#125;</span><br><span class="line">		return sum;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	var arr = [1,2,3];</span><br><span class="line">	console.log( arr.sum() );</span><br><span class="line"></span><br><span class="line">	var newArr = [6,7,8,9];</span><br><span class="line">	console.log( newArr.sum() );</span><br></pre></td></tr></table></figure>
+<h3 id="6-原型链"><a href="#6-原型链" class="headerlink" title="6 原型链"></a>6 原型链</h3><p>当我们访问某个对象的属性时，要沿着某个路径去找这个属性，这条路径就是原型链。</p>
+<p>具体以访问obj的属性p为例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.info( obj.p )</span><br></pre></td></tr></table></figure>
 
-<p>构造函数：function Fn () {}</p>
-<p><strong>属性写到构造函数里面，方法写到构造函数的原型对象里面</strong></p>
-<p>原型对象：每一个构造函数都有原型对象【prototype】【作用是用来保存方法】</p>
-<p>对象原型：每一个对象都有一个对象原型（原型）【<strong><strong>proto</strong></strong>】【作用是指向原型对象】</p>
-<p>constructor：指向构造函数</p>
-<p>原型链：作用是查找属性或者方法方向，机制</p>
-<p>构造函数：function Fn () {}</p>
-<p>静态成员实例成员：函数内部，在构造函数上</p>
-<p>原型对象： 构造函数属性prototype【把方法都放到原型对象】</p>
-<p>对象原型：指向原型对象【<strong><strong>proto</strong></strong>】</p>
-<p>constructor：构造函数</p>
-<p>原型链：原型，查找属性或者方法提供的机制</p>
-<p>构造函数，实例对象，原型对象</p>
+<p>寻找属性p的步骤如下：</p>
+<p>（1）先在自有属性中找，如果找到，则返回；如果找不到，则进入到它的隐式原型中去找。</p>
+<p>（2）由于对象的隐式原型也是一个对象（对象又是属性的集合），所以继续在<code>obj.__proto__</code>的自有属性中去找。找到则返回，找不到，则继续。（3）在<code>obj.__proto__</code>这个对象的隐式原型中继续找。找到返回，找不到，则继续到<code>obj.__proto__.__proto__</code>中去找。（4)直到<code>__proto__</code>为null 停止。</p>
+<p><img src="C:%5CUsers%5C%E8%B7%AF%E9%80%9A%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1581327694315.png" alt="1581327694315"></p>
+<p>上图中，红色的箭头标识的路径就是原型链。</p>
+<h4 id="6-1-例子：查找成功"><a href="#6-1-例子：查找成功" class="headerlink" title="6.1  例子：查找成功"></a>6.1  例子：查找成功</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>]; <span class="comment">//这是一个对象。</span></span><br><span class="line">arr.toString()</span><br></pre></td></tr></table></figure>
+
+<p>把arr看成一个对象，arr.toString就是要去找toString属性。(1)第一步，在自有属性中找，没有找到 (2)第二步，进入arr.<strong>proto</strong>这个对象中去找。找到了，返回使用。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/gN8XaXz7VK1XFR7MRPgHdUqsgGPY3OA0hndu1SSVpleEE8Q0UsZHaf1BHssicmdTjtED08SwTrqwRtknCcueicgg/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<p>也就是说，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.toString === arr.__proto__.toString</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-2-寻找失败的例子"><a href="#6-2-寻找失败的例子" class="headerlink" title="6.2 寻找失败的例子"></a>6.2 寻找失败的例子</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = []; <span class="comment">//这是一个对象。</span></span><br><span class="line">arr.abc</span><br></pre></td></tr></table></figure>
+
+<p>把arr看成一个对象，arr.toString就是要去找toString属性。</p>
+<p>(1)第一步，在自有属性中找，没有找到 </p>
+<p>(2)第二步，进入arr.<strong><strong>proto</strong></strong>这个对象中去找。没有找到。</p>
+<p>(3)第三步，进入arr.<strong><strong>proto</strong></strong>.<strong><strong>proto</strong></strong>这个对象中去找。没有找到。</p>
+<p>(4)而由于arr.<strong><strong>proto</strong></strong>.<strong><strong>proto</strong></strong>.<strong><strong>proto</strong></strong> 的值是null了，所以整个查找结束，最终返回undefined.</p>
+<h3 id="7-原型链的应用"><a href="#7-原型链的应用" class="headerlink" title="7 原型链的应用"></a>7 原型链的应用</h3><p>原理：把属性（或者是方法）添加在构造器的原型对象上后，由此构造器创建的对象均可以使用这个属性（方法）了。</p>
+<h4 id="7-1-示例1：给内置构造器添加属性"><a href="#7-1-示例1：给内置构造器添加属性" class="headerlink" title="7.1 示例1：给内置构造器添加属性"></a>7.1 示例1：给内置构造器添加属性</h4><p>例如：给数组Array构造器添的原型对象添加一个a1()方法。则所有的数组对象都将具备这个方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.a1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;   </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'a'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr1 = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"><span class="keyword">var</span> arr2 = []; <span class="comment">// 等价于使用构造器创建</span></span><br><span class="line">arr1.a1(); <span class="comment">// 输出 a </span></span><br><span class="line">arr2.a1(); <span class="comment">// 输出 a</span></span><br></pre></td></tr></table></figure>
+
+<p>以<code>arr1.a1</code>为例，按原型链的查找过程，先在自有属性中找，并没有找到，再进一步去arr.<strong><strong>proto</strong></strong>中找。</p>
+<p>注意由于：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.__proto__ === <span class="built_in">Array</span>.prototype</span><br></pre></td></tr></table></figure>
+
+<p>而在Array.prototype中我们已经添加过a1属性了，所以arr.<strong><strong>proto</strong></strong>中也就可以找到这个属性了。故而，arr.a1()能成功执行。</p>
+<p>同理可分析 arr2.a1的查找过程。</p>
+<p>其实,由于a1,a2都是由构造器Array创建的对象，所以 有如下公式成立</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr1.__proto__ === arr2.__proto__ === <span class="built_in">Array</span>.prototype</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-2-示例2：给自定义构造器添加属性"><a href="#7-2-示例2：给自定义构造器添加属性" class="headerlink" title="7.2 示例2：给自定义构造器添加属性"></a>7.2 示例2：给自定义构造器添加属性</h4><p>下面这段代码是一段经典的把函数当作用构造器来用，并以其模拟面对对象中的<code>类</code>的概念。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">functioin F() &#123;&#125;</span><br><span class="line">F.prototype.func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> f1 = <span class="keyword">new</span> F();</span><br><span class="line">f1.func()</span><br></pre></td></tr></table></figure>
+
+<p>那请你思考 ，为什么f1这个对象可以访问func这个方法呢？ 如果你能答出来，就说明你已经get到原型链的作用啦。</p>
+<h3 id="8-小结"><a href="#8-小结" class="headerlink" title="8 小结"></a>8 小结</h3><p>如果 <code>对象 = new 构造器（）</code>,那么<code>对象.__proto__ === 构造器.prototype</code>•原型链的作用在于确定对象的属性值；•在确定对象的属性值时，我们会沿着原型链上去查找。先在自有属性中找，如果找不到，继续到对象.proto中去找，如果还没有找到，则继续在对象.proto.proto中找，直到找到，或者 <code>对象...__proto__</code> 为null为止。此过程的搜索路径就是原型链。</p>
 
       
 
@@ -374,7 +411,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/09/27/构造函数和原型/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/01/20/原型与原型链/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -388,18 +425,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/09/30/跨域/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/01/25/数组方法小结/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          跨域
+          数组方法小结
         
       </div>
     </a>
   
   
-    <a href="/2018/08/15/ES6类和对象/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ES6中的类和对象</div>
+    <a href="/2018/09/30/跨域/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">跨域</div>
       <i class="icon-circle-right"></i>
     </a>
   
