@@ -12,7 +12,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory('/optv-trial/'),  // ← 添加 base 路径
+  history: createWebHistory('/'),  // ← 添加 base 路径
   routes
 })
 // const router = createRouter({

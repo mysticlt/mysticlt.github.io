@@ -1,17 +1,14 @@
 import { fileURLToPath, URL } from 'node:url'
-
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
-
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     vueDevTools(),
   ],
-  base: '/optv-trial/',  // ← 仓库名
+  base: '/',  // ← 用户站点用根路径
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
