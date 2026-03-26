@@ -4,14 +4,15 @@
     <section class="hero">
       <div class="hero-inner">
         <div class="hero-label">OptVerse</div>
-        <h1 class="hero-title">高性能数学优化求解器</h1>
+        <h1 class="hero-title">高性能数学规划求解器</h1>
         <p class="hero-desc">
-          OptVerse 3.0.0 支持线性规划、混合整数规划、二阶锥规划、半定规划及非凸优化问题。
+          专注于解决大规模线性规划 (LP)、混合整数线性规划 (MILP) 、二次规划 (QP) 、二次锥规划（SOCP）、一般非线性规划（NLP）及约束规划（CP）等复杂问题
         </p>
         <div class="hero-meta">
-          <span>Windows · Linux · MacOS</span>
+          <!-- <span>Windows · Linux · MacOS</span> -->
+          <span>Linux</span>
           <span class="divider">|</span>
-          <span>Python · C/C++ · Java · Julia · MATLAB</span>
+          <span>Python · C/C++</span>
         </div>
       </div>
     </section>
@@ -26,14 +27,15 @@
               <span class="feature-num">01</span>
               <div class="feature-content">
                 <h3>全功能求解器</h3>
-                <p>LP、MIP、SOCP、SDP、QP、QCP 全覆盖，支持连续与整数变量</p>
+                <p>LP、MIP、QP、SOCP、NLP、CP 全覆盖，支持连续与整数变量</p>
               </div>
             </div>
             <div class="feature-item">
               <span class="feature-num">02</span>
               <div class="feature-content">
-                <h3>跨平台支持</h3>
-                <p>64位 Windows、Linux原生支持，含 ARM 架构版本</p>
+                <!-- <h3>跨平台支持</h3> -->
+                <h3>平台支持</h3>
+                <p>Linux原生支持，含 ARM 架构版本</p>
               </div>
             </div>
             <div class="feature-item">
@@ -92,6 +94,8 @@
                     <option value="other">其他</option>
                   </select>
                 </div>
+                <!-- 隐藏字段 -->
+                <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
               </div>
 
               <div class="form-group full">
@@ -132,6 +136,18 @@
                     Mac/Linux: 在终端运行 whoami
                   </div>
                 </div>
+                <!-- <div class="form-group">
+                  <label>编程接口（可多选）</label>
+                  <div class="api-options">
+                    <label v-for="api in apiOptions" :key="api.value" class="api-label"
+                      :class="{ active: form.apis.includes(api.value) }">
+                      <input type="checkbox" :value="api.value" v-model="form.apis">
+                      <span>{{ api.label }}</span>
+                    </label>
+                  </div>
+                </div> -->
+              </div>
+              <div class="form-row">
                 <div class="form-group">
                   <label>编程接口（可多选）</label>
                   <div class="api-options">
@@ -155,7 +171,17 @@
                     @click.prevent="showPrivacy = true">隐私政策</a>
                 </span>
               </label>
-
+              <!-- 验证码区域 -->
+              <div v-if="isFormValid" class="form-group captcha-group">
+                <label>
+                  验证码 <span class="required">*</span>
+                  <span class="captcha-question">{{ captcha.num1 }} + {{ captcha.num2 }} = ?</span>
+                  <button type="button" class="refresh-btn" @click="refreshCaptcha" title="换一题">↻</button>
+                </label>
+                <input type="number" v-model="captcha.userAnswer" placeholder="请输入答案" required @input="validateCaptcha">
+                <span v-if="captcha.error" class="error-msg">答案错误</span>
+              </div>
+              <!-- 提交 -->
               <button type="submit" class="submit-btn" :disabled="isSubmitting || !isFormValid">
                 <span v-if="isSubmitting">提交中...</span>
                 <span v-else>提交申请 →</span>
@@ -170,7 +196,7 @@
       </section>
 
       <!-- Contact -->
-      <section class="contact">
+      <!-- <section class="contact">
         <div class="section-inner">
           <div class="contact-grid">
             <a href="mailto:xxxx@huawei" class="contact-item">
@@ -185,13 +211,13 @@
               <span class="contact-label">电话</span>
               <span class="contact-val">xxx-xxx-xxxx</span>
             </div>
-            <a href="https://www.huaweicloud.com/product/optverse" target="_blank" class="contact-item">
+            <a href="https://github.com/Huawei-OptVerse-Solver" target="_blank" class="contact-item">
               <span class="contact-label">官网</span>
-              <span class="contact-val">huaweicloud.com/product/optverse</span>
+              <span class="contact-val">Huawei-OptVerse-Solver</span>
             </a>
           </div>
         </div>
-      </section>
+      </section> -->
     </main>
 
     <!-- Footer -->
@@ -222,8 +248,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-// import { route } from '../../server/routes/mail'
+import { reactive, ref, computed, onMounted } from 'vue'
 
 const form = ref({
   name: '',
@@ -238,8 +263,8 @@ const form = ref({
 })
 
 const osOptions = [
-  { value: 'windows', label: 'Windows' },
-  { value: 'macos', label: 'MacOS' },
+  // { value: 'windows', label: 'Windows' },
+  // { value: 'macos', label: 'MacOS' },
   { value: 'linux', label: 'Linux x86' },
   { value: 'linux-arm', label: 'Linux ARM' }
 ]
@@ -255,7 +280,6 @@ const showEULA = ref(false)
 const showPrivacy = ref(false)
 const showHelp = ref(false)
 
-// const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api'
 
 const isFormValid = computed(() => {
   return form.value.name &&
@@ -272,12 +296,58 @@ const toggleHelp = () => {
   showHelp.value = !showHelp.value
 }
 
+// 验证码状态
+const captcha = reactive({
+  num1: 0,
+  num2: 0,
+  userAnswer: '',
+  error: false,
+  validated: false
+})
+
+// 生成新验证码
+const refreshCaptcha = () => {
+  captcha.num1 = Math.floor(Math.random() * 10) + 1  // 1-10
+  captcha.num2 = Math.floor(Math.random() * 10) + 1  // 1-10
+  captcha.userAnswer = ''
+  captcha.error = false
+  captcha.validated = false
+}
+
+// 验证答案
+const validateCaptcha = () => {
+  const correct = captcha.num1 + captcha.num2
+  const userVal = parseInt(captcha.userAnswer)
+
+  if (captcha.userAnswer === '') {
+    captcha.error = false
+    captcha.validated = false
+    return
+  }
+
+  captcha.error = userVal !== correct
+  captcha.validated = userVal === correct
+}
+
 const handleSubmit = async () => {
+  // 检查 honeypot 字段
+  if (form.value.website) {
+    console.log('robot detected')
+    return
+  }
+
   if (!isFormValid.value) {
     submitStatus.value = {
       type: 'error',
       message: '请填写所有必填项'
     }
+    return
+  }
+
+  // 验证验证码
+  if (!captcha.validated) {
+    submitStatus.value = { type: 'error', message: '请正确填写验证码' }
+    refreshCaptcha()
     return
   }
 
@@ -303,7 +373,7 @@ const handleSubmit = async () => {
     formData.append('apis', form.value.apis.join(', '))
   }
 
-  const baseUrl = 'https://mysticlt.github.io/optv-trial'
+  const baseUrl = 'https://mysticlt.github.io/'
 
   // 布尔值转字符串
   formData.append('agreement', form.value.agreement ? 'Yes' : 'No')
@@ -370,6 +440,11 @@ const handleSubmit = async () => {
     isSubmitting.value = false;
   }
 }
+
+// 初始化
+onMounted(() => {
+  refreshCaptcha()
+})
 </script>
 
 <style>
@@ -522,7 +597,7 @@ const handleSubmit = async () => {
 /* Form Blocks */
 .optv-stitch .form-block {
   margin-bottom: 64px;
-  padding-bottom: 64px;
+  /* padding-bottom: 64px; */
   border-bottom: 1px solid #eee;
 }
 
@@ -779,6 +854,44 @@ const handleSubmit = async () => {
   cursor: pointer;
   transition: opacity 0.2s;
   font-family: inherit;
+}
+
+.captcha-group {
+  margin: 20px 0;
+}
+
+.captcha-question {
+  display: inline-block;
+  background: #f0f0f0;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 8px;
+}
+
+.refresh-btn {
+  background: none;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.refresh-btn:hover {
+  background: #f5f5f5;
+}
+
+.captcha-group input {
+  width: 120px;
+  margin-top: 8px;
+}
+
+.error-msg {
+  color: #ff4d4f;
+  font-size: 12px;
+  margin-left: 8px;
 }
 
 .optv-stitch .submit-btn:hover:not(:disabled) {
