@@ -1,6 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import OptVerseApplication from '../views/OptVerseApplication.vue'
+import OptVerseApplicationEn from '../views/OptVerseApplicationEn.vue'
 import Thanks from '../views/Thanks.vue'
+import ThanksEn from '../views/ThanksEn.vue'
 
 const routes = [
   {
@@ -8,7 +10,13 @@ const routes = [
     name: 'OptVerseApplication',
     component: OptVerseApplication
   },
-  { path: '/thanks', name: 'thanks', component: Thanks }
+  {
+    path: '/en',
+    name: 'OptVerseApplicationEn',
+    component: OptVerseApplicationEn
+  },
+  { path: '/thanks', name: 'thanks', component: Thanks },
+  { path: '/en/thanks', name: 'thanksEn', component: ThanksEn }
 ]
 
 const router = createRouter({

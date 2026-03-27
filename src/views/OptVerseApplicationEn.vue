@@ -8,11 +8,16 @@
           <h1 class="brand-name">OptVerse</h1>
         </div>
         <div class="language-switcher">
-          <router-link to="/en" class="lang-link">English</router-link>
+          <router-link to="/" class="lang-link">中文</router-link>
         </div>
-        <h2 class="hero-title">欢迎试用华为天筹求解器！</h2>
+        <h2 class="hero-title">Welcome to Huawei OptVerse Solver!</h2>
         <p class="hero-description">
-          天筹数学优化求解器（Huawei OptVerse Solver）是一款由华为公司研发的高性能数学优化求解器，支持大规模线性规划 (LP)、混合整数线性规划 (MILP) 、二次规划 (QP) 、二次锥规划（SOCP）、一般非线性规划（NLP）及约束规划（CP）等大规模复杂问题求解。天筹求解器社区版本目前支持Linux操作系统和提供Python、C++ SDK，我们将持续拓展天筹求解器支持的平台，并推出更多面向数学优化问题求解领域的工具，敬请期待。
+          Huawei OptVerse Solver is a high-performance mathematical programming solver developed by Huawei,
+          supporting large-scale linear programming (LP), mixed integer linear programming (MILP), quadratic programming (QP),
+          second-order cone programming (SOCP), general nonlinear programming (NLP), and constraint programming (CP).
+          The community edition of OptVerse currently supports Linux operating systems and provides Python and C++ SDKs.
+          We will continue to expand the supported platforms and release more tools for mathematical optimization problem solving.
+          Stay tuned!
         </p>
       </div>
     </header>
@@ -23,12 +28,16 @@
       <section class="intro-section">
         <div class="container">
           <div class="intro-card">
-            <h2 class="intro-title">获取免费学术license</h2>
+            <h2 class="intro-title">Get Free Academic License</h2>
             <p class="intro-text">
-              天筹求解器现面向学术用户提供长期免费试用license。请您填写如下申请表格，我们将对您的信息进行审核，审核通过后我们将在<strong>一周</strong>内向您发送免费的学术授权许可。学术授权许可默认有效期为1年，到期后可以重新申请。为了保证申请过程的顺畅，请您准确填写申请信息，并使用有效的学术邮箱。
+              Huawei OptVerse Solver provides <strong>free long-term trial licenses</strong> for academic users.
+              Please fill out the application form below, and we will review your information.
+              Upon approval, we will send you a free academic license within <strong>one week</strong>.
+              The default validity period of an academic license is 1 year. You can reapply after expiration.
+              To ensure a smooth application process, please provide accurate information and use a valid academic email address.
             </p>
             <p class="intro-contact">
-              申请过程中遇到任何问题，可随时通过 <a href="mailto:optverse@huawei.com">optverse@huawei.com</a> 与我们联系！
+              If you encounter any problems during the application process, please feel free to contact us at <a href="mailto:optverse@huawei.com">optverse@huawei.com</a>!
             </p>
           </div>
         </div>
@@ -42,42 +51,42 @@
             <div class="form-section-block">
               <div class="section-header">
                 <span class="section-number">1</span>
-                <h3 class="section-title">个人信息</h3>
+                <h3 class="section-title">Personal Information</h3>
               </div>
 
               <div class="form-grid">
                 <div class="form-group">
-                  <label for="fullName">姓名 <span class="required">*</span></label>
-                  <input type="text" id="fullName" v-model="form.name" placeholder="请输入您的姓名" required>
+                  <label for="fullName">Full Name <span class="required">*</span></label>
+                  <input type="text" id="fullName" v-model="form.name" placeholder="Enter your full name" required>
                 </div>
                 <div class="form-group">
-                  <label for="email">邮箱 <span class="required">*</span></label>
-                  <input type="email" id="email" v-model="form.email" placeholder="请输入有效的学术邮箱" required>
+                  <label for="email">Email <span class="required">*</span></label>
+                  <input type="email" id="email" v-model="form.email" placeholder="Enter your valid academic email" required>
                 </div>
               </div>
 
               <div class="form-grid">
                 <div class="form-group">
-                  <label for="organization">学校/科研机构 <span class="required">*</span></label>
-                  <input type="text" id="organization" v-model="form.organization" placeholder="请填写完整机构名称" required>
+                  <label for="organization">University/Institution <span class="required">*</span></label>
+                  <input type="text" id="organization" v-model="form.organization" placeholder="Enter your full institution name" required>
                 </div>
                 <div class="form-group">
-                  <label for="position">职位 <span class="required">*</span></label>
+                  <label for="position">Position <span class="required">*</span></label>
                   <select id="position" v-model="form.position" required>
-                    <option value="" disabled>请选择</option>
-                    <option value="undergraduate">本科生</option>
-                    <option value="master">硕士研究生</option>
-                    <option value="phd">博士研究生</option>
-                    <option value="postdoc">博士后</option>
-                    <option value="faculty">教师/研究员</option>
-                    <option value="other">其他</option>
+                    <option value="" disabled>Please select</option>
+                    <option value="undergraduate">Undergraduate</option>
+                    <option value="master">Master Student</option>
+                    <option value="phd">PhD Student</option>
+                    <option value="postdoc">Postdoc</option>
+                    <option value="faculty">Faculty/Researcher</option>
+                    <option value="other">Other</option>
                   </select>
                 </div>
               </div>
 
               <div class="form-group full-width">
-                <label for="purpose">申请用途&应用场景 <span class="required">*</span></label>
-                <textarea id="purpose" v-model="form.purpose" placeholder="请简述您的研究方向以及天筹求解器的具体应用场景" required rows="4"></textarea>
+                <label for="purpose">Research Purpose & Application Scenario <span class="required">*</span></label>
+                <textarea id="purpose" v-model="form.purpose" placeholder="Briefly describe your research direction and how you plan to use OptVerse" required rows="4"></textarea>
               </div>
             </div>
 
@@ -85,12 +94,12 @@
             <div class="form-section-block">
               <div class="section-header">
                 <span class="section-number">2</span>
-                <h3 class="section-title">安装信息</h3>
+                <h3 class="section-title">Installation Information</h3>
               </div>
 
               <div class="form-group">
-                <label>操作系统 <span class="required">*</span></label>
-                <p class="field-hint">请保证操作系统glibc版本 &gt;= 2.33</p>
+                <label>Operating System <span class="required">*</span></label>
+                <p class="field-hint">Please ensure your glibc version &gt;= 2.33</p>
                 <div class="option-grid">
                   <label v-for="os in osOptions" :key="os.value" class="option-card"
                     :class="{ active: form.os === os.value }">
@@ -102,12 +111,12 @@
 
               <div class="form-grid">
                 <div class="form-group">
-                  <label for="username">用户账号名 <span class="required">*</span></label>
-                  <input type="text" id="username" v-model="form.username" placeholder="系统用户名，运行 whoami 获取" required>
+                  <label for="username">System Username <span class="required">*</span></label>
+                  <input type="text" id="username" v-model="form.username" placeholder="Run 'whoami' in terminal to get this" required>
                 </div>
                 <div class="form-group">
-                  <label for="macAddress">MAC地址 <span class="required">*</span></label>
-                  <input type="text" id="macAddress" v-model="form.macAddress" placeholder="例如: 00:1A:2B:3C:4D:5E" required>
+                  <label for="macAddress">MAC Address <span class="required">*</span></label>
+                  <input type="text" id="macAddress" v-model="form.macAddress" placeholder="e.g., 00:1A:2B:3C:4D:5E" required>
                 </div>
               </div>
             </div>
@@ -116,13 +125,13 @@
             <div class="form-section-block last">
               <div class="section-header">
                 <span class="section-number">3</span>
-                <h3 class="section-title">确认申请</h3>
+                <h3 class="section-title">Confirmation</h3>
               </div>
 
               <!-- Cloudflare Turnstile -->
               <div class="captcha-wrapper">
                 <label>
-                  人机验证 <span class="required">*</span>
+                  Human Verification <span class="required">*</span>
                 </label>
                 <div
                   class="cf-turnstile"
@@ -130,7 +139,7 @@
                   data-callback="onTurnstileCallback"
                   data-theme="light"
                 ></div>
-                <span v-if="turnstile.error" class="error-message">请完成人机验证</span>
+                <span v-if="turnstile.error" class="error-message">Please complete human verification</span>
               </div>
 
               <!-- Agreement -->
@@ -138,7 +147,7 @@
                 <input type="checkbox" v-model="form.agreement" required>
                 <span class="check-indicator"></span>
                 <span class="agreement-text">
-                  我已阅读并接受 <a @click.prevent="showModal = 'eula'">最终用户许可协议</a>
+                  I have read and accept the <a @click.prevent="showModal = 'eula'">End User License Agreement</a>
                 </span>
               </label>
 
@@ -149,8 +158,8 @@
 
               <!-- Submit Button -->
               <button type="submit" class="submit-button" :disabled="isSubmitting || !isFormValid">
-                <span v-if="isSubmitting">提交中...</span>
-                <span v-else>提交申请</span>
+                <span v-if="isSubmitting">Submitting...</span>
+                <span v-else>Submit Application</span>
               </button>
             </div>
 
@@ -174,31 +183,41 @@
     <!-- Modal for EULA -->
     <div v-if="showModal" class="modal-overlay" @click.self="showModal = null">
       <div class="modal-content">
-        <h3>最终用户许可协议</h3>
+        <h3>End User License Agreement</h3>
         <p>
-          本最终用户许可协议（"本协议"）是您（个人或法人实体）与华为公司之间关于使用天筹（OptVerse）数学优化求解器软件（"本软件"）的法律协议。您下载、安装、复制或使用本软件，即表示您同意接受本协议条款的约束。如果您不同意本协议的条款，请不要下载或使用本软件。
+          This End User License Agreement ("this Agreement") is a legal agreement between you (either an individual or a legal entity)
+          and Huawei Corporation regarding the use of OptVerse mathematical optimization solver software ("this Software").
+          By downloading, installing, copying, or otherwise using this Software, you agree to be bound by the terms of this Agreement.
+          If you do not agree to the terms of this Agreement, please do not download or use this Software.
         </p>
         <p>
-          <strong>1. 许可授予</strong><br>
-          华为授予您非排他性、不可转让、不可再许可的许可，允许您在学术研究、教学和非商业用途中使用本软件。商业使用需要单独获取商业授权。
+          <strong>1. Grant of License</strong><br>
+          Huawei grants you a non-exclusive, non-transferable, non-sublicensable license to use this Software for academic research,
+          teaching, and non-commercial purposes. Commercial use requires a separate commercial license.
         </p>
         <p>
-          <strong>2. 知识产权</strong><br>
-          本软件的所有知识产权归华为公司所有。您不得移除、遮挡或篡改本软件中的任何专有标识、商标或版权声明。
+          <strong>2. Intellectual Property Rights</strong><br>
+          All intellectual property rights in this Software are owned by Huawei Corporation.
+          You may not remove, obscure, or alter any proprietary identifiers, trademarks, or copyright notices in this Software.
         </p>
         <p>
-          <strong>3. 使用限制</strong><br>
-          您不得：（1）对本软件进行反向工程、反编译或反汇编；（2）修改、改编、翻译或创建本软件的衍生作品；（3）将本软件用于商业目的；（4）分发、出租、租赁或转让本软件。
+          <strong>3. Usage Restrictions</strong><br>
+          You may not: (1) reverse engineer, decompile, or disassemble this Software; (2) modify, adapt, translate,
+          or create derivative works of this Software; (3) use this Software for commercial purposes; (4) distribute,
+          rent, lease, or transfer this Software.
         </p>
         <p>
-          <strong>4. 免责声明</strong><br>
-          本软件按"原样"提供，不提供任何明示或暗示的保证。华为不对本软件的适用性、准确性或可靠性作任何承诺。在任何情况下，华为不对因使用本软件产生的任何损害承担责任。
+          <strong>4. Disclaimer of Warranty</strong><br>
+          This Software is provided "as is" without any express or implied warranty.
+          Huawei makes no representations or warranties about the suitability, accuracy, or reliability of this Software.
+          In no event shall Huawei be liable for any damages arising out of the use of this Software.
         </p>
         <p>
-          <strong>5. 终止</strong><br>
-          如果您违反本协议的任何条款，华为有权立即终止本许可。终止后，您必须停止使用并销毁本软件的所有副本。
+          <strong>5. Termination</strong><br>
+          Huawei has the right to immediately terminate this license if you breach any terms of this Agreement.
+          Upon termination, you must stop using and destroy all copies of this Software.
         </p>
-        <button class="modal-close" @click="showModal = null">关闭</button>
+        <button class="modal-close" @click="showModal = null">Close</button>
       </div>
     </div>
   </div>
@@ -277,7 +296,7 @@ const handleSubmit = async () => {
   if (!isFormValid.value) {
     submitStatus.value = {
       type: 'error',
-      message: '请填写所有必填项并完成人机验证'
+      message: 'Please fill in all required fields and complete human verification'
     }
     return
   }
@@ -297,8 +316,8 @@ const handleSubmit = async () => {
   formData.append('agreement', form.value.agreement ? 'Yes' : 'No')
   formData.append('cf-turnstile-response', turnstile.token)
 
-  const baseUrl = 'https://mysticlt.github.io/'
-  formData.append('_next', `${baseUrl}/Thanks.html`)
+  const baseUrl = window.location.origin + '/'
+  formData.append('_next', `${baseUrl}#/en/thanks`)
 
   try {
     const response = await fetch('https://formsubmit.co/83a9b4c656c79f8ce712d8441b194823', {
@@ -310,7 +329,7 @@ const handleSubmit = async () => {
     if (response.ok || response.status === 302) {
       submitStatus.value = {
         type: 'success',
-        message: '感谢您的申请，我们会在一周内审核并联系您'
+        message: 'Thank you for your application. We will review and contact you within one week.'
       }
 
       // Reset form
@@ -333,7 +352,7 @@ const handleSubmit = async () => {
       turnstile.verified = false
       turnstile.error = false
     } else {
-      let errorMsg = '提交失败，请稍后重试'
+      let errorMsg = 'Submission failed. Please try again later.'
       try {
         const errData = await response.json()
         if (errData.message) errorMsg = errData.message
@@ -345,12 +364,12 @@ const handleSubmit = async () => {
     if (error.message === "Failed to fetch") {
       submitStatus.value = {
         type: 'success',
-        message: '感谢您的申请，我们会在一周内审核并联系您'
+        message: 'Thank you for your application. We will review and contact you within one week.'
       }
     } else {
       submitStatus.value = {
         type: 'error',
-        message: error.message || '网络错误，请重试'
+        message: error.message || 'Network error. Please try again.'
       }
     }
   } finally {
@@ -387,6 +406,29 @@ onMounted(() => {
   padding: 0 24px;
 }
 
+/* Language Switcher */
+.language-switcher {
+  text-align: right;
+  margin-bottom: 24px;
+}
+
+.lang-link {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  color: var(--color-hero-text);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s;
+  opacity: 0.9;
+}
+
+.lang-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 1;
+}
+
 /* Hero Header */
 .hero {
   background: var(--color-hero-bg);
@@ -419,29 +461,6 @@ onMounted(() => {
   font-weight: 400;
   letter-spacing: -0.03em;
   margin: 0;
-}
-
-/* Language Switcher */
-.language-switcher {
-  text-align: right;
-  margin-bottom: 24px;
-}
-
-.lang-link {
-  display: inline-block;
-  padding: 6px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 4px;
-  color: var(--color-hero-text);
-  text-decoration: none;
-  font-size: 14px;
-  transition: all 0.2s;
-  opacity: 0.9;
-}
-
-.lang-link:hover {
-  background: rgba(255, 255, 255, 0.1);
-  opacity: 1;
 }
 
 .hero-title {
@@ -691,34 +710,6 @@ textarea {
   gap: 10px;
   flex-wrap: wrap;
   margin-bottom: 12px;
-}
-
-.captcha-question {
-  background: var(--color-bg-soft);
-  padding: 6px 16px;
-  border-radius: 4px;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-}
-
-.captcha-refresh {
-  background: #FFFFFF;
-  border: 1px solid var(--color-border);
-  cursor: pointer;
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 15px;
-  transition: all 0.2s;
-  font-family: inherit;
-}
-
-.captcha-refresh:hover {
-  background: var(--color-bg-soft);
-  border-color: #A09E9A;
-}
-
-.captcha-wrapper input {
-  width: 160px;
 }
 
 /* Cloudflare Turnstile */
@@ -996,15 +987,6 @@ textarea {
 
   .hero-description {
     font-size: 15px;
-  }
-
-  .captcha-wrapper label {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .captcha-question {
-    margin-left: 0;
   }
 }
 </style>

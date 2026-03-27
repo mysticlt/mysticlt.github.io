@@ -1,4 +1,4 @@
-<!-- src/views/Thanks.vue -->
+<!-- src/views/ThanksEn.vue -->
 <template>
   <div class="thanks">
     <div class="card">
@@ -8,11 +8,11 @@
           <polyline points="22 4 12 14.01 9 11.01"></polyline>
         </svg>
       </div>
-      <h1>提交成功</h1>
-      <p>感谢您的申请，我们会尽快审核并联系您。</p>
-      <button @click="$router.push('/')">返回首页</button>
+      <h1>Submission Successful</h1>
+      <p>Thank you for your application. We will review your information and contact you soon.</p>
+      <button @click="$router.push('/en')">Back to Home</button>
       <div class="lang-switch">
-        <router-link to="/en/thanks">English</router-link>
+        <router-link to="/thanks">中文</router-link>
       </div>
     </div>
   </div>
