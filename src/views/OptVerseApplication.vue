@@ -447,14 +447,21 @@ onMounted(() => {
 })
 </script>
 
-<style>
-/* Google Stitch 风格：极简黑白，大量留白，精致排版 */
+<style scoped>
+/* Refined Minimalism - Clean Professional Design */
 .optv-stitch {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  color: #000;
-  background: #fff;
+  font-family: 'Manrope', -apple-system, sans-serif;
+  color: #2D2D2D;
+  background: #FCFBF9;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .optv-stitch * {
@@ -463,17 +470,17 @@ onMounted(() => {
   box-sizing: border-box;
 }
 
-/* 布局容器 */
+/* Layout Container */
 .optv-stitch .section-inner {
   max-width: 720px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
-/* Hero Banner - 纯黑背景，大字体 */
+/* Hero Banner - Charcoal background, elegant serif headline */
 .optv-stitch .hero {
-  background: #000;
-  color: #fff;
+  background: #262626;
+  color: #FAFAF8;
   padding: 120px 0 100px;
 }
 
@@ -484,45 +491,49 @@ onMounted(() => {
 }
 
 .optv-stitch .hero-label {
-  font-size: 12px;
+  font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  opacity: 0.6;
-  margin-bottom: 24px;
+  letter-spacing: 0.3em;
+  opacity: 0.7;
+  margin-bottom: 28px;
+  font-weight: 400;
 }
 
 .optv-stitch .hero-title {
-  font-size: 48px;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 52px;
   font-weight: 400;
-  line-height: 1.2;
-  margin-bottom: 32px;
+  line-height: 1.15;
+  margin-bottom: 36px;
   letter-spacing: -0.02em;
 }
 
 .optv-stitch .hero-desc {
   font-size: 18px;
   line-height: 1.7;
-  opacity: 0.8;
-  margin-bottom: 40px;
+  opacity: 0.85;
+  margin-bottom: 44px;
   max-width: 600px;
+  font-weight: 300;
 }
 
 .optv-stitch .hero-meta {
   font-size: 14px;
-  opacity: 0.5;
+  opacity: 0.6;
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+  letter-spacing: 0.02em;
 }
 
 .optv-stitch .hero-meta .divider {
   opacity: 0.3;
 }
 
-/* Features - 极简列表 */
+/* Features - Clean list with subtle hierarchy */
 .optv-stitch .features {
-  padding: 80px 0;
-  border-bottom: 1px solid #eee;
+  padding: 88px 0;
+  border-bottom: 1px solid #E8E6E1;
 }
 
 .optv-stitch .feature-list {
@@ -534,8 +545,13 @@ onMounted(() => {
 .optv-stitch .feature-item {
   display: flex;
   gap: 32px;
-  padding: 32px 0;
-  border-bottom: 1px solid #f0f0f0;
+  padding: 36px 0;
+  border-bottom: 1px solid #F0EDE8;
+  transition: transform 0.2s ease;
+}
+
+.optv-stitch .feature-item:hover {
+  transform: translateX(4px);
 }
 
 .optv-stitch .feature-item:last-child {
@@ -543,24 +559,26 @@ onMounted(() => {
 }
 
 .optv-stitch .feature-num {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
-  opacity: 0.3;
-  min-width: 24px;
-  padding-top: 4px;
+  opacity: 0.35;
+  min-width: 28px;
+  padding-top: 6px;
+  letter-spacing: 0.05em;
 }
 
 .optv-stitch .feature-content h3 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   letter-spacing: -0.01em;
+  color: #1A1A1A;
 }
 
 .optv-stitch .feature-content p {
   font-size: 15px;
-  opacity: 0.6;
-  line-height: 1.6;
+  opacity: 0.65;
+  line-height: 1.7;
 }
 
 /* Form Section */
@@ -569,36 +587,39 @@ onMounted(() => {
 }
 
 .optv-stitch .form-header {
-  margin-bottom: 64px;
+  margin-bottom: 68px;
 }
 
 .optv-stitch .form-label {
-  font-size: 12px;
+  font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  opacity: 0.4;
-  margin-bottom: 16px;
+  letter-spacing: 0.2em;
+  opacity: 0.5;
+  margin-bottom: 18px;
   display: block;
+  font-weight: 500;
 }
 
 .optv-stitch .form-title {
-  font-size: 32px;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 36px;
   font-weight: 400;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   letter-spacing: -0.02em;
+  color: #1A1A1A;
 }
 
 .optv-stitch .form-desc {
-  font-size: 16px;
-  opacity: 0.6;
+  font-size: 17px;
+  opacity: 0.65;
   line-height: 1.6;
 }
 
 /* Form Blocks */
 .optv-stitch .form-block {
   margin-bottom: 64px;
-  /* padding-bottom: 64px; */
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #E8E6E1;
+  padding-bottom: 64px;
 }
 
 .optv-stitch .form-block:last-of-type {
@@ -614,34 +635,34 @@ onMounted(() => {
   font-size: 14px;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   margin-bottom: 40px;
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 .optv-stitch .block-num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   border: 1px solid currentColor;
   border-radius: 50%;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 /* Form Elements */
 .optv-stitch .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 24px;
+  gap: 28px;
+  margin-bottom: 28px;
 }
 
 .optv-stitch .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .optv-stitch .form-group.full {
@@ -649,27 +670,29 @@ onMounted(() => {
 }
 
 .optv-stitch label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   opacity: 0.8;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
 }
 
 .optv-stitch .required {
-  color: #999;
+  color: #B85C5C;
+  font-weight: 400;
 }
 
 .optv-stitch .hint {
   margin-left: auto;
   cursor: pointer;
-  opacity: 0.4;
+  opacity: 0.5;
   transition: opacity 0.2s;
+  font-weight: 400;
 }
 
 .optv-stitch .hint:hover {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .optv-stitch input[type="text"],
@@ -677,52 +700,58 @@ onMounted(() => {
 .optv-stitch select,
 .optv-stitch textarea {
   width: 100%;
-  padding: 16px;
-  border: 1px solid #e0e0e0;
-  border-radius: 0;
+  padding: 14px 18px;
+  border: 1px solid #D3D0CB;
+  border-radius: 4px;
   font-size: 15px;
-  background: #fff;
-  transition: border-color 0.2s;
+  background: #FFFFFF;
+  transition: all 0.2s ease;
   font-family: inherit;
+  color: #2D2D2D;
 }
 
 .optv-stitch input:focus,
 .optv-stitch select:focus,
 .optv-stitch textarea:focus {
   outline: none;
-  border-color: #000;
+  border-color: #262626;
+  box-shadow: 0 0 0 3px rgba(38, 38, 38, 0.08);
+  background: #FFFFFE;
 }
 
 .optv-stitch input::placeholder,
 .optv-stitch textarea::placeholder {
-  color: #aaa;
+  color: #A09E9A;
 }
 
 .optv-stitch select {
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23999' d='M0 0h10L5 6z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath fill='%23666' d='M0 0h12L6 7z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 16px center;
+  background-color: #FFFFFF;
 }
 
 .optv-stitch textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 108px;
 }
 
 /* OS Options */
 .optv-stitch .os-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 16px;
 }
 
 .optv-stitch .os-label {
   cursor: pointer;
-  padding: 16px 24px;
-  border: 1px solid #e0e0e0;
-  transition: all 0.2s;
+  padding: 16px 28px;
+  border: 1px solid #D3D0CB;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  background: #FFFFFF;
 }
 
 .optv-stitch .os-label input {
@@ -731,17 +760,18 @@ onMounted(() => {
 
 .optv-stitch .os-name {
   font-size: 14px;
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
 .optv-stitch .os-label:hover {
-  border-color: #999;
+  border-color: #888;
+  transform: translateY(-1px);
 }
 
 .optv-stitch .os-label.active {
-  border-color: #000;
-  background: #000;
-  color: #fff;
+  border-color: #262626;
+  background: #262626;
+  color: #FAFAF8;
 }
 
 .optv-stitch .os-label.active .os-name {
@@ -752,15 +782,17 @@ onMounted(() => {
 .optv-stitch .api-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
 }
 
 .optv-stitch .api-label {
   cursor: pointer;
-  padding: 10px 16px;
-  border: 1px solid #e0e0e0;
-  font-size: 13px;
-  transition: all 0.2s;
+  padding: 12px 20px;
+  border: 1px solid #D3D0CB;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  background: #FFFFFF;
 }
 
 .optv-stitch .api-label input {
@@ -768,24 +800,26 @@ onMounted(() => {
 }
 
 .optv-stitch .api-label:hover {
-  border-color: #999;
+  border-color: #888;
+  transform: translateY(-1px);
 }
 
 .optv-stitch .api-label.active {
-  border-color: #000;
-  background: #000;
-  color: #fff;
+  border-color: #262626;
+  background: #262626;
+  color: #FAFAF8;
 }
 
 /* Help Text */
 .optv-stitch .help-text {
-  font-size: 12px;
-  opacity: 0.6;
-  margin-top: 8px;
-  line-height: 1.5;
-  padding: 12px;
-  background: #f9f9f9;
-  border-left: 2px solid #000;
+  font-size: 13px;
+  opacity: 0.65;
+  margin-top: 10px;
+  line-height: 1.6;
+  padding: 14px 16px;
+  background: #F5F3F0;
+  border-left: 3px solid #262626;
+  border-radius: 0 3px 3px 0;
 }
 
 /* Submit Block */
@@ -810,27 +844,29 @@ onMounted(() => {
 }
 
 .optv-stitch .check-icon {
-  width: 18px;
-  height: 18px;
-  border: 1px solid #ccc;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #C0BDB8;
+  border-radius: 3px;
   flex-shrink: 0;
   margin-top: 2px;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
 }
 
-.optv-stitch .agreement input:checked+.check-icon {
-  background: #000;
-  border-color: #000;
+.optv-stitch .agreement input:checked + .check-icon {
+  background: #262626;
+  border-color: #262626;
 }
 
-.optv-stitch .agreement input:checked+.check-icon::after {
+.optv-stitch .agreement input:checked + .check-icon::after {
   content: '✓';
-  color: #fff;
-  font-size: 12px;
+  color: #FFFFFF;
+  font-size: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
+  line-height: 1;
 }
 
 .optv-stitch .agreement-text {
@@ -838,130 +874,113 @@ onMounted(() => {
 }
 
 .optv-stitch .agreement-text a {
-  color: #000;
+  color: #262626;
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
   cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.optv-stitch .agreement-text a:hover {
+  opacity: 0.7;
 }
 
 .optv-stitch .submit-btn {
-  background: #000;
-  color: #fff;
+  background: #262626;
+  color: #FAFAF8;
   border: none;
-  padding: 18px 48px;
-  font-size: 15px;
+  padding: 16px 52px;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: all 0.2s ease;
   font-family: inherit;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
 }
 
 .captcha-group {
-  margin: 20px 0;
+  margin: 24px 0;
+  width: 100%;
 }
 
 .captcha-question {
   display: inline-block;
-  background: #f0f0f0;
-  padding: 4px 12px;
+  background: #F5F3F0;
+  padding: 6px 14px;
   border-radius: 4px;
   font-weight: 500;
-  color: #333;
-  margin: 0 8px;
+  color: #2D2D2D;
+  margin: 0 10px;
 }
 
 .refresh-btn {
-  background: none;
-  border: 1px solid #ddd;
+  background: #FFFFFF;
+  border: 1px solid #D3D0CB;
   cursor: pointer;
-  padding: 2px 8px;
+  padding: 4px 10px;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 15px;
+  transition: all 0.2s;
 }
 
 .refresh-btn:hover {
-  background: #f5f5f5;
+  background: #F5F3F0;
+  border-color: #A09E9A;
 }
 
 .captcha-group input {
-  width: 120px;
-  margin-top: 8px;
+  width: 140px;
+  margin-top: 12px;
 }
 
 .error-msg {
-  color: #ff4d4f;
-  font-size: 12px;
-  margin-left: 8px;
+  color: #C84646;
+  font-size: 13px;
+  margin-left: 10px;
 }
 
 .optv-stitch .submit-btn:hover:not(:disabled) {
-  opacity: 0.8;
+  background: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.optv-stitch .submit-btn:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .optv-stitch .submit-btn:disabled {
-  opacity: 0.3;
+  opacity: 0.35;
   cursor: not-allowed;
+  transform: none;
 }
 
 .optv-stitch .status {
   font-size: 14px;
-  padding: 16px;
-  border-left: 2px solid;
+  padding: 18px;
+  border-left: 3px solid;
+  border-radius: 0 3px 3px 0;
+  width: 100%;
 }
 
 .optv-stitch .status.success {
-  border-color: #000;
-  background: #f9f9f9;
+  border-color: #2E7D62;
+  background: #F1F8F5;
+  color: #2E7D62;
 }
 
 .optv-stitch .status.error {
-  border-color: #ff4444;
-  color: #ff4444;
-  background: #fff5f5;
-}
-
-/* Contact */
-.optv-stitch .contact {
-  padding: 80px 0;
-  border-top: 1px solid #eee;
-  background: #fafafa;
-}
-
-.optv-stitch .contact-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-}
-
-.optv-stitch .contact-item {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.optv-stitch .contact-label {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  opacity: 0.4;
-}
-
-.optv-stitch .contact-val {
-  font-size: 14px;
-  opacity: 0.8;
-  transition: opacity 0.2s;
-}
-
-.optv-stitch .contact-item:hover .contact-val {
-  opacity: 1;
+  border-color: #C84646;
+  color: #C84646;
+  background: #FFF5F5;
 }
 
 /* Footer */
 .optv-stitch .footer {
-  padding: 40px 0;
-  border-top: 1px solid #eee;
+  padding: 48px 0;
+  border-top: 1px solid #E8E6E1;
+  background: #F5F3F0;
 }
 
 .optv-stitch .footer-inner {
@@ -970,8 +989,9 @@ onMounted(() => {
   padding: 0 24px;
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
-  opacity: 0.4;
+  align-items: center;
+  font-size: 14px;
+  opacity: 0.5;
 }
 
 /* Modal */
@@ -981,88 +1001,131 @@ onMounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(38, 38, 38, 0.8);
+  backdrop-filter: blur(2px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
   z-index: 1000;
+  animation: fadeIn 0.2s ease-out forwards;
 }
 
 .optv-stitch .modal-content {
-  background: #fff;
+  background: #FCFBF9;
   max-width: 560px;
   width: 100%;
   padding: 48px;
   position: relative;
+  border-radius: 6px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .optv-stitch .modal-content h3 {
-  font-size: 20px;
-  font-weight: 500;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 24px;
+  font-weight: 400;
   margin-bottom: 24px;
+  color: #1A1A1A;
 }
 
 .optv-stitch .modal-content p {
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: 15px;
+  line-height: 1.8;
   opacity: 0.7;
   margin-bottom: 32px;
 }
 
 .optv-stitch .modal-content button {
-  background: #000;
-  color: #fff;
+  background: #262626;
+  color: #FAFAF8;
   border: none;
-  padding: 12px 32px;
+  padding: 14px 36px;
   font-size: 14px;
   cursor: pointer;
   font-family: inherit;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.optv-stitch .modal-content button:hover {
+  background: #000000;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .optv-stitch .hero {
-    padding: 80px 0 60px;
+    padding: 72px 0 60px;
   }
 
   .optv-stitch .hero-title {
-    font-size: 32px;
+    font-size: 36px;
   }
 
   .optv-stitch .form-row {
     grid-template-columns: 1fr;
-  }
-
-  .optv-stitch .contact-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 20px;
   }
 
   .optv-stitch .footer-inner {
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
     text-align: center;
   }
 }
 
 @media (max-width: 480px) {
   .optv-stitch .hero-title {
-    font-size: 28px;
+    font-size: 32px;
   }
 
-  .optv-stitch .contact-grid {
-    grid-template-columns: 1fr;
+  .optv-stitch .hero-desc {
+    font-size: 16px;
+  }
+
+  .optv-stitch .form-title {
+    font-size: 28px;
   }
 
   .optv-stitch .os-options,
   .optv-stitch .api-options {
-    gap: 8px;
+    gap: 10px;
   }
 
   .optv-stitch .os-label,
   .optv-stitch .api-label {
     padding: 12px 16px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .optv-stitch .form-section {
+    padding: 60px 0 80px;
+  }
+
+  .optv-stitch .features {
+    padding: 50px 0;
+  }
+
+  .optv-stitch .feature-item {
+    padding: 24px 0;
+    gap: 20px;
+  }
+
+  .optv-stitch .modal-content {
+    padding: 32px 24px;
   }
 }
 </style>
