@@ -13,7 +13,7 @@
         <h2 class="hero-title">Welcome to Huawei OptVerse Solver!</h2>
         <p class="hero-description">
           Huawei OptVerse Solver is a high-performance mathematical programming solver developed by Huawei,
-          supporting inear programming (LP), mixed integer linear programming (MILP), quadratic programming (QP),
+          supporting linear programming (LP), mixed integer linear programming (MILP), quadratic programming (QP),
           second-order cone programming (SOCP), general nonlinear programming (NLP), and constraint programming (CP).
           The community edition of OptVerse currently supports Linux operating systems and provides Python and C++ SDKs.
           We will continue to expand the supported platforms and release more tools for mathematical optimization problem solving.
