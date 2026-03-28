@@ -14,7 +14,7 @@
         <p class="hero-description">
           天筹数学优化求解器（Huawei OptVerse Solver）是一款由华为公司研发的高性能数学优化求解器，支持线性规划 (LP)、混合整数线性规划 (MILP) 、二次规划 (QP) 、二次锥规划（SOCP）、一般非线性规划（NLP）及约束规划（CP）等大规模复杂问题求解。天筹求解器社区版本目前支持Linux操作系统和提供Python、C++ SDK，我们将持续拓展天筹求解器支持的平台，并推出更多面向数学优化问题求解领域的工具，敬请期待。
         </p>
-        <!-- Cache-bust: 7e1d51e -->
+        <!-- Cache-bust: 23f5373 -->
       </div>
     </header>
 
