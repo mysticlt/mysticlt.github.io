@@ -12,7 +12,7 @@
         </div>
         <h2 class="hero-title">欢迎试用华为天筹求解器！</h2>
         <p class="hero-description">
-          天筹数学优化求解器（Huawei OptVerse Solver）是一款由华为公司研发的高性能数学优化求解器，支持大规模线性规划 (LP)、混合整数线性规划 (MILP) 、二次规划 (QP) 、二次锥规划（SOCP）、一般非线性规划（NLP）及约束规划（CP）等大规模复杂问题求解。天筹求解器社区版本目前支持Linux操作系统和提供Python、C++ SDK，我们将持续拓展天筹求解器支持的平台，并推出更多面向数学优化问题求解领域的工具，敬请期待。
+          天筹数学优化求解器（Huawei OptVerse Solver）是一款由华为公司研发的高性能数学优化求解器，支持线性规划 (LP)、混合整数线性规划 (MILP) 、二次规划 (QP) 、二次锥规划（SOCP）、一般非线性规划（NLP）及约束规划（CP）等大规模复杂问题求解。天筹求解器社区版本目前支持Linux操作系统和提供Python、C++ SDK，我们将持续拓展天筹求解器支持的平台，并推出更多面向数学优化问题求解领域的工具，敬请期待。
         </p>
       </div>
     </header>
@@ -25,10 +25,10 @@
           <div class="intro-card">
             <h2 class="intro-title">获取免费学术license</h2>
             <p class="intro-text">
-              天筹求解器现面向学术用户提供长期免费试用license。请您填写如下申请表格，我们将对您的信息进行审核，审核通过后我们将在<strong>一周</strong>内向您发送免费的学术授权许可。学术授权许可默认有效期为1年，到期后可以重新申请。为了保证申请过程的顺畅，请您准确填写申请信息，并使用有效的学术邮箱。
+              天筹求解器现面向学术用户提供长期免费试用license。请您填写如下申请表格，我们将对您的信息进行审核，审核通过后我们将向您发送免费的学术授权许可。学术授权许可默认有效期为1年，到期后可以重新申请。为了保证申请过程的顺畅，请您准确填写申请信息，并使用有效的学术邮箱。
             </p>
             <p class="intro-contact">
-              申请过程中遇到任何问题，可随时通过 <a href="mailto:optverse@huawei.com">optverse@huawei.com</a> 与我们联系！
+              申请和使用过程中遇到任何问题，可随时通过 <a href="mailto:optverse@huawei.com">optverse@huawei.com</a> 与我们联系！
             </p>
           </div>
         </div>
@@ -107,7 +107,7 @@
                 </div>
                 <div class="form-group">
                   <label for="macAddress">MAC地址 <span class="required">*</span></label>
-                  <input type="text" id="macAddress" v-model="form.macAddress" placeholder="例如: 00:1A:2B:3C:4D:5E" required>
+                  <input type="text" id="macAddress" v-model="form.macAddress" placeholder="例如: 00:1a:2b:3c:4d:5e" required>
                 </div>
               </div>
             </div>

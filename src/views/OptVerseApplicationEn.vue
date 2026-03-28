@@ -13,7 +13,7 @@
         <h2 class="hero-title">Welcome to Huawei OptVerse Solver!</h2>
         <p class="hero-description">
           Huawei OptVerse Solver is a high-performance mathematical programming solver developed by Huawei,
-          supporting large-scale linear programming (LP), mixed integer linear programming (MILP), quadratic programming (QP),
+          supporting inear programming (LP), mixed integer linear programming (MILP), quadratic programming (QP),
           second-order cone programming (SOCP), general nonlinear programming (NLP), and constraint programming (CP).
           The community edition of OptVerse currently supports Linux operating systems and provides Python and C++ SDKs.
           We will continue to expand the supported platforms and release more tools for mathematical optimization problem solving.
@@ -32,12 +32,12 @@
             <p class="intro-text">
               Huawei OptVerse Solver provides <strong>free long-term trial licenses</strong> for academic users.
               Please fill out the application form below, and we will review your information.
-              Upon approval, we will send you a free academic license within <strong>one week</strong>.
+              Upon approval, we will send you a free academic license.
               The default validity period of an academic license is 1 year. You can reapply after expiration.
               To ensure a smooth application process, please provide accurate information and use a valid academic email address.
             </p>
             <p class="intro-contact">
-              If you encounter any problems during the application process, please feel free to contact us at <a href="mailto:optverse@huawei.com">optverse@huawei.com</a>!
+              If you encounter any problems during the application or usage process, please feel free to contact us at <a href="mailto:optverse@huawei.com">optverse@huawei.com</a>!
             </p>
           </div>
         </div>
@@ -116,7 +116,7 @@
                 </div>
                 <div class="form-group">
                   <label for="macAddress">MAC Address <span class="required">*</span></label>
-                  <input type="text" id="macAddress" v-model="form.macAddress" placeholder="e.g., 00:1A:2B:3C:4D:5E" required>
+                  <input type="text" id="macAddress" v-model="form.macAddress" placeholder="e.g., 00:1a:2b:3c:4d:5e" required>
                 </div>
               </div>
             </div>
